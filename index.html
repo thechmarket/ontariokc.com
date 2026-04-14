@@ -202,7 +202,7 @@ nav {
 /* 카카오 카드 */
 .kakao-card {
   background: #FEE500; border-radius: 22px; padding: 34px 28px;
-  text-align: center; box-shadow: 0 16px 50px rgba(0,0,0,0.3); position: sticky; top: 80px;
+  text-align: center; box-shadow: 0 16px 50px rgba(0,0,0,0.3);
 }
 .kakao-emoji { font-size: 50px; margin-bottom: 12px; }
 .kakao-card h3 { font-size: 17px; font-weight: 900; color: #3A1D1D; margin-bottom: 6px; }
@@ -359,9 +359,43 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
 .fade { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
 .fade.on { opacity: 1; transform: none; }
 
+/* ===== HAMBURGER ===== */
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.nav-hamburger span {
+  display: block; width: 22px; height: 2px;
+  background: var(--white); border-radius: 2px; transition: all .3s;
+}
+.nav-mobile {
+  display: none; position: fixed; top: 62px; left: 0; right: 0;
+  background: rgba(13,31,53,0.98); backdrop-filter: blur(12px);
+  padding: 16px 4% 20px; z-index: 998; flex-direction: column; gap: 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.nav-mobile.open { display: flex; }
+.nav-mobile a {
+  color: rgba(255,255,255,0.75); font-size: 14px; text-decoration: none;
+  padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+  transition: color .2s;
+}
+.nav-mobile a:hover { color: var(--gold2); }
+.nav-mobile .nav-btn-m {
+  margin-top: 12px; background: linear-gradient(135deg,var(--gold),var(--gold2));
+  color: var(--navy); font-weight: 700; font-size: 14px;
+  padding: 13px; border-radius: 9px; text-align: center;
+  border-bottom: none;
+}
+
 /* ===== MOBILE ===== */
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
+  .nav-menu { gap: 12px; }
+  .nav-menu a { font-size: 11.5px; }
+}
+@media (max-width: 880px) {
   .nav-menu { display: none; }
+  .nav-hamburger { display: flex; }
   .hero-inner { grid-template-columns: 1fr; gap: 40px; }
   .hub-grid { grid-template-columns: 1fr 1fr; }
   .kakao-layout { grid-template-columns: 1fr; }
@@ -400,7 +434,22 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
     <a href="https://thechmarket.com" target="_blank">더채움마켓</a>
     <a href="ads.html#apply" class="nav-btn">광고 신청</a>
   </div>
+  <button class="nav-hamburger" id="hamBtn" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- 모바일 메뉴 -->
+<div class="nav-mobile" id="mobileMenu">
+  <a href="/" onclick="closeMenu()">홈</a>
+  <a href="#hub" onclick="closeMenu()">서비스</a>
+  <a href="#kakao" onclick="closeMenu()">오픈톡방</a>
+  <a href="https://cafe.naver.com/canadalove" target="_blank" onclick="closeMenu()">네이버카페</a>
+  <a href="#newsletter" onclick="closeMenu()">뉴스레터</a>
+  <a href="ads.html" onclick="closeMenu()">광고 상품 안내</a>
+  <a href="https://thechmarket.com" target="_blank" onclick="closeMenu()">더채움마켓</a>
+  <a href="ads.html#apply" class="nav-btn-m" onclick="closeMenu()">광고 신청</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -722,6 +771,14 @@ var io = new IntersectionObserver(function(entries) {
   });
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade').forEach(function(el) { io.observe(el); });
+
+function toggleMenu() {
+  var m = document.getElementById('mobileMenu');
+  m.classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+}
 </script>
 </body>
 </html>
