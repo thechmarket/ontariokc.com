@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>더채움 커뮤니티 광고 안내</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+  :root {
+    --navy: #0f2340;
+    --navy-mid: #1a3a5c;
+    --blue: #1e6bb8;
+    --blue-light: #3a8fd4;
+    --gold: #c9a84c;
+    --gold-light: #e8c76a;
+    --cream: #faf8f4;
+    --gray-100: #f5f4f1;
+    --gray-200: #e8e6e0;
+    --gray-500: #8a8680;
+    --gray-700: #4a4844;
+    --text: #1a1816;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(15,35,64,0.97);
+    backdrop-filter: blur(10px);
+    padding: 0 5%;
+    height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    color: var(--white);
+    font-weight: 700; font-size: 18px;
+    letter-spacing: -0.3px;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none; font-size: 13.5px; font-weight: 400;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  /* HERO */
+  .hero {
+    padding-top: 60px;
+    background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 55%, #1a4a7a 100%);
+    min-height: 88vh;
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(30,107,184,0.22) 0%, transparent 70%);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom right, transparent 49%, var(--cream) 50%);
+  }
+  .hero-grid {
+    position: relative; z-index: 1;
+    width: 90%; max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  }
+  .hero-eyebrow {
+    font-size: 11.5px; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: clamp(30px, 4vw, 50px);
+    font-weight: 900; color: var(--white);
+    line-height: 1.25; letter-spacing: -1px;
+    margin-bottom: 20px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-desc { color: rgba(255,255,255,0.72); font-size: 15.5px; margin-bottom: 36px; line-height: 1.8; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy); font-weight: 700; font-size: 14.5px;
+    padding: 14px 30px; border-radius: 8px; text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 20px rgba(201,168,76,0.35);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,168,76,0.45); }
+  .btn-outline {
+    color: var(--white); font-weight: 500; font-size: 14.5px;
+    padding: 14px 28px; border-radius: 8px; text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.35);
+    transition: border-color .2s, background .2s;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.07); }
+
+  /* STATS CARDS */
+  .hero-stats { display: flex; flex-direction: column; gap: 16px; }
+  .stat-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px; padding: 20px 24px;
+    backdrop-filter: blur(8px);
+    transition: background .2s;
+  }
+  .stat-card:hover { background: rgba(255,255,255,0.11); }
+  .stat-num {
+    font-size: 36px; font-weight: 900; color: var(--white);
+    letter-spacing: -1.5px; line-height: 1;
+  }
+  .stat-num span { font-size: 20px; color: var(--gold); }
+  .stat-label { color: rgba(255,255,255,0.6); font-size: 13px; margin-top: 4px; }
+
+  /* SECTIONS */
+  section { padding: 90px 5%; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-tag {
+    display: inline-block;
+    font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--blue); background: rgba(30,107,184,0.1);
+    padding: 5px 12px; border-radius: 20px; margin-bottom: 14px;
+  }
+  .section-title {
+    font-size: clamp(24px, 3.5vw, 38px); font-weight: 900;
+    color: var(--navy); line-height: 1.2; letter-spacing: -0.8px;
+    margin-bottom: 14px;
+  }
+  .section-sub { color: var(--gray-500); font-size: 15px; max-width: 580px; }
+
+  /* COMMUNITY SECTION */
+  .community { background: var(--white); }
+  .region-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px; margin-top: 48px;
+  }
+  .region-card {
+    background: var(--gray-100); border-radius: 14px;
+    padding: 24px 20px; text-align: center;
+    border: 1.5px solid var(--gray-200);
+    transition: border-color .2s, transform .2s;
+  }
+  .region-card:hover { border-color: var(--blue); transform: translateY(-3px); }
+  .region-icon { font-size: 28px; margin-bottom: 8px; }
+  .region-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 4px; }
+  .region-info { font-size: 12.5px; color: var(--gray-500); }
+
+  .community-numbers {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0; margin-top: 56px;
+    background: var(--navy); border-radius: 18px; overflow: hidden;
+  }
+  .comm-num {
+    padding: 36px 24px; text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .comm-num:last-child { border-right: none; }
+  .comm-num-val {
+    font-size: 44px; font-weight: 900; color: var(--white); letter-spacing: -2px; line-height: 1;
+  }
+  .comm-num-val span { font-size: 22px; color: var(--gold); }
+  .comm-num-label { color: rgba(255,255,255,0.55); font-size: 13px; margin-top: 8px; }
+
+  /* PLANS */
+  .plans { background: var(--cream); }
+  .plans-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 20px; }
+  .promo-badge {
+    background: linear-gradient(135deg, #e05c2a, #f07a4a);
+    color: white; font-size: 12px; font-weight: 700;
+    padding: 8px 16px; border-radius: 8px;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  .plans-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px; align-items: start;
+  }
+  .plan-card {
+    background: var(--white); border-radius: 20px;
+    border: 2px solid var(--gray-200);
+    padding: 36px 28px;
+    transition: border-color .25s, transform .25s, box-shadow .25s;
+    position: relative;
+  }
+  .plan-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(15,35,64,0.10); }
+  .plan-card.featured {
+    border-color: var(--blue);
+    box-shadow: 0 8px 40px rgba(30,107,184,0.15);
+  }
+  .plan-card.premium {
+    background: var(--navy);
+    border-color: var(--gold);
+  }
+  .plan-badge {
+    position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+    background: var(--blue); color: white;
+    font-size: 11.5px; font-weight: 700; letter-spacing: 1px;
+    padding: 4px 14px; border-radius: 20px; white-space: nowrap;
+  }
+  .plan-badge.gold { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--navy); }
+  .plan-tier {
+    font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 10px;
+  }
+  .plan-card.premium .plan-tier { color: var(--gold); }
+  .plan-price {
+    font-size: 44px; font-weight: 900; color: var(--navy); letter-spacing: -2px; line-height: 1;
+    margin-bottom: 4px;
+  }
+  .plan-card.premium .plan-price { color: var(--white); }
+  .plan-price span { font-size: 18px; font-weight: 400; letter-spacing: 0; }
+  .plan-per { font-size: 12.5px; color: var(--gray-500); margin-bottom: 24px; }
+  .plan-card.premium .plan-per { color: rgba(255,255,255,0.5); }
+  .plan-divider { height: 1px; background: var(--gray-200); margin-bottom: 24px; }
+  .plan-card.premium .plan-divider { background: rgba(255,255,255,0.12); }
+  .plan-features { list-style: none; display: flex; flex-direction: column; gap: 11px; margin-bottom: 32px; }
+  .plan-features li {
+    font-size: 13.5px; color: var(--gray-700);
+    display: flex; align-items: flex-start; gap: 9px;
+    line-height: 1.5;
+  }
+  .plan-card.premium .plan-features li { color: rgba(255,255,255,0.75); }
+  .plan-features li::before {
+    content: '✓'; color: var(--blue); font-weight: 700;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .plan-card.premium .plan-features li::before { color: var(--gold); }
+  .plan-contract {
+    background: var(--gray-100); border-radius: 10px;
+    padding: 14px 16px; margin-bottom: 24px;
+    font-size: 12.5px; color: var(--gray-700);
+  }
+  .plan-card.premium .plan-contract {
+    background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.6);
+  }
+  .plan-contract strong { display: block; font-weight: 700; color: var(--navy); margin-bottom: 6px; font-size: 12px; letter-spacing: 0.5px; }
+  .plan-card.premium .plan-contract strong { color: var(--gold); }
+  .plan-contract p { margin-top: 3px; }
+  .plan-cta {
+    display: block; text-align: center; text-decoration: none;
+    padding: 13px; border-radius: 10px; font-weight: 700; font-size: 14px;
+    transition: all .2s;
+    background: var(--gray-100); color: var(--navy);
+    border: 2px solid var(--gray-200);
+  }
+  .plan-cta:hover { background: var(--navy); color: white; border-color: var(--navy); }
+  .plan-card.featured .plan-cta {
+    background: var(--blue); color: white; border-color: var(--blue);
+  }
+  .plan-card.featured .plan-cta:hover { background: #155a9e; }
+  .plan-card.premium .plan-cta {
+    background: var(--gold); color: var(--navy); border-color: var(--gold);
+  }
+  .plan-card.premium .plan-cta:hover { background: var(--gold-light); }
+
+  .plan-limit {
+    font-size: 11px; color: rgba(255,255,255,0.45); text-align: center;
+    margin-top: 10px; font-style: italic;
+  }
+
+  /* FORM */
+  .apply { background: var(--white); }
+  .apply-grid {
+    display: grid; grid-template-columns: 1fr 1.6fr; gap: 64px;
+    align-items: start; margin-top: 0;
+  }
+  .apply-info {}
+  .apply-info h3 { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 14px; }
+  .apply-info p { color: var(--gray-500); font-size: 14px; line-height: 1.8; margin-bottom: 24px; }
+  .apply-contact {
+    background: var(--gray-100); border-radius: 14px; padding: 20px 22px;
+    margin-top: 28px;
+  }
+  .apply-contact h4 { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 10px; letter-spacing: 0.3px; }
+  .apply-contact p { font-size: 13px; color: var(--gray-700); line-height: 1.9; }
+  .apply-contact a { color: var(--blue); text-decoration: none; }
+
+  form { display: flex; flex-direction: column; gap: 18px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  label { font-size: 12.5px; font-weight: 600; color: var(--navy); letter-spacing: 0.3px; }
+  label span { color: #e05c2a; margin-left: 2px; }
+  input, select, textarea {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px; color: var(--text);
+    background: var(--gray-100);
+    border: 1.5px solid var(--gray-200);
+    border-radius: 9px; padding: 11px 14px;
+    outline: none; transition: border-color .2s, background .2s;
+    width: 100%;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--blue); background: var(--white);
+  }
+  textarea { resize: vertical; min-height: 100px; }
+  .submit-btn {
+    background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+    color: white; font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px; font-weight: 700;
+    padding: 15px 24px; border-radius: 10px;
+    border: none; cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 16px rgba(15,35,64,0.2);
+  }
+  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(15,35,64,0.28); }
+  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  #form-msg {
+    padding: 12px 16px; border-radius: 9px;
+    font-size: 13.5px; font-weight: 500; display: none;
+  }
+  #form-msg.success { background: #e8f5e9; color: #2e7d32; }
+  #form-msg.error { background: #fce4ec; color: #b71c1c; }
+
+  /* FAQ */
+  .faq { background: var(--cream); }
+  .faq-list { margin-top: 48px; display: flex; flex-direction: column; gap: 12px; max-width: 800px; }
+  .faq-item {
+    background: var(--white); border-radius: 12px;
+    border: 1.5px solid var(--gray-200); overflow: hidden;
+  }
+  .faq-q {
+    width: 100%; text-align: left;
+    padding: 18px 22px; display: flex; justify-content: space-between; align-items: center;
+    background: none; border: none; cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14.5px; font-weight: 600; color: var(--navy);
+    transition: background .2s;
+  }
+  .faq-q:hover { background: var(--gray-100); }
+  .faq-q .icon {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--gray-100); border: 1.5px solid var(--gray-200);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 14px; color: var(--navy);
+    transition: transform .3s, background .2s;
+  }
+  .faq-item.open .faq-q .icon { transform: rotate(45deg); background: var(--blue); border-color: var(--blue); color: white; }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height .35s ease, padding .3s;
+    padding: 0 22px;
+    font-size: 14px; color: var(--gray-700); line-height: 1.8;
+  }
+  .faq-item.open .faq-a { max-height: 300px; padding-bottom: 20px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.55);
+    padding: 40px 5%;
+    text-align: center; font-size: 13px; line-height: 1.9;
+  }
+  footer strong { color: var(--white); }
+  footer .footer-logo { font-size: 20px; font-weight: 900; color: var(--white); margin-bottom: 10px; }
+  footer .footer-logo span { color: var(--gold); }
+
+  /* SCROLL ANIM */
+  .fade-up {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-stats { flex-direction: row; flex-wrap: wrap; }
+    .stat-card { flex: 1; min-width: 140px; }
+    .plans-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+    .apply-grid { grid-template-columns: 1fr; gap: 36px; }
+    .form-row { grid-template-columns: 1fr; }
+    .community-numbers { grid-template-columns: 1fr; }
+    .comm-num { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">더채움<span>마켓</span></div>
+  <div class="nav-links">
+    <a href="#community">커뮤니티 소개</a>
+    <a href="#plans">광고 플랜</a>
+    <a href="#apply">광고 신청</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">Hamilton · Burlington · Oakville · Niagara · Brantford</div>
+      <h1>온타리오 한인 커뮤니티와<br><em>함께 성장하세요</em></h1>
+      <p class="hero-desc">
+        900명 이상의 활성 회원이 함께하는 한인 커뮤니티 네트워크에
+        여러분의 비즈니스를 알리세요. 오픈톡방, 카페, 더채움마켓까지
+        통합 광고로 최대 노출 효과를 경험하세요.
+      </p>
+      <div class="hero-btns">
+        <a href="#plans" class="btn-primary">광고 플랜 보기</a>
+        <a href="#apply" class="btn-outline">광고 신청하기</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-num">900<span>+</span></div>
+        <div class="stat-label">활성 커뮤니티 회원수</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">5<span>개</span></div>
+        <div class="stat-label">커버 도시 (온타리오 남부)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3<span>개</span></div>
+        <div class="stat-label">광고 플랫폼 통합 노출</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="community" id="community">
+  <div class="section-inner">
+    <div class="fade-up">
+      <span class="section-tag">커뮤니티 소개</span>
+      <h2 class="section-title">온타리오 남부 한인 커뮤니티<br>네트워크를 소개합니다</h2>
+      <p class="section-sub">Hamilton을 중심으로 온타리오 남부 전역의 한인 가정과 비즈니스를 연결하는 활발한 커뮤니티입니다.</p>
+    </div>
+    <div class="region-grid fade-up" style="transition-delay:.1s">
+      <div class="region-card">
+        <div class="region-icon">🏙️</div>
+        <div class="region-name">Hamilton</div>
+        <div class="region-info">메인 허브 · 더채움마켓 위치</div>
+      </div>
+      <div class="region-card">
+        <div class="region-icon">🌊</div>
+        <div class="region-name">Burlington</div>
+        <div class="region-info">가족 밀집 주거지역</div>
+      </div>
+      <div class="region-card">
+        <div class="region-icon">🍁</div>
+        <div class="region-name">Oakville</div>
+        <div class="region-info">전문직 한인 커뮤니티</div>
+      </div>
+      <div class="region-card">
+        <div class="region-icon">🍷</div>
+        <div class="region-name">Niagara</div>
+        <div class="region-info">2025 신규 확장 지역</div>
+      </div>
+      <div class="region-card">
+        <div class="region-icon">🌿</div>
+        <div class="region-name">Brantford</div>
+        <div class="region-info">성장하는 한인 커뮤니티</div>
+      </div>
+    </div>
+    <div class="community-numbers fade-up" style="transition-delay:.15s">
+      <div class="comm-num">
+        <div class="comm-num-val">900<span>+</span></div>
+        <div class="comm-num-label">카카오톡 오픈톡방 회원</div>
+      </div>
+      <div class="comm-num">
+        <div class="comm-num-val">5<span>개</span></div>
+        <div class="comm-num-label">온타리오 커버 도시</div>
+      </div>
+      <div class="comm-num">
+        <div class="comm-num-val">3<span>개</span></div>
+        <div class="comm-num-label">광고 노출 플랫폼</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section class="plans" id="plans">
+  <div class="section-inner">
+    <div class="plans-header fade-up">
+      <div>
+        <span class="section-tag">광고 플랜</span>
+        <h2 class="section-title">비즈니스에 맞는<br>플랜을 선택하세요</h2>
+      </div>
+      <div class="promo-badge">
+        🔥 3월 31일까지 — 1년 계약 시 10% 할인 + 1개월 무료
+      </div>
+    </div>
+
+    <div class="plans-grid fade-up" style="transition-delay:.1s">
+
+      <!-- BASIC -->
+      <div class="plan-card">
+        <div class="plan-tier">Basic</div>
+        <div class="plan-price">$30<span>/월</span></div>
+        <div class="plan-per">부가세 별도</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>오픈톡방 광고 월 1회</li>
+          <li>카페 — 업체 리스트 등록</li>
+          <li>더채움마켓 — 업체 리스트 등록</li>
+        </ul>
+        <div class="plan-contract">
+          <strong>📋 계약 조건</strong>
+          <p>최소 6개월 계약</p>
+          <p>1년 계약 시 +1개월 무료 + 10% 할인 <em>(3/31까지)</em></p>
+        </div>
+        <a href="#apply" class="plan-cta" onclick="selectPlan('Basic')">신청하기</a>
+      </div>
+
+      <!-- STANDARD -->
+      <div class="plan-card featured">
+        <div class="plan-badge">가장 인기</div>
+        <div class="plan-tier">Standard</div>
+        <div class="plan-price">$70<span>/월</span></div>
+        <div class="plan-per">부가세 별도</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>오픈톡방 광고 월 2회</li>
+          <li>카페 — 배너 형태 상단 등록</li>
+          <li>더채움마켓 — 배너 형태 상단 등록</li>
+          <li>배너 제작 의뢰 가능 ($50+Tax)</li>
+        </ul>
+        <div class="plan-contract">
+          <strong>📋 계약 조건</strong>
+          <p>1개월 단위 계약 가능</p>
+          <p>1년 계약 시 +1개월 무료 + 10% 할인 <em>(3/31까지)</em></p>
+        </div>
+        <a href="#apply" class="plan-cta" onclick="selectPlan('Standard')">신청하기</a>
+      </div>
+
+      <!-- PREMIUM -->
+      <div class="plan-card premium">
+        <div class="plan-badge gold">프리미엄</div>
+        <div class="plan-tier">Premium</div>
+        <div class="plan-price">$150<span>/월</span></div>
+        <div class="plan-per">부가세 별도</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>오픈톡방 광고 월 2회 + 상단 고정글 업체명 등록</li>
+          <li>카페 — 배너 형태 <strong>최상단</strong> 등록</li>
+          <li>더채움마켓 — 배너 형태 <strong>최상단</strong> 등록</li>
+          <li>쇼핑 광고 게재 + Premium/추천 로고 삽입</li>
+          <li>동일 업종 최대 5개 업체로 제한</li>
+          <li>배너 제작 의뢰 가능 ($50+Tax)</li>
+        </ul>
+        <div class="plan-contract">
+          <strong>📋 계약 조건</strong>
+          <p>1개월 단위 계약 가능</p>
+          <p>1년 계약 시 +1개월 무료 + 10% 할인 <em>(3/31까지)</em></p>
+        </div>
+        <a href="#apply" class="plan-cta" onclick="selectPlan('Premium')">신청하기</a>
+        <p class="plan-limit">* 동일 업종 5개 업체 한정</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- APPLY -->
+<section class="apply" id="apply">
+  <div class="section-inner">
+    <div class="apply-grid">
+      <div class="fade-up">
+        <span class="section-tag">광고 신청</span>
+        <h2 class="section-title">지금 바로<br>시작하세요</h2>
+        <p class="section-sub" style="max-width:100%">신청서를 작성해 주시면 24시간 이내에 담당자가 연락드립니다. 플랜에 대한 궁금한 점도 편하게 문의해 주세요.</p>
+
+        <div class="apply-contact">
+          <h4>📞 직접 문의</h4>
+          <p>
+            카카오톡 오픈채팅 바로가기<br>
+            이메일: <a href="mailto:info@chaeum.ca">info@chaeum.ca</a><br>
+            운영시간: 월–금 10:00–18:00 (EST)
+          </p>
+        </div>
+      </div>
+
+      <div class="fade-up" style="transition-delay:.1s">
+        <form id="ad-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>업체명 <span>*</span></label>
+              <input type="text" id="biz_name" placeholder="예: 해피 네일" required>
+            </div>
+            <div class="form-group">
+              <label>업종 <span>*</span></label>
+              <input type="text" id="biz_type" placeholder="예: 미용, 음식점, 교육" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>담당자 성함 <span>*</span></label>
+              <input type="text" id="name" placeholder="성함 입력" required>
+            </div>
+            <div class="form-group">
+              <label>연락처 <span>*</span></label>
+              <input type="tel" id="phone" placeholder="예: 905-000-0000" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>이메일 <span>*</span></label>
+            <input type="email" id="email" placeholder="example@email.com" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>희망 플랜 <span>*</span></label>
+              <select id="plan" required>
+                <option value="">선택해 주세요</option>
+                <option value="Basic">Basic — $30/월</option>
+                <option value="Standard">Standard — $70/월</option>
+                <option value="Premium">Premium — $150/월</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>계약 기간</label>
+              <select id="contract">
+                <option value="1개월">1개월</option>
+                <option value="6개월">6개월</option>
+                <option value="1년">1년 (할인 혜택 적용)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>배너 제작 희망</label>
+            <select id="banner">
+              <option value="없음">필요 없음</option>
+              <option value="희망 ($50+Tax)">희망합니다 ($50+Tax)</option>
+              <option value="추후 논의">추후 논의</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>업체 소개 또는 문의 사항</label>
+            <textarea id="message" placeholder="업체 소개, 광고 목표, 문의사항 등을 자유롭게 적어주세요 (150자 이내 권장)"></textarea>
+          </div>
+          <div id="form-msg"></div>
+          <button type="submit" class="submit-btn" id="submit-btn">광고 신청서 제출하기 →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="section-inner">
+    <div class="fade-up">
+      <span class="section-tag">FAQ</span>
+      <h2 class="section-title">자주 묻는 질문</h2>
+    </div>
+    <div class="faq-list fade-up" style="transition-delay:.1s">
+      <div class="faq-item">
+        <button class="faq-q"><span>광고 승인까지 얼마나 걸리나요?</span><span class="icon">+</span></button>
+        <div class="faq-a">신청서 제출 후 24시간 이내에 담당자가 연락드립니다. 내용 확인 후 최종 승인 및 광고 일정을 안내해 드립니다. 오픈톡방 광고는 내용 및 횟수 승인 후 게재됩니다.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>무료 광고와 유료 플랜의 차이는 무엇인가요?</span><span class="icon">+</span></button>
+        <div class="faq-a">무료 광고는 오픈톡방에 월 1회 게재 가능하며, 별도 리스트 등록이나 배너 노출이 없습니다. 유료 플랜은 카페, 더채움마켓 등 다채널 노출과 우선 배치 혜택이 포함됩니다.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>계약 중도 해지가 가능한가요?</span><span class="icon">+</span></button>
+        <div class="faq-a">Standard, Premium은 1개월 단위로 계약이 가능하여 매월 갱신 여부를 결정하실 수 있습니다. Basic은 최소 6개월 계약이 필요합니다. 자세한 해지 조건은 계약 시 안내드립니다.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>배너는 어떻게 제작하나요?</span><span class="icon">+</span></button>
+        <div class="faq-a">1년 계약 시 $50+Tax로 배너 제작을 의뢰하실 수 있습니다. 업체 로고, 홍보 문구, 연락처 등 자료를 제공해 주시면 디자인 후 검토 후 최종 승인하는 방식으로 진행됩니다.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Premium 플랜은 왜 5개 업체로 제한하나요?</span><span class="icon">+</span></button>
+        <div class="faq-a">Premium 광고주의 최상단 노출 효과를 보장하기 위해 동일 업종 내 최대 5개 업체로 제한합니다. 이를 통해 광고 효과와 가치를 유지합니다.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Niagara 지역도 광고 효과가 있나요?</span><span class="icon">+</span></button>
+        <div class="faq-a">2025년 4월 중 나이아가라 지역 커뮤니티 공식 확장 예정입니다. 지역 안내, 한인 총인구, 예상 이용자 수 등의 정보를 공지 후 업데이트할 예정입니다. 지금 신청하시면 확장 혜택을 먼저 누리실 수 있습니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">더채움<span>마켓</span></div>
+  <p>Hamilton's Korean Community Hub · Ontario, Canada</p>
+  <p style="margin-top:8px">문의: <a href="mailto:info@chaeum.ca" style="color:var(--gold-light)">info@chaeum.ca</a></p>
+  <p style="margin-top:16px; font-size:11.5px">© 2025 더채움마켓 커뮤니티 · 광고 관련 문의는 신청 폼 또는 이메일로 연락 주세요</p>
+</footer>
+
+<script>
+// EmailJS 초기화 — 아래 YOUR_PUBLIC_KEY를 실제 EmailJS Public Key로 교체하세요
+emailjs.init("YOUR_PUBLIC_KEY");
+
+// 플랜 선택 시 자동 포커스
+function selectPlan(plan) {
+  setTimeout(() => {
+    const sel = document.getElementById('plan');
+    sel.value = plan;
+    document.getElementById('apply').scrollIntoView({ behavior: 'smooth' });
+  }, 100);
+}
+
+// FAQ 토글
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+// 폼 제출
+document.getElementById('ad-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  const msg = document.getElementById('form-msg');
+  btn.disabled = true;
+  btn.textContent = '전송 중...';
+  msg.style.display = 'none';
+
+  const params = {
+    biz_name: document.getElementById('biz_name').value,
+    biz_type: document.getElementById('biz_type').value,
+    name: document.getElementById('name').value,
+    phone: document.getElementById('phone').value,
+    email: document.getElementById('email').value,
+    plan: document.getElementById('plan').value,
+    contract: document.getElementById('contract').value,
+    banner: document.getElementById('banner').value,
+    message: document.getElementById('message').value,
+  };
+
+  try {
+    // EmailJS 설정: YOUR_SERVICE_ID, YOUR_TEMPLATE_ID를 교체하세요
+    await emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params);
+    msg.textContent = '✅ 신청서가 성공적으로 접수되었습니다! 24시간 이내 연락드리겠습니다.';
+    msg.className = 'success';
+    msg.style.display = 'block';
+    this.reset();
+  } catch (err) {
+    msg.textContent = '❌ 전송 중 오류가 발생했습니다. 이메일(info@chaeum.ca)로 직접 문의해 주세요.';
+    msg.className = 'error';
+    msg.style.display = 'block';
+  }
+
+  btn.disabled = false;
+  btn.textContent = '광고 신청서 제출하기 →';
+});
+
+// 스크롤 애니메이션
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
