@@ -6,7 +6,7 @@
 <title>Ontario Korean Community - 온타리오 한인 커뮤니티 OKC</title>
 <meta name="description" content="Hamilton, Burlington, Brantford, Oakville, Milton 온타리오 한인 커뮤니티 OKC">
 <meta property="og:title" content="Ontario Korean Community - 온타리오 한인 커뮤니티">
-<meta property="og:description" content="1000명이 함께하는 온타리오 한인 커뮤니티 OKC">
+<meta property="og:description" content="온타리오 한인 커뮤니티 OKC. 실거주 1,000명 + 더채움마켓 10,000명">
 <meta property="og:url" content="https://ontariokc.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
@@ -33,19 +33,10 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'Noto Sans KR', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
 
-/* ===== NAV ===== */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
-  height: 62px; background: rgba(13,31,53,0.97); backdrop-filter: blur(12px);
-  display: flex; align-items: center; justify-content: space-between; padding: 0 4%;
-}
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 999; height: 62px; background: rgba(13,31,53,0.97); backdrop-filter: blur(12px); display: flex; align-items: center; justify-content: space-between; padding: 0 4%; }
 .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-.nav-logo-mark {
-  width: 36px; height: 36px; border-radius: 8px;
-  background: linear-gradient(135deg, var(--gold), var(--gold2));
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 900; font-size: 12px; color: var(--navy); letter-spacing: -0.5px;
-}
+.nav-logo-mark { width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, var(--gold), var(--gold2)); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 12px; color: var(--navy); letter-spacing: -0.5px; }
 .nav-title-wrap { display: flex; flex-direction: column; }
 .nav-name { color: var(--white); font-weight: 700; font-size: 13px; line-height: 1.3; }
 .nav-name span { color: var(--gold); }
@@ -53,249 +44,145 @@ nav {
 .nav-menu { display: flex; align-items: center; gap: 16px; }
 .nav-menu a { color: rgba(255,255,255,0.68); font-size: 12.5px; text-decoration: none; white-space: nowrap; transition: color .2s; }
 .nav-menu a:hover { color: var(--gold2); }
-.nav-menu { display: flex; align-items: center; gap: 16px; }
-.nav-btn {
-  background: linear-gradient(135deg, var(--gold), var(--gold2));
-  color: var(--navy); font-weight: 700; font-size: 12px;
-  padding: 7px 14px; border-radius: 6px; text-decoration: none; white-space: nowrap;
-}
+.nav-btn { background: linear-gradient(135deg, var(--gold), var(--gold2)); color: var(--navy) !important; font-weight: 700 !important; padding: 7px 14px; border-radius: 6px; font-size: 12px !important; }
+.ham { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+.ham span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; }
+.mob-nav { display: none; position: fixed; top: 62px; left: 0; right: 0; background: rgba(13,31,53,0.98); backdrop-filter: blur(12px); padding: 16px 4% 20px; z-index: 998; flex-direction: column; gap: 0; border-top: 1px solid rgba(255,255,255,0.1); }
+.mob-nav.open { display: flex; }
+.mob-nav a { color: rgba(255,255,255,0.75); font-size: 14px; text-decoration: none; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.07); transition: color .2s; }
+.mob-nav a:hover { color: var(--gold2); }
+.mob-btn { margin-top: 12px !important; background: linear-gradient(135deg,var(--gold),var(--gold2)); color: var(--navy) !important; font-weight: 700; padding: 13px; border-radius: 9px; text-align: center; border-bottom: none !important; }
 
-/* ===== HERO ===== */
-.hero {
-  min-height: 100vh; background: var(--navy);
-  display: flex; align-items: center;
-  padding: 80px 4% 60px; position: relative; overflow: hidden;
-}
-.hero-glow1 {
-  position: absolute; top: -200px; right: -100px;
-  width: 700px; height: 700px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(26,95,168,0.22) 0%, transparent 65%);
-  pointer-events: none;
-}
-.hero-glow2 {
-  position: absolute; bottom: -150px; left: -50px;
-  width: 500px; height: 500px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(200,162,74,0.1) 0%, transparent 65%);
-  pointer-events: none;
-}
-.hero-inner {
-  position: relative; z-index: 1;
-  max-width: 1100px; margin: 0 auto; width: 100%;
-  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 70px; align-items: center;
-}
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 7px;
-  background: rgba(200,162,74,0.15); border: 1px solid rgba(200,162,74,0.3);
-  color: var(--gold2); font-size: 11px; font-weight: 600;
-  letter-spacing: 2px; text-transform: uppercase;
-  padding: 5px 12px; border-radius: 20px; margin-bottom: 22px;
-}
-.hero-badge::before { content: '●'; font-size: 7px; animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(34px, 5vw, 58px); font-weight: 900;
-  color: var(--white); line-height: 1.15; letter-spacing: -1px; margin-bottom: 20px;
-}
-.hero-accent {
-  background: linear-gradient(135deg, var(--gold), var(--gold2));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
+/* HERO */
+.hero { min-height: 100vh; background: var(--navy); display: flex; align-items: center; padding: 80px 4% 60px; position: relative; overflow: hidden; }
+.hero-g1 { position: absolute; top: -200px; right: -100px; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(26,95,168,0.22) 0%, transparent 65%); pointer-events: none; }
+.hero-g2 { position: absolute; bottom: -150px; left: -50px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(200,162,74,0.1) 0%, transparent 65%); pointer-events: none; }
+.hero-in { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 70px; align-items: center; }
+.hero-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(200,162,74,0.15); border: 1px solid rgba(200,162,74,0.3); color: var(--gold2); font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; margin-bottom: 22px; }
+.hero-badge::before { content: 'x'; font-size: 7px; animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1}50%{opacity:0.3} }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(34px,5vw,58px); font-weight: 900; color: var(--white); line-height: 1.15; letter-spacing: -1px; margin-bottom: 20px; }
+.accent { background: linear-gradient(135deg,var(--gold),var(--gold2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .hero-desc { color: rgba(255,255,255,0.65); font-size: 15px; line-height: 1.85; margin-bottom: 36px; max-width: 480px; }
 .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
-.btn-gold {
-  background: linear-gradient(135deg, var(--gold), var(--gold2));
-  color: var(--navy); font-weight: 700; font-size: 14px;
-  padding: 13px 26px; border-radius: 9px; text-decoration: none;
-  box-shadow: 0 4px 20px rgba(200,162,74,0.35);
-  transition: transform .2s, box-shadow .2s;
-}
+.btn-gold { background: linear-gradient(135deg,var(--gold),var(--gold2)); color: var(--navy); font-weight: 700; font-size: 14px; padding: 13px 26px; border-radius: 9px; text-decoration: none; box-shadow: 0 4px 20px rgba(200,162,74,0.35); transition: transform .2s, box-shadow .2s; display: inline-block; }
 .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(200,162,74,0.45); }
-.btn-ghost {
-  color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 500;
-  padding: 13px 24px; border-radius: 9px; text-decoration: none;
-  border: 1.5px solid rgba(255,255,255,0.22);
-  transition: border-color .2s, background .2s;
-}
+.btn-ghost { color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 500; padding: 13px 24px; border-radius: 9px; text-decoration: none; border: 1.5px solid rgba(255,255,255,0.22); transition: border-color .2s, background .2s; display: inline-block; }
 .btn-ghost:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.06); }
 
-/* Hero regions */
+/* REGION CARDS */
 .hero-right { display: flex; flex-direction: column; gap: 10px; }
 .region-row { display: flex; gap: 10px; }
-.rcard {
-  flex: 1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 12px; padding: 14px 12px; cursor: default;
-  transition: background .2s, border-color .2s;
-}
+.rcard { flex: 1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 14px 12px; cursor: default; transition: background .2s, border-color .2s; }
 .rcard:hover { background: rgba(255,255,255,0.1); border-color: rgba(200,162,74,0.4); }
-.rcard-icon { font-size: 18px; margin-bottom: 5px; }
-.rcard-name { color: var(--white); font-weight: 700; font-size: 12px; }
-.rcard-sub { color: rgba(255,255,255,0.45); font-size: 10px; margin-top: 2px; }
-.rcard-coming { border-color: rgba(200,162,74,0.35); }
-.rcard-coming .rcard-name::after {
-  content: '예정'; font-size: 8px; font-weight: 700;
-  background: var(--gold); color: var(--navy);
-  padding: 1px 4px; border-radius: 3px; margin-left: 4px; vertical-align: middle;
-}
-.stat-bar {
-  margin-top: 4px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 12px; padding: 14px 16px;
-  display: flex; justify-content: space-around; align-items: center;
-}
-.stat-item { text-align: center; }
-.stat-num { font-size: 24px; font-weight: 900; color: var(--white); letter-spacing: -1px; line-height: 1; }
-.stat-num small { font-size: 14px; color: var(--gold); }
-.stat-lbl { color: rgba(255,255,255,0.45); font-size: 10px; margin-top: 3px; }
-.stat-div { width: 1px; height: 30px; background: rgba(255,255,255,0.1); }
+.rc-icon { font-size: 18px; margin-bottom: 5px; }
+.rc-name { color: var(--white); font-weight: 700; font-size: 12px; }
+.rc-sub { color: rgba(255,255,255,0.45); font-size: 10px; margin-top: 2px; }
+.rcard-new { border-color: rgba(200,162,74,0.35); }
+.rcard-new .rc-name::after { content: '예정'; font-size: 8px; font-weight: 700; background: var(--gold); color: var(--navy); padding: 1px 4px; border-radius: 3px; margin-left: 4px; vertical-align: middle; }
+.stat-bar { margin-top: 4px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 14px 16px; display: flex; justify-content: space-around; align-items: center; }
+.stat-i { text-align: center; }
+.stat-n { font-size: 22px; font-weight: 900; color: var(--white); letter-spacing: -1px; line-height: 1; }
+.stat-n small { font-size: 13px; color: var(--gold); }
+.stat-l { color: rgba(255,255,255,0.45); font-size: 10px; margin-top: 3px; }
+.stat-d { width: 1px; height: 30px; background: rgba(255,255,255,0.1); }
 
-/* ===== SECTION COMMONS ===== */
-.section { padding: 88px 4%; }
-.sec-inner { max-width: 1100px; margin: 0 auto; }
+/* SECTIONS */
+.sec { padding: 88px 4%; }
+.sec-in { max-width: 1100px; margin: 0 auto; }
 .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; }
 .sec-title { font-family: 'Playfair Display', serif; font-size: clamp(26px,3.5vw,40px); font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 12px; }
 .sec-sub { color: var(--g500); font-size: 14.5px; line-height: 1.8; }
 
-/* ===== HUB CARDS ===== */
+/* HUB CARDS */
 .hub-bg { background: var(--cream); }
 .hub-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; margin-top: 50px; }
-.hub-card {
-  background: var(--white); border-radius: 18px; border: 1.5px solid var(--g200);
-  padding: 30px 24px; text-decoration: none; color: inherit;
-  display: flex; flex-direction: column;
-  position: relative; overflow: hidden;
-  transition: transform .25s, box-shadow .25s, border-color .25s;
-}
-.hub-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-  opacity: 0; transition: opacity .25s;
-}
-.hub-card.c-blue::before { background: linear-gradient(90deg, var(--blue), var(--blue2)); }
-.hub-card.c-gold::before { background: linear-gradient(90deg, var(--gold), var(--gold2)); }
-.hub-card.c-green::before { background: linear-gradient(90deg, #1a7a4a, #27ae60); }
-.hub-card.c-red::before { background: linear-gradient(90deg, #c0392b, #e74c3c); }
-.hub-card:hover { transform: translateY(-5px); box-shadow: 0 18px 45px rgba(13,31,53,0.10); border-color: transparent; }
-.hub-card:hover::before { opacity: 1; }
-.hub-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 18px; }
-.c-blue .hub-icon { background: rgba(26,95,168,0.1); }
-.c-gold .hub-icon { background: rgba(200,162,74,0.12); }
-.c-green .hub-icon { background: rgba(26,122,74,0.1); }
-.c-red .hub-icon { background: rgba(192,57,43,0.1); }
-.hub-title { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
-.hub-desc { color: var(--g500); font-size: 12.5px; line-height: 1.75; flex: 1; margin-bottom: 20px; }
-.hub-link { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 700; text-decoration: none; transition: gap .2s; }
-.c-blue .hub-link { color: var(--blue); }
-.c-gold .hub-link { color: var(--gold); }
-.c-green .hub-link { color: #1a7a4a; }
-.c-red .hub-link { color: var(--red); }
-.hub-card:hover .hub-link { gap: 9px; }
-.hub-badge { position: absolute; top: 14px; right: 14px; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px; }
+.hcard { background: var(--white); border-radius: 18px; border: 1.5px solid var(--g200); padding: 28px 22px; text-decoration: none; color: inherit; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: transform .25s, box-shadow .25s, border-color .25s; }
+.hcard::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; opacity: 0; transition: opacity .25s; }
+.hcard.cb::before { background: linear-gradient(90deg,var(--blue),var(--blue2)); }
+.hcard.cy::before { background: linear-gradient(90deg,var(--gold),var(--gold2)); }
+.hcard.cg::before { background: linear-gradient(90deg,#1a7a4a,#27ae60); }
+.hcard.cr::before { background: linear-gradient(90deg,#c0392b,#e74c3c); }
+.hcard:hover { transform: translateY(-5px); box-shadow: 0 18px 45px rgba(13,31,53,0.10); border-color: transparent; }
+.hcard:hover::before { opacity: 1; }
+.hicon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 18px; }
+.cb .hicon { background: rgba(26,95,168,0.1); }
+.cy .hicon { background: rgba(200,162,74,0.12); }
+.cg .hicon { background: rgba(26,122,74,0.1); }
+.cr .hicon { background: rgba(192,57,43,0.1); }
+.htitle { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.hdesc { color: var(--g500); font-size: 12.5px; line-height: 1.75; flex: 1; margin-bottom: 20px; }
+.hlink { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 700; text-decoration: none; transition: gap .2s; }
+.cb .hlink { color: var(--blue); }
+.cy .hlink { color: var(--gold); }
+.cg .hlink { color: #1a7a4a; }
+.cr .hlink { color: var(--red); }
+.hcard:hover .hlink { gap: 9px; }
+.hbadge { position: absolute; top: 14px; right: 14px; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px; }
 .b-soon { background: var(--g100); color: var(--g500); }
 .b-hot { background: rgba(200,162,74,0.15); color: var(--gold); }
 
-/* ===== KAKAO SECTION ===== */
-.kakao-bg { background: var(--navy); }
-.kakao-eyebrow { color: rgba(254,229,0,0.8) !important; }
-.kakao-title { color: var(--white) !important; }
-.kakao-sub { color: rgba(255,255,255,0.58) !important; }
-.kakao-layout { display: grid; grid-template-columns: 320px 1fr; gap: 60px; margin-top: 50px; align-items: start; }
+/* KAKAO */
+.kbg { background: var(--navy); }
+.kbg .eyebrow { color: rgba(254,229,0,0.8); }
+.kbg .sec-title { color: var(--white); }
+.kbg .sec-sub { color: rgba(255,255,255,0.58); }
+.k-layout { display: grid; grid-template-columns: 300px 1fr; gap: 56px; margin-top: 50px; align-items: start; }
+.k-card { background: #FEE500; border-radius: 22px; padding: 32px 28px; text-align: center; box-shadow: 0 16px 50px rgba(0,0,0,0.3); }
+.k-emoji { font-size: 48px; margin-bottom: 12px; }
+.k-card h3 { font-size: 17px; font-weight: 900; color: #3A1D1D; margin-bottom: 6px; }
+.k-card p { font-size: 12px; color: rgba(58,29,29,0.7); margin-bottom: 18px; line-height: 1.7; }
+.k-count { background: rgba(58,29,29,0.08); border-radius: 10px; padding: 10px; margin-bottom: 16px; }
+.k-count span { font-size: 24px; font-weight: 900; color: #3A1D1D; }
+.k-count p { font-size: 10.5px; color: rgba(58,29,29,0.6); margin-top: 2px; margin-bottom: 0; }
+.k-btn { display: block; background: #3A1D1D; color: #FEE500; font-weight: 700; font-size: 13px; padding: 12px; border-radius: 10px; text-decoration: none; margin-bottom: 8px; transition: opacity .2s; }
+.k-btn:hover { opacity: 0.88; }
+.n-btn { display: flex; align-items: center; justify-content: center; gap: 7px; background: #03C75A; color: var(--white); font-weight: 700; font-size: 12.5px; padding: 11px 14px; border-radius: 10px; text-decoration: none; transition: opacity .2s; }
+.n-btn:hover { opacity: 0.88; }
+.n-icon { width: 18px; height: 18px; border-radius: 3px; background: var(--white); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 900; color: #03C75A; flex-shrink: 0; }
+.func-lbl { color: rgba(254,229,0,0.8); font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 14px; }
+.fgrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+.fc { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 14px; transition: background .2s, border-color .2s; }
+.fc:hover { background: rgba(255,255,255,0.1); border-color: rgba(254,229,0,0.3); }
+.fi { font-size: 24px; margin-bottom: 7px; }
+.ft { color: var(--white); font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+.fd { color: rgba(255,255,255,0.5); font-size: 11.5px; line-height: 1.6; }
 
-/* 카카오 카드 */
-.kakao-card {
-  background: #FEE500; border-radius: 22px; padding: 34px 28px;
-  text-align: center; box-shadow: 0 16px 50px rgba(0,0,0,0.3);
-}
-.kakao-emoji { font-size: 50px; margin-bottom: 12px; }
-.kakao-card h3 { font-size: 17px; font-weight: 900; color: #3A1D1D; margin-bottom: 6px; }
-.kakao-card p { font-size: 12px; color: rgba(58,29,29,0.7); margin-bottom: 18px; line-height: 1.7; }
-.kakao-count { background: rgba(58,29,29,0.08); border-radius: 10px; padding: 10px; margin-bottom: 16px; }
-.kakao-count span { font-size: 26px; font-weight: 900; color: #3A1D1D; }
-.kakao-count p { font-size: 10.5px; color: rgba(58,29,29,0.6); margin-top: 2px; margin-bottom: 0; }
-.kakao-join-btn {
-  display: block; background: #3A1D1D; color: #FEE500;
-  font-weight: 700; font-size: 13px; padding: 12px; border-radius: 10px;
-  text-decoration: none; margin-bottom: 8px; transition: opacity .2s;
-}
-.kakao-join-btn:hover { opacity: 0.88; }
-.naver-btn {
-  display: flex; align-items: center; justify-content: center; gap: 7px;
-  background: #03C75A; color: var(--white);
-  font-weight: 700; font-size: 12.5px; padding: 11px 14px;
-  border-radius: 10px; text-decoration: none; transition: opacity .2s;
-}
-.naver-btn:hover { opacity: 0.88; }
-.naver-n {
-  width: 18px; height: 18px; border-radius: 3px;
-  background: var(--white); display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 900; color: #03C75A; flex-shrink: 0;
-}
-
-/* 기능 그리드 */
-.func-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
-.func-card {
-  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 12px; padding: 16px 14px;
-  transition: background .2s, border-color .2s;
-}
-.func-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(254,229,0,0.3); }
-.func-icon { font-size: 24px; margin-bottom: 7px; }
-.func-title { color: var(--white); font-weight: 700; font-size: 13px; margin-bottom: 4px; }
-.func-desc { color: rgba(255,255,255,0.5); font-size: 11.5px; line-height: 1.6; }
-
-/* ===== TRUST ===== */
-.trust-bg { background: var(--white); }
-.trust-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; margin-top: 50px; margin-bottom: 44px; }
-.trust-card { background: var(--g100); border-radius: 14px; padding: 26px 18px; text-align: center; border: 1.5px solid var(--g200); }
-.trust-card.dark { background: linear-gradient(135deg,var(--navy),var(--navy2)); border-color: transparent; }
-.trust-big { font-size: 34px; font-weight: 900; color: var(--navy); letter-spacing: -1.5px; line-height: 1; }
-.trust-card.dark .trust-big { color: var(--white); }
-.trust-big small { font-size: 17px; color: var(--gold); }
-.trust-lbl { font-size: 13px; font-weight: 700; color: var(--navy); margin: 7px 0 4px; }
-.trust-card.dark .trust-lbl { color: var(--white); }
-.trust-sub { font-size: 11px; color: var(--g500); line-height: 1.6; }
-.trust-card.dark .trust-sub { color: rgba(255,255,255,0.5); }
-.trust-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-.trust-box {
-  background: var(--g100); border-radius: 14px; padding: 28px 26px; border: 1.5px solid var(--g200);
-}
-.trust-box-title { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; }
+/* TRUST */
+.tbg { background: var(--white); }
+.tgrid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; margin-top: 50px; margin-bottom: 44px; }
+.tc { background: var(--g100); border-radius: 14px; padding: 26px 18px; text-align: center; border: 1.5px solid var(--g200); }
+.tc.dark { background: linear-gradient(135deg,var(--navy),var(--navy2)); border-color: transparent; }
+.tbig { font-size: 32px; font-weight: 900; color: var(--navy); letter-spacing: -1.5px; line-height: 1; }
+.tc.dark .tbig { color: var(--white); }
+.tbig small { font-size: 16px; color: var(--gold); }
+.tlbl { font-size: 13px; font-weight: 700; color: var(--navy); margin: 7px 0 4px; }
+.tc.dark .tlbl { color: var(--white); }
+.tsub { font-size: 11px; color: var(--g500); line-height: 1.6; }
+.tc.dark .tsub { color: rgba(255,255,255,0.5); }
+.tcols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.tbox { background: var(--g100); border-radius: 14px; padding: 28px 26px; border: 1.5px solid var(--g200); }
+.tbox-ttl { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; }
 .tp { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; color: var(--g700); line-height: 1.6; margin-bottom: 12px; }
 .tp:last-child { margin-bottom: 0; }
-.tp-icon { font-weight: 700; flex-shrink: 0; }
-.partner-box {
-  background: linear-gradient(135deg, var(--navy) 0%, #1a3a6a 100%);
-  border-radius: 14px; padding: 28px 26px;
-}
-.partner-box-title { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
-.partner-desc { color: rgba(255,255,255,0.7); font-size: 13.5px; line-height: 1.8; margin-bottom: 18px; }
-.partner-item {
-  background: rgba(255,255,255,0.08); border-radius: 9px;
-  padding: 11px 14px; font-size: 13px; color: rgba(255,255,255,0.8); margin-bottom: 9px;
-}
-.partner-item strong { color: var(--gold); }
-.partner-cta {
-  display: block; margin-top: 18px; background: var(--gold); color: var(--navy);
-  text-align: center; padding: 12px; border-radius: 9px;
-  font-weight: 700; font-size: 14px; text-decoration: none; transition: opacity .2s;
-}
-.partner-cta:hover { opacity: 0.88; }
-.consult-bar {
-  margin-top: 22px;
-  background: rgba(26,95,168,0.07); border: 1.5px solid rgba(26,95,168,0.2);
-  border-radius: 12px; padding: 20px 26px;
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
-}
-.consult-bar h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
-.consult-bar p { font-size: 13px; color: var(--g500); }
-.consult-btn {
-  background: var(--blue); color: var(--white);
-  padding: 10px 20px; border-radius: 8px;
-  font-weight: 700; font-size: 13px; text-decoration: none;
-  white-space: nowrap; flex-shrink: 0; transition: opacity .2s;
-}
-.consult-btn:hover { opacity: 0.88; }
+.pbox { background: linear-gradient(135deg,var(--navy) 0%,#1a3a6a 100%); border-radius: 14px; padding: 28px 26px; }
+.pbox-ttl { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+.pdesc { color: rgba(255,255,255,0.7); font-size: 13.5px; line-height: 1.8; margin-bottom: 18px; }
+.pitem { background: rgba(255,255,255,0.08); border-radius: 9px; padding: 11px 14px; font-size: 13px; color: rgba(255,255,255,0.8); margin-bottom: 9px; }
+.pitem strong { color: var(--gold); }
+.pcta { display: block; margin-top: 18px; background: var(--gold); color: var(--navy); text-align: center; padding: 12px; border-radius: 9px; font-weight: 700; font-size: 14px; text-decoration: none; transition: opacity .2s; }
+.pcta:hover { opacity: 0.88; }
+.cbar { margin-top: 22px; background: rgba(26,95,168,0.07); border: 1.5px solid rgba(26,95,168,0.2); border-radius: 12px; padding: 20px 26px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+.cbar h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+.cbar p { font-size: 13px; color: var(--g500); }
+.cbar-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.cbtn { background: var(--blue); color: var(--white); padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 13px; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: opacity .2s; }
+.cbtn:hover { opacity: 0.88; }
+.cbtn2 { background: var(--navy2); color: var(--white); padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 13px; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: opacity .2s; }
+.cbtn2:hover { opacity: 0.88; }
 
-/* ===== NEWSLETTER ===== */
-.nl-bg { background: var(--warm); }
+/* NEWSLETTER */
+.nlbg { background: var(--warm); }
 .nl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 50px; align-items: center; }
 .nl-preview { background: var(--white); border-radius: 18px; border: 1.5px solid var(--g200); overflow: hidden; box-shadow: 0 8px 36px rgba(13,31,53,0.07); }
 .nl-head { background: var(--navy); padding: 16px 22px; display: flex; align-items: center; justify-content: space-between; }
@@ -305,111 +192,65 @@ nav {
 .nl-row { padding: 12px 0; border-bottom: 1px solid var(--g200); display: flex; gap: 10px; align-items: flex-start; }
 .nl-row:last-child { border-bottom: none; padding-bottom: 0; }
 .nl-tag { font-size: 9.5px; font-weight: 700; letter-spacing: 1px; padding: 2px 7px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
-.t-news { background: rgba(26,95,168,0.1); color: var(--blue); }
-.t-biz { background: rgba(200,162,74,0.12); color: var(--gold); }
-.t-event { background: rgba(192,57,43,0.1); color: var(--red); }
-.nl-row-title { font-size: 13px; font-weight: 600; color: var(--navy); line-height: 1.5; }
-.nl-row-sub { font-size: 11.5px; color: var(--g500); margin-top: 2px; }
+.tn { background: rgba(26,95,168,0.1); color: var(--blue); }
+.tb { background: rgba(200,162,74,0.12); color: var(--gold); }
+.te { background: rgba(192,57,43,0.1); color: var(--red); }
+.nl-rt { font-size: 13px; font-weight: 600; color: var(--navy); line-height: 1.5; }
+.nl-rs { font-size: 11.5px; color: var(--g500); margin-top: 2px; }
 .nl-info h3 { font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 12px; line-height: 1.3; }
 .nl-info p { color: var(--g500); font-size: 14px; line-height: 1.8; margin-bottom: 18px; }
 .nl-checks { display: flex; flex-direction: column; gap: 9px; margin-bottom: 24px; }
 .nl-check { display: flex; align-items: center; gap: 9px; font-size: 13px; color: var(--g700); }
-.nl-check::before { content: '✓'; color: var(--blue); font-weight: 700; flex-shrink: 0; }
-.nl-soon {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--g100); border: 1.5px dashed var(--g200);
-  color: var(--g500); font-size: 13px; font-weight: 600;
-  padding: 11px 18px; border-radius: 9px;
-}
+.nl-check::before { content: 'v'; color: var(--blue); font-weight: 700; flex-shrink: 0; font-size: 12px; }
+.nl-soon { display: inline-flex; align-items: center; gap: 8px; background: var(--g100); border: 1.5px dashed var(--g200); color: var(--g500); font-size: 13px; font-weight: 600; padding: 11px 18px; border-radius: 9px; }
 
-/* ===== AD CTA ===== */
+/* AD CTA */
 .cta-bg { background: var(--white); padding: 80px 4%; }
-.cta-box {
-  max-width: 1100px; margin: 0 auto;
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 60%, #1a3a6a 100%);
-  border-radius: 22px; padding: 56px;
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 36px; flex-wrap: wrap; position: relative; overflow: hidden;
-}
-.cta-box::before {
-  content: ''; position: absolute; top: -60px; right: -60px;
-  width: 280px; height: 280px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(200,162,74,0.14) 0%, transparent 65%);
-}
-.cta-text { position: relative; }
-.cta-text h2 { font-family: 'Playfair Display', serif; font-size: clamp(22px,3vw,34px); font-weight: 700; color: var(--white); margin-bottom: 8px; }
-.cta-text p { color: rgba(255,255,255,0.6); font-size: 14.5px; }
+.cta-box { max-width: 1100px; margin: 0 auto; background: linear-gradient(135deg,var(--navy) 0%,var(--navy2) 60%,#1a3a6a 100%); border-radius: 22px; padding: 56px; display: flex; justify-content: space-between; align-items: center; gap: 36px; flex-wrap: wrap; position: relative; overflow: hidden; }
+.cta-box::before { content: ''; position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(200,162,74,0.14) 0%, transparent 65%); }
+.cta-txt { position: relative; }
+.cta-txt h2 { font-family: 'Playfair Display', serif; font-size: clamp(22px,3vw,34px); font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.cta-txt p { color: rgba(255,255,255,0.6); font-size: 14.5px; }
 .cta-btns { display: flex; gap: 12px; flex-wrap: wrap; position: relative; }
+.btn-ghost2 { color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 500; padding: 13px 24px; border-radius: 9px; text-decoration: none; border: 1.5px solid rgba(255,255,255,0.22); transition: border-color .2s, background .2s; display: inline-block; }
+.btn-ghost2:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.06); }
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 footer { background: var(--navy); padding: 48px 4% 28px; }
-.footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 44px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.08); }
-.f-brand h3 { color: var(--white); font-size: 17px; font-weight: 900; margin-bottom: 2px; }
-.f-brand h3 span { color: var(--gold); }
-.f-brand .f-eng { color: var(--gold); font-size: 11px; letter-spacing: 1px; margin-bottom: 3px; }
-.f-brand .f-url { color: rgba(255,255,255,0.28); font-size: 11px; margin-bottom: 12px; }
-.f-brand p { color: rgba(255,255,255,0.42); font-size: 12.5px; line-height: 1.85; }
-.f-col h4 { color: var(--white); font-size: 13px; font-weight: 700; margin-bottom: 14px; }
-.f-col a { display: block; color: rgba(255,255,255,0.42); font-size: 12.5px; text-decoration: none; margin-bottom: 8px; transition: color .2s; }
-.f-col a:hover { color: var(--gold2); }
-.footer-bottom { max-width: 1100px; margin: 20px auto 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
-.footer-bottom p { color: rgba(255,255,255,0.25); font-size: 11.5px; }
+.fg { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 44px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.fb h3 { color: var(--white); font-size: 17px; font-weight: 900; margin-bottom: 2px; }
+.fb h3 span { color: var(--gold); }
+.fb .fe { color: var(--gold); font-size: 11px; letter-spacing: 1px; margin-bottom: 3px; }
+.fb .fu { color: rgba(255,255,255,0.28); font-size: 11px; margin-bottom: 12px; }
+.fb p { color: rgba(255,255,255,0.42); font-size: 12.5px; line-height: 1.85; }
+.fc2 h4 { color: var(--white); font-size: 13px; font-weight: 700; margin-bottom: 14px; }
+.fc2 a { display: block; color: rgba(255,255,255,0.42); font-size: 12.5px; text-decoration: none; margin-bottom: 8px; transition: color .2s; }
+.fc2 a:hover { color: var(--gold2); }
+.fbot { max-width: 1100px; margin: 20px auto 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.fbot p { color: rgba(255,255,255,0.25); font-size: 11.5px; }
 
-/* ===== ANIMATIONS ===== */
+/* ANIM */
 .fade { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
 .fade.on { opacity: 1; transform: none; }
 
-/* ===== HAMBURGER ===== */
-.nav-hamburger {
-  display: none; flex-direction: column; gap: 5px;
-  background: none; border: none; cursor: pointer; padding: 4px;
-}
-.nav-hamburger span {
-  display: block; width: 22px; height: 2px;
-  background: var(--white); border-radius: 2px; transition: all .3s;
-}
-.nav-mobile {
-  display: none; position: fixed; top: 62px; left: 0; right: 0;
-  background: rgba(13,31,53,0.98); backdrop-filter: blur(12px);
-  padding: 16px 4% 20px; z-index: 998; flex-direction: column; gap: 0;
-  border-top: 1px solid rgba(255,255,255,0.1);
-}
-.nav-mobile.open { display: flex; }
-.nav-mobile a {
-  color: rgba(255,255,255,0.75); font-size: 14px; text-decoration: none;
-  padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
-  transition: color .2s;
-}
-.nav-mobile a:hover { color: var(--gold2); }
-.nav-mobile .nav-btn-m {
-  margin-top: 12px; background: linear-gradient(135deg,var(--gold),var(--gold2));
-  color: var(--navy); font-weight: 700; font-size: 14px;
-  padding: 13px; border-radius: 9px; text-align: center;
-  border-bottom: none;
-}
-
-/* ===== MOBILE ===== */
-@media (max-width: 1100px) {
-  .nav-menu { gap: 12px; }
-  .nav-menu a { font-size: 11.5px; }
-}
-@media (max-width: 880px) {
+/* MOBILE */
+@media(max-width:1100px) { .nav-menu { gap: 12px; } .nav-menu a { font-size: 11.5px; } }
+@media(max-width:880px) {
   .nav-menu { display: none; }
-  .nav-hamburger { display: flex; }
-  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .ham { display: flex; }
+  .hero-in { grid-template-columns: 1fr; gap: 40px; }
   .hub-grid { grid-template-columns: 1fr 1fr; }
-  .kakao-layout { grid-template-columns: 1fr; }
-  .func-grid { grid-template-columns: repeat(2,1fr); }
-  .trust-grid { grid-template-columns: 1fr 1fr; }
-  .trust-cols { grid-template-columns: 1fr; }
+  .k-layout { grid-template-columns: 1fr; }
+  .fgrid { grid-template-columns: repeat(2,1fr); }
+  .tgrid { grid-template-columns: 1fr 1fr; }
+  .tcols { grid-template-columns: 1fr; }
   .nl-grid { grid-template-columns: 1fr; }
   .cta-box { padding: 38px 26px; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .fg { grid-template-columns: 1fr 1fr; }
 }
-@media (max-width: 580px) {
+@media(max-width:580px) {
   .hub-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
-  .func-grid { grid-template-columns: 1fr 1fr; }
-  .trust-grid { grid-template-columns: 1fr 1fr; }
+  .tgrid { grid-template-columns: 1fr 1fr; }
 }
 </style>
 </head>
@@ -417,7 +258,7 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
 
 <!-- NAV -->
 <nav>
-  <a class="nav-brand" href="/">
+  <a class="nav-brand" href="index.html">
     <div class="nav-logo-mark">OKC</div>
     <div class="nav-title-wrap">
       <div class="nav-name">온타리오 한인 커뮤니티 <span>OKC</span></div>
@@ -425,190 +266,142 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
     </div>
   </a>
   <div class="nav-menu">
-    <a href="/">홈</a>
-    <a href="#hub">서비스</a>
-    <a href="#kakao">오픈톡방</a>
+    <a href="index.html">홈</a>
+    <a href="index.html#hub">서비스</a>
+    <a href="index.html#kakao">오픈톡방</a>
     <a href="https://cafe.naver.com/canadalove" target="_blank">네이버카페</a>
-    <a href="#newsletter">뉴스레터</a>
+    <a href="index.html#newsletter">뉴스레터</a>
     <a href="ads.html">광고 상품 안내</a>
     <a href="https://thechmarket.com" target="_blank">더채움마켓</a>
     <a href="ads.html#apply" class="nav-btn">광고 신청</a>
   </div>
-  <button class="nav-hamburger" id="hamBtn" onclick="toggleMenu()">
+  <button class="ham" id="hamBtn">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <!-- 모바일 메뉴 -->
-<div class="nav-mobile" id="mobileMenu">
-  <a href="/" onclick="closeMenu()">홈</a>
-  <a href="#hub" onclick="closeMenu()">서비스</a>
-  <a href="#kakao" onclick="closeMenu()">오픈톡방</a>
-  <a href="https://cafe.naver.com/canadalove" target="_blank" onclick="closeMenu()">네이버카페</a>
-  <a href="#newsletter" onclick="closeMenu()">뉴스레터</a>
-  <a href="ads.html" onclick="closeMenu()">광고 상품 안내</a>
-  <a href="https://thechmarket.com" target="_blank" onclick="closeMenu()">더채움마켓</a>
-  <a href="ads.html#apply" class="nav-btn-m" onclick="closeMenu()">광고 신청</a>
+<div class="mob-nav" id="mobNav">
+  <a href="index.html">홈</a>
+  <a href="index.html#hub">서비스</a>
+  <a href="index.html#kakao">오픈톡방</a>
+  <a href="https://cafe.naver.com/canadalove" target="_blank">네이버카페</a>
+  <a href="index.html#newsletter">뉴스레터</a>
+  <a href="ads.html">광고 상품 안내</a>
+  <a href="https://thechmarket.com" target="_blank">더채움마켓</a>
+  <a href="ads.html#apply" class="mob-btn">광고 신청</a>
 </div>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-glow1"></div>
-  <div class="hero-glow2"></div>
-  <div class="hero-inner">
+  <div class="hero-g1"></div>
+  <div class="hero-g2"></div>
+  <div class="hero-in">
     <div>
       <div class="hero-badge">Ontario Korean Community · OKC</div>
-      <h1>우리 동네 이야기,<br>한곳에서 <span class="hero-accent">모두 함께</span></h1>
+      <h1>우리 동네 이야기,<br>한곳에서 <span class="accent">모두 함께</span></h1>
       <p class="hero-desc">Hamilton부터 나이아가라 지역까지, 온타리오 한인 커뮤니티가 함께합니다. 지역 소식, 비즈니스 정보, 이웃과의 연결 — OKC가 이어드립니다.</p>
       <div class="hero-btns">
-        <a href="#kakao" class="btn-gold">오픈톡방 참여하기</a>
-        <a href="#hub" class="btn-ghost">서비스 둘러보기</a>
+        <a href="ads.html#apply" class="btn-gold">광고 신청</a>
+        <a href="https://open.kakao.com/o/sahniO1e" target="_blank" class="btn-gold">오픈톡방 참여</a>
+        <a href="index.html#hub" class="btn-ghost">서비스 둘러보기</a>
       </div>
     </div>
     <div class="hero-right">
       <div class="region-row">
-        <div class="rcard"><div class="rcard-icon">🏙️</div><div class="rcard-name">Hamilton</div><div class="rcard-sub">메인 허브</div></div>
-        <div class="rcard"><div class="rcard-icon">🌊</div><div class="rcard-name">Burlington</div><div class="rcard-sub">가족 커뮤니티</div></div>
-        <div class="rcard"><div class="rcard-icon">🌿</div><div class="rcard-name">Brantford</div><div class="rcard-sub">성장 커뮤니티</div></div>
+        <div class="rcard"><div class="rc-icon">🏙️</div><div class="rc-name">Hamilton</div><div class="rc-sub">메인 허브</div></div>
+        <div class="rcard"><div class="rc-icon">🌊</div><div class="rc-name">Burlington</div><div class="rc-sub">가족 커뮤니티</div></div>
+        <div class="rcard"><div class="rc-icon">🌿</div><div class="rc-name">Brantford</div><div class="rc-sub">성장 커뮤니티</div></div>
       </div>
       <div class="region-row">
-        <div class="rcard"><div class="rcard-icon">🍁</div><div class="rcard-name">Oakville</div><div class="rcard-sub">전문직 네트워크</div></div>
-        <div class="rcard"><div class="rcard-icon">🏘️</div><div class="rcard-name">Milton</div><div class="rcard-sub">신흥 한인 지역</div></div>
-        <div class="rcard rcard-coming"><div class="rcard-icon">🍷</div><div class="rcard-name">나이아가라</div><div class="rcard-sub">2026년 5월</div></div>
+        <div class="rcard"><div class="rc-icon">🍁</div><div class="rc-name">Oakville</div><div class="rc-sub">전문직 네트워크</div></div>
+        <div class="rcard"><div class="rc-icon">🏘️</div><div class="rc-name">Milton</div><div class="rc-sub">신흥 한인 지역</div></div>
+        <div class="rcard rcard-new"><div class="rc-icon">🍷</div><div class="rc-name">나이아가라</div><div class="rc-sub">2026년 5월</div></div>
       </div>
       <div class="stat-bar">
-        <div class="stat-item"><div class="stat-num">1,000<small>+</small></div><div class="stat-lbl">실거주 회원</div></div>
-        <div class="stat-div"></div>
-        <div class="stat-item"><div class="stat-num">6<small>개</small></div><div class="stat-lbl">커버 지역</div></div>
-        <div class="stat-div"></div>
-        <div class="stat-item"><div class="stat-num">3<small>개</small></div><div class="stat-lbl">플랫폼 연동</div></div>
+        <div class="stat-i"><div class="stat-n">1,000<small>+</small></div><div class="stat-l">실거주 회원</div></div>
+        <div class="stat-d"></div>
+        <div class="stat-i"><div class="stat-n">6<small>개</small></div><div class="stat-l">커버 지역</div></div>
+        <div class="stat-d"></div>
+        <div class="stat-i"><div class="stat-n">3<small>개</small></div><div class="stat-l">플랫폼 연동</div></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- HUB CARDS -->
-<section class="section hub-bg" id="hub">
-  <div class="sec-inner">
+<section class="sec hub-bg" id="hub">
+  <div class="sec-in">
     <div class="fade">
       <div class="eyebrow">커뮤니티 서비스</div>
       <h2 class="sec-title">OKC가 제공하는 것들</h2>
       <p class="sec-sub">오픈톡방의 실시간 소통, 아카이브의 정보 보존, 광고의 비즈니스 연결을 하나로.</p>
     </div>
     <div class="hub-grid">
-      <a href="ads.html" class="hub-card c-blue fade">
-        <div class="hub-icon">📢</div>
-        <div class="hub-title">커뮤니티 광고</div>
-        <div class="hub-desc">1,000명 한인 커뮤니티에 비즈니스를 알리세요. 오픈톡방, 카페, 더채움마켓 통합 광고로 최대 노출 효과를 경험하세요.</div>
-        <span class="hub-link">광고 신청하기 →</span>
-        <span class="hub-badge b-hot">🔥 4월 할인</span>
+      <a href="https://open.kakao.com/o/sahniO1e" target="_blank" class="hcard cb fade">
+        <div class="hicon">💬</div>
+        <div class="htitle">카카오 오픈 단톡</div>
+        <div class="hdesc">실거주 1,000명의 한인 커뮤니티. 생활 속 찐 꿀팁부터 실시간 정보 공유까지 — 온타리오 한인의 일상이 모이는 곳.</div>
+        <span class="hlink">오픈톡방 참여하기 →</span>
       </a>
-      <a href="#newsletter" class="hub-card c-gold fade">
-        <div class="hub-icon">📰</div>
-        <div class="hub-title">OKC 뉴스레터</div>
-        <div class="hub-desc">오픈톡방에서 흘러가 버리는 소식들을 격주로 모아 정리합니다. 지역 소식, 업체 정보, 이벤트를 한눈에.</div>
-        <span class="hub-link">뉴스레터 보기 →</span>
-        <span class="hub-badge b-soon">준비 중</span>
+      <a href="ads.html" class="hcard cy fade">
+        <div class="hicon">📢</div>
+        <div class="htitle">커뮤니티 광고</div>
+        <div class="hdesc">비즈니스 노출 보장 상품. 오픈톡방·네이버 카페·더채움마켓 통합 노출로 온타리오 한인 10,000명에게 직접 닿으세요.</div>
+        <span class="hlink">광고 신청하기 →</span>
+        <span class="hbadge b-hot">🔥 4월 할인</span>
       </a>
-      <a href="https://cafe.naver.com/canadalove" target="_blank" class="hub-card c-green fade">
-        <div class="hub-icon">☕</div>
-        <div class="hub-title">네이버 카페</div>
-        <div class="hub-desc">온타리오 한인커뮤니티 네이버 카페에서 더 많은 정보와 소식을 확인하세요. 게시글 아카이브와 지역 정보가 모여 있어요.</div>
-        <span class="hub-link">카페 바로가기 →</span>
+      <a href="https://thechmarket.com" target="_blank" class="hcard cr fade">
+        <div class="hicon">🛒</div>
+        <div class="htitle">더채움마켓</div>
+        <div class="hdesc">Hamilton 유일의 한국 식품 전문 오프라인 매장 + 온라인 쇼핑몰. 총 회원수 10,000명 · 일 방문자 300명.</div>
+        <span class="hlink">쇼핑몰 가기 →</span>
       </a>
-      <a href="https://thechmarket.com" target="_blank" class="hub-card c-red fade">
-        <div class="hub-icon">🛒</div>
-        <div class="hub-title">더채움마켓</div>
-        <div class="hub-desc">Hamilton 유일의 한국 식품 전문 온라인 쇼핑몰. 한국 식품, 생활용품을 편리하게 주문하세요.</div>
-        <span class="hub-link">쇼핑몰 가기 →</span>
+      <a href="ads.html" class="hcard cg fade">
+        <div class="hicon">🌐</div>
+        <div class="htitle">다양한 노출 채널</div>
+        <div class="hdesc">더 많은 노출 기회를 위해 다양한 채널들과 협업합니다. 오픈톡방 · 네이버 카페 · 더채움마켓 · 뉴스레터 통합 노출.</div>
+        <span class="hlink">광고 플랜 보기 →</span>
       </a>
     </div>
   </div>
 </section>
 
 <!-- KAKAO -->
-<section class="section kakao-bg" id="kakao">
-  <div class="sec-inner">
+<section class="sec kbg" id="kakao">
+  <div class="sec-in">
     <div class="fade">
-      <div class="eyebrow kakao-eyebrow">카카오톡 오픈톡방</div>
-      <h2 class="sec-title kakao-title">1,000명이 함께하는<br>우리 동네 커뮤니티</h2>
-      <p class="sec-sub kakao-sub">단순한 채팅방이 아니에요. 온타리오 한인들이 매일 실생활 문제를 함께 해결하는 공간입니다.</p>
+      <div class="eyebrow">카카오톡 오픈톡방</div>
+      <h2 class="sec-title">1,000명이 함께하는<br>우리 동네 커뮤니티</h2>
+      <p class="sec-sub">단순한 채팅방이 아니에요. 온타리오 한인들이 매일 실생활 문제를 함께 해결하는 공간입니다.</p>
     </div>
-    <div class="kakao-layout">
-      <div class="kakao-card fade">
-        <div class="kakao-emoji">💬</div>
+    <div class="k-layout">
+      <div class="k-card fade">
+        <div class="k-emoji">💬</div>
         <h3>온타리오 한인 커뮤니티</h3>
         <p>Hamilton · Burlington · Brantford<br>Oakville · Milton · 나이아가라 지역</p>
-        <div class="kakao-count"><span>1,000+</span><p>실거주 활성 멤버</p></div>
-        <a href="https://open.kakao.com/o/gEBvaZ7b" target="_blank" class="kakao-join-btn">카카오톡 오픈톡방 참여</a>
-        <a href="https://cafe.naver.com/canadalove" target="_blank" class="naver-btn">
-          <div class="naver-n">N</div>
+        <div class="k-count"><span>1,000+</span><p>실거주 활성 멤버</p></div>
+        <a href="https://open.kakao.com/o/sahniO1e" target="_blank" class="k-btn">카카오톡 오픈톡방 참여</a>
+        <a href="https://cafe.naver.com/canadalove" target="_blank" class="n-btn">
+          <div class="n-icon">N</div>
           온타리오 한인커뮤니티 네이버 카페
         </a>
       </div>
       <div class="fade">
-        <div style="color:rgba(254,229,0,0.8); font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; margin-bottom:14px;">오픈톡방에서 할 수 있는 것들</div>
-        <div class="func-grid">
-          <div class="func-card">
-            <div class="func-icon">🏪</div>
-            <div class="func-title">벼룩시장</div>
-            <div class="func-desc">중고 물품 사고팔기, 무료 나눔, 집기 교환까지</div>
-          </div>
-          <div class="func-card">
-            <div class="func-icon">💼</div>
-            <div class="func-title">구인구직</div>
-            <div class="func-desc">한인 업체 채용 정보, 아르바이트, 프리랜서 연결</div>
-          </div>
-          <div class="func-card">
-            <div class="func-icon">🏠</div>
-            <div class="func-title">단기숙소</div>
-            <div class="func-desc">단기 렌트, 홈스테이, 룸메이트 구하기</div>
-          </div>
-          <div class="func-card">
-            <div class="func-icon">🚨</div>
-            <div class="func-title">긴급 도움 요청</div>
-            <div class="func-desc">사고, 응급상황, 갑작스러운 도움이 필요할 때</div>
-          </div>
-          <div class="func-card">
-            <div class="func-icon">🍽️</div>
-            <div class="func-title">맛집 추천</div>
-            <div class="func-desc">지역 한식당, 맛집 정보, 배달 추천 공유</div>
-          </div>
-          <div class="func-card">
-            <div class="func-icon">🏥</div>
-            <div class="func-title">병원·의료 정보</div>
-            <div class="func-desc">한인 의사, 치과, 약국 추천 및 예약 팁</div>
-          </div>
-          <div class="func-card">
-            <div class="func-icon">🚗</div>
-            <div class="func-title">이동·카풀</div>
-            <div class="func-desc">공항 픽업, 카풀, 이사 도움 요청 및 제공</div>
-          </div>
-          <div class="func-card">
-            <div class="func-icon">📚</div>
-            <div class="func-title">교육·육아 정보</div>
-            <div class="func-desc">학교 정보, 과외, 학원, 육아 꿀팁 공유</div>
-          </div>
-          <div class="func-card">
-            <div class="func-icon">🏦</div>
-            <div class="func-title">생활 정보</div>
-            <div class="func-desc">세금, 보험, 이민, 은행, 운전면허 등 생활 꿀팁</div>
-          </div>
-          <div class="func-card">
-            <div class="func-icon">🎉</div>
-            <div class="func-title">모임·이벤트</div>
-            <div class="func-desc">정기 모임, 소셜 이벤트, 지역 행사 안내</div>
-          </div>
-          <div class="func-card">
-            <div class="func-icon">🛠️</div>
-            <div class="func-title">업체 추천</div>
-            <div class="func-desc">한인 업체 추천, 후기 공유, 서비스 연결</div>
-          </div>
-          <div class="func-card">
-            <div class="func-icon">🌐</div>
-            <div class="func-title">이민·비자 정보</div>
-            <div class="func-desc">영주권, 비자, 시민권 관련 경험과 정보 공유</div>
-          </div>
+        <div class="func-lbl">오픈톡방에서 할 수 있는 것들</div>
+        <div class="fgrid">
+          <div class="fc"><div class="fi">🏪</div><div class="ft">벼룩시장</div><div class="fd">중고 물품 사고팔기, 무료 나눔, 집기 교환까지</div></div>
+          <div class="fc"><div class="fi">💼</div><div class="ft">구인구직</div><div class="fd">한인 업체 채용 정보, 아르바이트, 프리랜서 연결</div></div>
+          <div class="fc"><div class="fi">🏠</div><div class="ft">단기숙소</div><div class="fd">단기 렌트, 홈스테이, 룸메이트 구하기</div></div>
+          <div class="fc"><div class="fi">🚨</div><div class="ft">긴급 도움 요청</div><div class="fd">사고, 응급상황, 갑작스러운 도움이 필요할 때</div></div>
+          <div class="fc"><div class="fi">🍽️</div><div class="ft">맛집 추천</div><div class="fd">지역 한식당, 맛집 정보, 배달 추천 공유</div></div>
+          <div class="fc"><div class="fi">🏥</div><div class="ft">병원·의료 정보</div><div class="fd">한인 의사, 치과, 약국 추천 및 예약 팁</div></div>
+          <div class="fc"><div class="fi">🚗</div><div class="ft">이동·카풀</div><div class="fd">공항 픽업, 카풀, 이사 도움 요청 및 제공</div></div>
+          <div class="fc"><div class="fi">📚</div><div class="ft">교육·육아 정보</div><div class="fd">학교 정보, 과외, 학원, 육아 꿀팁 공유</div></div>
+          <div class="fc"><div class="fi">🏦</div><div class="ft">생활 정보</div><div class="fd">세금, 보험, 이민, 은행, 운전면허 등 생활 꿀팁</div></div>
+          <div class="fc"><div class="fi">🎉</div><div class="ft">모임·이벤트</div><div class="fd">정기 모임, 소셜 이벤트, 지역 행사 안내</div></div>
+          <div class="fc"><div class="fi">🛠️</div><div class="ft">업체 추천</div><div class="fd">한인 업체 추천, 후기 공유, 서비스 연결</div></div>
+          <div class="fc"><div class="fi">🌐</div><div class="ft">이민·비자 정보</div><div class="fd">영주권, 비자, 시민권 관련 경험과 정보 공유</div></div>
         </div>
       </div>
     </div>
@@ -616,75 +409,78 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
 </section>
 
 <!-- TRUST -->
-<section class="section trust-bg" id="trust">
-  <div class="sec-inner">
+<section class="sec tbg" id="trust">
+  <div class="sec-in">
     <div class="fade" style="text-align:center; margin-bottom:50px;">
       <div class="eyebrow" style="display:block;">궁금한 것들</div>
       <h2 class="sec-title">"실제로 반응이 얼마나 나오나요?"</h2>
     </div>
-    <div class="trust-grid fade">
-      <div class="trust-card">
-        <div class="trust-big">1,000<small>+</small></div>
-        <div class="trust-lbl">실거주 회원</div>
-        <div class="trust-sub">타지역 허수 없는<br>실제 거주 인원 기반</div>
+    <div class="tgrid fade">
+      <div class="tc">
+        <div class="tbig">1,000<small>+</small></div>
+        <div class="tlbl">실거주 회원</div>
+        <div class="tsub">타지역 허수 없는<br>정확한 타겟 노출 가능</div>
       </div>
-      <div class="trust-card">
-        <div class="trust-big">6<small>년+</small></div>
-        <div class="trust-lbl">커뮤니티 운영</div>
-        <div class="trust-sub">2019년부터<br>꾸준히 성장 중</div>
+      <div class="tc">
+        <div class="tbig" style="font-size:24px;">10,000<small style="font-size:12px;">명</small></div>
+        <div class="tlbl">더채움마켓 회원</div>
+        <div class="tsub">일 방문자 300명<br>배너 추가 노출 기회</div>
       </div>
-      <div class="trust-card">
-        <div class="trust-big">3<small>개</small></div>
-        <div class="trust-lbl">통합 노출 채널</div>
-        <div class="trust-sub">오픈톡방 · 카페<br>더채움마켓</div>
+      <div class="tc">
+        <div class="tbig">6<small>년+</small></div>
+        <div class="tlbl">커뮤니티 운영</div>
+        <div class="tsub">2019년부터<br>꾸준히 성장 중</div>
       </div>
-      <div class="trust-card dark">
-        <div class="trust-big" style="font-size:22px;">초기<small style="font-size:14px;">모집</small></div>
-        <div class="trust-lbl">첫 광고주 혜택</div>
-        <div class="trust-sub">초기 파트너에게<br>우선 노출 보장</div>
-      </div>
-    </div>
-    <div class="trust-cols fade">
-      <div class="trust-box">
-        <div class="trust-box-title">📊 현재 상황</div>
-        <div class="tp">
-          <span class="tp-icon" style="color:var(--blue);">✓</span>
-          <span>오픈톡방 <strong>1,000명+</strong> — 타지역 허수 없이 실제 온타리오 거주 회원 기반</span>
-        </div>
-        <div class="tp">
-          <span class="tp-icon" style="color:var(--blue);">✓</span>
-          <span>네이버 카페 + 더채움마켓 쇼핑몰 병행 운영, 커뮤니티 기반 탄탄</span>
-        </div>
-        <div class="tp">
-          <span class="tp-icon" style="color:var(--blue);">✓</span>
-          <span>Hamilton · Burlington · Brantford · Oakville · Milton 5개 지역 운영 중</span>
-        </div>
-        <div class="tp">
-          <span class="tp-icon" style="color:var(--gold);">→</span>
-          <span>뉴스레터 · 나이아가라 지역 확장으로 도달 범위 지속 확대 <em style="color:var(--g500);">(2026년 5월)</em></span>
-        </div>
-      </div>
-      <div class="partner-box">
-        <div class="partner-box-title">🌱 초기 파트너의 기회</div>
-        <p class="partner-desc">성장하는 커뮤니티의 <strong style="color:var(--white);">초기 광고주</strong>가 된다는 건, 경쟁이 심해지기 전에 먼저 자리를 잡는다는 뜻이에요.</p>
-        <div class="partner-item">🔒 프리미엄 노출 회원사 <strong>10개 한정</strong> — 노출 순위 및 기회 보장</div>
-        <div class="partner-item">💰 진행 기간별 <strong>추가 할인</strong> 제공</div>
-        <a href="ads.html#apply" class="partner-cta">초기 파트너 신청하기 →</a>
+      <div class="tc dark">
+        <div class="tbig" style="font-size:20px; color:var(--white);">초기<small style="font-size:13px;">모집</small></div>
+        <div class="tlbl">초기 광고주 혜택</div>
+        <div class="tsub">할인 및 우선 노출 보장</div>
       </div>
     </div>
-    <div class="consult-bar fade">
+    <div class="tcols fade">
+      <div class="tbox">
+        <div class="tbox-ttl">현재 상황</div>
+        <div class="tp">
+          <span style="color:var(--blue); font-weight:700; flex-shrink:0;">✓</span>
+          <span>오픈톡방 <strong>1,000명+</strong> — 타지역 허수 없이 실제 온타리오 거주 회원 기반 (정확한 타겟 노출 가능)</span>
+        </div>
+        <div class="tp">
+          <span style="color:var(--blue); font-weight:700; flex-shrink:0;">✓</span>
+          <span>네이버 카페에 노출</span>
+        </div>
+        <div class="tp">
+          <span style="color:var(--blue); font-weight:700; flex-shrink:0;">✓</span>
+          <span>더채움마켓 총 회원수 <strong>10,000명</strong> · 일 방문자 <strong>300명</strong> — 신뢰를 바탕으로 한 탄탄한 커뮤니티 기반</span>
+        </div>
+        <div class="tp">
+          <span style="color:var(--gold); font-weight:700; flex-shrink:0;">→</span>
+          <span>뉴스레터 · 나이아가라 지역 확장으로 도달 범위 지속 확대 (2026년 5월)</span>
+        </div>
+      </div>
+      <div class="pbox">
+        <div class="pbox-ttl">초기 파트너의 기회</div>
+        <p class="pdesc">성장하는 커뮤니티의 <strong style="color:var(--white);">초기 광고주</strong>가 된다는 건, 경쟁이 심해지기 전에 먼저 자리를 잡는다는 뜻이에요.</p>
+        <div class="pitem">🔒 프리미엄 노출 회원사 <strong>10개 한정</strong> — 노출 순위 및 기회 보장</div>
+        <div class="pitem">💰 진행 기간별 <strong>추가 할인</strong> 제공</div>
+        <a href="ads.html#apply" class="pcta">초기 파트너 신청하기 →</a>
+      </div>
+    </div>
+    <div class="cbar fade">
       <div>
-        <h4>📞 광고 효과가 궁금하신가요?</h4>
+        <h4>광고 효과가 궁금하신가요?</h4>
         <p>카카오톡 또는 이메일로 무료 상담 신청하시면, 업종에 맞는 광고 전략을 직접 안내드려요.</p>
       </div>
-      <a href="https://open.kakao.com/o/gEBvaZ7b" target="_blank" class="consult-btn">카카오톡 무료 상담</a>
+      <div class="cbar-btns">
+        <a href="https://open.kakao.com/o/sahniO1e" target="_blank" class="cbtn">카카오톡 무료 상담</a>
+        <a href="ads.html" class="cbtn2">이메일 상담</a>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- NEWSLETTER -->
-<section class="section nl-bg" id="newsletter">
-  <div class="sec-inner">
+<section class="sec nlbg" id="newsletter">
+  <div class="sec-in">
     <div class="fade">
       <div class="eyebrow">뉴스레터</div>
       <h2 class="sec-title">놓친 소식, 이제<br>사라지지 않아요</h2>
@@ -693,17 +489,17 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
     <div class="nl-grid">
       <div class="nl-preview fade">
         <div class="nl-head">
-          <h4>📬 OKC 뉴스레터 미리보기</h4>
+          <h4>OKC 뉴스레터 미리보기</h4>
           <span>격주 발행</span>
         </div>
         <div class="nl-body">
-          <div class="nl-row"><span class="nl-tag t-news">지역소식</span><div><div class="nl-row-title">Hamilton 한인회 봄 모임 안내</div><div class="nl-row-sub">4월 15일 · 장소 및 참가 방법</div></div></div>
-          <div class="nl-row"><span class="nl-tag t-biz">업체소개</span><div><div class="nl-row-title">이번 주 추천 한인 업체 3곳</div><div class="nl-row-sub">음식점 · 미용 · 교육</div></div></div>
-          <div class="nl-row"><span class="nl-tag t-news">생활정보</span><div><div class="nl-row-title">온타리오 세금 신고 시즌 주의사항</div><div class="nl-row-sub">한인 회계사가 전하는 팁</div></div></div>
-          <div class="nl-row"><span class="nl-tag t-event">이벤트</span><div><div class="nl-row-title">더채움마켓 4월 특가 상품 안내</div><div class="nl-row-sub">봄 신상 입고 · 할인 정보</div></div></div>
+          <div class="nl-row"><span class="nl-tag tn">지역소식</span><div><div class="nl-rt">Hamilton 한인회 봄 모임 안내</div><div class="nl-rs">4월 15일 · 장소 및 참가 방법</div></div></div>
+          <div class="nl-row"><span class="nl-tag tb">업체소개</span><div><div class="nl-rt">이번 주 추천 한인 업체 3곳</div><div class="nl-rs">음식점 · 미용 · 교육</div></div></div>
+          <div class="nl-row"><span class="nl-tag tn">생활정보</span><div><div class="nl-rt">온타리오 세금 신고 시즌 주의사항</div><div class="nl-rs">한인 회계사가 전하는 팁</div></div></div>
+          <div class="nl-row"><span class="nl-tag te">이벤트</span><div><div class="nl-rt">더채움마켓 4월 특가 상품 안내</div><div class="nl-rs">봄 신상 입고 · 할인 정보</div></div></div>
         </div>
       </div>
-      <div class="fade">
+      <div class="nl-info fade">
         <h3>오픈톡방 소식을<br>아카이브로 보존합니다</h3>
         <p>실시간으로 흘러가는 소중한 정보들, 격주마다 정리해서 언제든 다시 찾아볼 수 있게 보관해 드려요. 광고주님들의 업체 소개도 함께 실립니다.</p>
         <div class="nl-checks">
@@ -712,7 +508,7 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
           <div class="nl-check">광고주 업체 노출 포함</div>
           <div class="nl-check">카카오톡 링크로 간편하게 공유</div>
         </div>
-        <div class="nl-soon">⏳ &nbsp; 2026년 5월 오픈 예정</div>
+        <div class="nl-soon">2026년 7월 오픈 예정</div>
       </div>
     </div>
   </div>
@@ -721,64 +517,83 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
 <!-- AD CTA -->
 <section class="cta-bg">
   <div class="cta-box fade">
-    <div class="cta-text">
+    <div class="cta-txt">
       <h2>지금 광고를 시작하세요</h2>
-      <p>4월 30일까지 — 1년 계약 시 10% 할인 + 1개월 무료 혜택</p>
+      <p>4월 30일까지 — 6개월 5% · 12개월 10% 할인 + 1개월 무료 혜택</p>
     </div>
     <div class="cta-btns">
       <a href="ads.html" class="btn-gold">광고 플랜 보기</a>
-      <a href="ads.html#apply" class="btn-ghost">바로 신청하기</a>
+      <a href="ads.html#apply" class="btn-ghost2">바로 신청하기</a>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-grid">
-    <div class="f-brand">
+  <div class="fg">
+    <div class="fb">
       <h3>OKC <span>온타리오 한인 커뮤니티</span></h3>
-      <div class="f-eng">Ontario Korean Community</div>
-      <div class="f-url">ontariokc.com</div>
+      <div class="fe">Ontario Korean Community</div>
+      <div class="fu">ontariokc.com</div>
       <p>Hamilton · Burlington · Brantford<br>Oakville · Milton<br>나이아가라 지역 (2026년 5월 확장 예정)</p>
     </div>
-    <div class="f-col">
+    <div class="fc2">
       <h4>서비스</h4>
       <a href="ads.html">커뮤니티 광고</a>
       <a href="ads.html">광고 상품 안내</a>
-      <a href="#newsletter">뉴스레터</a>
+      <a href="index.html#newsletter">뉴스레터</a>
       <a href="https://cafe.naver.com/canadalove" target="_blank">네이버 카페</a>
       <a href="https://thechmarket.com" target="_blank">더채움마켓</a>
-      <a href="#kakao">오픈톡방</a>
+      <a href="index.html#kakao">오픈톡방</a>
     </div>
-    <div class="f-col">
+    <div class="fc2">
       <h4>문의</h4>
-      <a href="mailto:info@thechmarket.com">info@thechmarket.com</a>
-      <a href="https://open.kakao.com/o/gEBvaZ7b" target="_blank">카카오톡 문의</a>
-      <a href="https://cafe.naver.com/canadalove" target="_blank">네이버 카페 문의</a>
+      <a href="https://open.kakao.com/o/sahniO1e" target="_blank">카카오톡 문의</a>
+      <a href="ads.html#apply" id="email-link">이메일 문의</a>
       <a href="ads.html#apply">광고 신청</a>
     </div>
   </div>
-  <div class="footer-bottom">
+  <div class="fbot">
     <p>2026 Ontario Korean Community · OKC · ontariokc.com</p>
-    <p>Powered by 더채움마켓 · thechmarket.com</p>
   </div>
 </footer>
 
 <script>
-var io = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) e.target.classList.add('on');
-  });
+// 이메일 링크 (Cloudflare 우회)
+(function() {
+  var el = document.getElementById('email-link');
+  if (el) {
+    var u = 'ontariokc.ads';
+    var d = 'gmail.com';
+    el.href = 'mailto:' + u + '@' + d;
+  }
+})();
+
+// 상담바 이메일 버튼
+(function() {
+  var el = document.getElementById('email-consult');
+  if (el) {
+    var u = 'ontariokc.ads';
+    var d = 'gmail.com';
+    el.href = 'mailto:' + u + '@' + d;
+  }
+})();
+
+// 스크롤 애니메이션
+var io = new IntersectionObserver(function(e) {
+  e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add('on'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade').forEach(function(el) { io.observe(el); });
 
-function toggleMenu() {
-  var m = document.getElementById('mobileMenu');
-  m.classList.toggle('open');
-}
-function closeMenu() {
-  document.getElementById('mobileMenu').classList.remove('open');
-}
+// 햄버거 메뉴
+document.getElementById('hamBtn').addEventListener('click', function() {
+  document.getElementById('mobNav').classList.toggle('open');
+});
+document.querySelectorAll('.mob-nav a').forEach(function(a) {
+  a.addEventListener('click', function() {
+    document.getElementById('mobNav').classList.remove('open');
+  });
+});
 </script>
 </body>
 </html>
