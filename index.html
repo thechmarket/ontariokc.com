@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>더채움 커뮤니티 — 온타리오 한인 네트워크</title>
-<meta name="description" content="Hamilton · Burlington · Oakville · Niagara · Brantford 온타리오 한인 커뮤니티 허브">
-<meta property="og:title" content="더채움 커뮤니티 — 온타리오 한인 네트워크">
-<meta property="og:description" content="900명이 함께하는 온타리오 한인 커뮤니티. 지역 소식, 광고, 뉴스레터.">
-<meta property="og:url" content="https://community.thechmarket.com">
+<title>Ontario Korean Community — 온타리오 한인 커뮤니티</title>
+<meta name="description" content="Hamilton · Burlington · Brantford · Niagara 온타리오 한인 커뮤니티 허브 OKC">
+<meta property="og:title" content="Ontario Korean Community — 온타리오 한인 커뮤니티">
+<meta property="og:description" content="1000명이 함께하는 온타리오 한인 커뮤니티 OKC. 지역 소식, 광고, 뉴스레터.">
+<meta property="og:url" content="https://ontariokc.com">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
@@ -41,14 +41,14 @@ nav {
 }
 .nav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
 .nav-logo-mark {
-  width:32px; height:32px; border-radius:8px;
+  width:34px; height:34px; border-radius:8px;
   background:linear-gradient(135deg, var(--gold), var(--gold2));
   display:flex; align-items:center; justify-content:center;
-  font-weight:900; font-size:14px; color:var(--navy);
+  font-weight:900; font-size:13px; color:var(--navy); letter-spacing:-0.5px;
 }
-.nav-title { color:var(--white); font-weight:700; font-size:16px; }
-.nav-title span { color:var(--gold); }
-.nav-links { display:flex; gap:24px; align-items:center; }
+.nav-title { color:var(--white); font-weight:700; font-size:15px; line-height:1.2; }
+.nav-title span { color:var(--gold); font-size:11px; display:block; font-weight:400; letter-spacing:0.5px; }
+.nav-links { display:flex; gap:20px; align-items:center; }
 .nav-links a { color:rgba(255,255,255,0.68); font-size:13px; text-decoration:none; transition:color .2s; }
 .nav-links a:hover { color:var(--gold2); }
 .nav-cta { background:linear-gradient(135deg,var(--gold),var(--gold2)); color:var(--navy) !important; font-weight:700 !important; padding:7px 16px; border-radius:6px; font-size:12.5px !important; }
@@ -190,7 +190,7 @@ nav {
 .nl-info p  { color:var(--g500); font-size:14.5px; line-height:1.8; margin-bottom:20px; }
 .nl-points { display:flex; flex-direction:column; gap:10px; margin-bottom:28px; }
 .nl-point { display:flex; align-items:center; gap:10px; font-size:13.5px; color:var(--g700); }
-.nl-point::before { content:'checkmark'; content:'✓'; color:var(--blue); font-weight:700; flex-shrink:0; }
+.nl-point::before { content:'✓'; color:var(--blue); font-weight:700; flex-shrink:0; }
 .nl-coming { display:inline-flex; align-items:center; gap:8px; background:var(--g100); border:1.5px dashed var(--g200); color:var(--g500); font-size:13px; font-weight:600; padding:12px 20px; border-radius:9px; }
 
 /* AD CTA */
@@ -205,8 +205,9 @@ nav {
 /* FOOTER */
 footer { background:var(--navy); padding:48px 5% 32px; }
 .footer-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:48px; padding-bottom:36px; border-bottom:1px solid rgba(255,255,255,0.08); }
-.footer-brand h3 { color:var(--white); font-size:18px; font-weight:900; margin-bottom:8px; }
+.footer-brand h3 { color:var(--white); font-size:18px; font-weight:900; margin-bottom:4px; }
 .footer-brand h3 span { color:var(--gold); }
+.footer-brand .footer-sub { color:var(--gold); font-size:11px; letter-spacing:1px; margin-bottom:10px; }
 .footer-brand p { color:rgba(255,255,255,0.45); font-size:13px; line-height:1.8; }
 .footer-col h4 { color:var(--white); font-size:13px; font-weight:700; margin-bottom:14px; }
 .footer-col a { display:block; color:rgba(255,255,255,0.45); font-size:13px; text-decoration:none; margin-bottom:8px; transition:color .2s; }
@@ -237,15 +238,16 @@ footer { background:var(--navy); padding:48px 5% 32px; }
 <!-- NAV -->
 <nav>
   <a class="nav-brand" href="/">
-    <div class="nav-logo-mark">채</div>
-    <div class="nav-title">더채움 <span>커뮤니티</span></div>
+    <div class="nav-logo-mark">OKC</div>
+    <div class="nav-title">온타리오 한인 커뮤니티<span>Ontario Korean Community</span></div>
   </a>
   <div class="nav-links">
     <a href="#hub">서비스</a>
     <a href="#kakao">오픈톡방</a>
     <a href="#newsletter">뉴스레터</a>
-    <a href="https://thechmarket.com" target="_blank">쇼핑몰</a>
-    <a href="ads.html" class="nav-cta">광고 신청</a>
+    <a href="ads.html">광고플랜</a>
+    <a href="https://thechmarket.com" target="_blank">더채움마켓</a>
+    <a href="ads.html#apply" class="nav-cta">광고 신청</a>
   </div>
 </nav>
 
@@ -255,9 +257,9 @@ footer { background:var(--navy); padding:48px 5% 32px; }
   <div class="hero-glow2"></div>
   <div class="hero-inner">
     <div>
-      <div class="hero-tag">온타리오 한인 커뮤니티 허브</div>
+      <div class="hero-tag">Ontario Korean Community · OKC</div>
       <h1>우리 동네 이야기,<br>한곳에서 <span class="accent">모두 함께</span></h1>
-      <p class="hero-desc">Hamilton부터 Niagara까지, 온타리오 남부 한인 커뮤니티가 함께합니다. 지역 소식, 비즈니스 정보, 이웃과의 연결 — 더채움 커뮤니티가 이어드립니다.</p>
+      <p class="hero-desc">Hamilton부터 나이아가라 지역까지, 온타리오 한인 커뮤니티가 함께합니다. 지역 소식, 비즈니스 정보, 이웃과의 연결 — OKC가 이어드립니다.</p>
       <div class="hero-btns">
         <a href="#kakao" class="btn-gold">오픈톡방 참여하기</a>
         <a href="#hub" class="btn-ghost">서비스 둘러보기</a>
@@ -268,16 +270,15 @@ footer { background:var(--navy); padding:48px 5% 32px; }
         <div class="region-row">
           <div class="rcard"><div class="rcard-icon">🏙️</div><div class="rcard-name">Hamilton</div><div class="rcard-sub">메인 허브</div></div>
           <div class="rcard"><div class="rcard-icon">🌊</div><div class="rcard-name">Burlington</div><div class="rcard-sub">가족 커뮤니티</div></div>
-          <div class="rcard"><div class="rcard-icon">🍁</div><div class="rcard-name">Oakville</div><div class="rcard-sub">전문직 네트워크</div></div>
-        </div>
-        <div class="region-row">
-          <div class="rcard new"><div class="rcard-icon">🍷</div><div class="rcard-name">Niagara</div><div class="rcard-sub">2025 확장</div></div>
           <div class="rcard"><div class="rcard-icon">🌿</div><div class="rcard-name">Brantford</div><div class="rcard-sub">성장 커뮤니티</div></div>
         </div>
+        <div class="region-row">
+          <div class="rcard new"><div class="rcard-icon">🍷</div><div class="rcard-name">나이아가라 지역</div><div class="rcard-sub">2026년 5월 확장 예정</div></div>
+        </div>
         <div class="hero-stat-bar">
-          <div class="hstat"><div class="hstat-num">900<span>+</span></div><div class="hstat-label">활성 회원</div></div>
+          <div class="hstat"><div class="hstat-num">1,000<span>+</span></div><div class="hstat-label">활성 회원</div></div>
           <div class="hstat-div"></div>
-          <div class="hstat"><div class="hstat-num">5<span>개</span></div><div class="hstat-label">커버 도시</div></div>
+          <div class="hstat"><div class="hstat-num">4<span>개</span></div><div class="hstat-label">커버 지역</div></div>
           <div class="hstat-div"></div>
           <div class="hstat"><div class="hstat-num">3<span>개</span></div><div class="hstat-label">플랫폼 연동</div></div>
         </div>
@@ -291,20 +292,20 @@ footer { background:var(--navy); padding:48px 5% 32px; }
   <div class="hub-inner">
     <div class="fade-up">
       <div class="sec-eyebrow">커뮤니티 서비스</div>
-      <h2 class="sec-title">더채움 커뮤니티가<br>제공하는 것들</h2>
+      <h2 class="sec-title">OKC가<br>제공하는 것들</h2>
       <p class="sec-sub">오픈톡방의 실시간 소통, 아카이브의 정보 보존, 광고의 비즈니스 연결을 하나로.</p>
     </div>
     <div class="hub-grid">
       <a href="ads.html" class="hub-card blue fade-up">
         <div class="hub-icon">📢</div>
         <div class="hub-card-title">커뮤니티 광고</div>
-        <div class="hub-card-desc">900명 한인 커뮤니티에 비즈니스를 알리세요. 오픈톡방, 카페, 더채움마켓 통합 광고로 최대 노출 효과를 경험하세요.</div>
+        <div class="hub-card-desc">1,000명 한인 커뮤니티에 비즈니스를 알리세요. 오픈톡방, 카페, 더채움마켓 통합 광고로 최대 노출 효과를 경험하세요.</div>
         <span class="hub-card-link">광고 신청하기 →</span>
         <span class="hub-card-badge badge-hot">🔥 4월 할인</span>
       </a>
       <a href="#newsletter" class="hub-card gold fade-up">
         <div class="hub-icon">📰</div>
-        <div class="hub-card-title">더채움 뉴스레터</div>
+        <div class="hub-card-title">OKC 뉴스레터</div>
         <div class="hub-card-desc">오픈톡방에서 흘러가 버리는 소식들을 격주로 모아 정리합니다. 지역 소식, 업체 정보, 커뮤니티 이벤트를 한눈에.</div>
         <span class="hub-card-link">뉴스레터 보기 →</span>
         <span class="hub-card-badge badge-soon">준비 중</span>
@@ -329,9 +330,9 @@ footer { background:var(--navy); padding:48px 5% 32px; }
     </div>
     <div class="trust-grid fade-up">
       <div class="trust-card">
-        <div class="trust-num">900<span class="trust-num-unit">+</span></div>
+        <div class="trust-num">1,000<span class="trust-num-unit">+</span></div>
         <div class="trust-label">오픈톡방 회원</div>
-        <div class="trust-desc">온타리오 남부<br>한인 활성 멤버</div>
+        <div class="trust-desc">온타리오 한인<br>활성 멤버</div>
       </div>
       <div class="trust-card">
         <div class="trust-num">5<span class="trust-num-unit">년+</span></div>
@@ -354,7 +355,7 @@ footer { background:var(--navy); padding:48px 5% 32px; }
         <div class="trust-honest-title">📊 현재 상황 (솔직하게)</div>
         <div class="trust-point">
           <span class="trust-point-icon" style="color:var(--blue);">✓</span>
-          <span>오픈톡방 <strong>900명+</strong> 회원, 매일 활발한 정보 공유가 이뤄지고 있어요</span>
+          <span>오픈톡방 <strong>1,000명+</strong> 회원, 매일 활발한 정보 공유가 이뤄지고 있어요</span>
         </div>
         <div class="trust-point">
           <span class="trust-point-icon" style="color:var(--blue);">✓</span>
@@ -362,7 +363,7 @@ footer { background:var(--navy); padding:48px 5% 32px; }
         </div>
         <div class="trust-point">
           <span class="trust-point-icon" style="color:var(--gold);">→</span>
-          <span>뉴스레터 · 나이아가라 확장으로 도달 범위 확대 중 <em style="color:var(--g500);">(2026년 6월)</em></span>
+          <span>뉴스레터 · 나이아가라 지역 확장으로 도달 범위 확대 중 <em style="color:var(--g500);">(2026년 5월)</em></span>
         </div>
         <div class="trust-point">
           <span class="trust-point-icon" style="color:var(--gold);">→</span>
@@ -373,7 +374,7 @@ footer { background:var(--navy); padding:48px 5% 32px; }
         <div class="trust-partner-title">🌱 초기 파트너의 기회</div>
         <p class="trust-partner-desc">성장하는 커뮤니티의 <strong style="color:var(--white);">초기 광고주</strong>가 된다는 건, 경쟁이 심해지기 전에 먼저 자리를 잡는다는 뜻이에요.</p>
         <div class="trust-partner-item">🔒 Premium 동일 업종 <strong>5개 한정</strong> — 경쟁 업체 진입 차단</div>
-        <div class="trust-partner-item">📈 나이아가라 확장 시 <strong>기존 광고주 우선</strong> 적용</div>
+        <div class="trust-partner-item">📈 나이아가라 지역 확장 시 <strong>기존 광고주 우선</strong> 적용</div>
         <div class="trust-partner-item">📋 매월 <strong>광고 성과 리포트</strong> 제공 (노출수, 반응)</div>
         <a href="ads.html#apply" class="trust-partner-btn">초기 파트너 신청하기 →</a>
       </div>
@@ -396,7 +397,7 @@ footer { background:var(--navy); padding:48px 5% 32px; }
       <h2 class="sec-title" style="color:var(--white)">실시간으로 연결되는<br>우리 동네 이야기</h2>
       <p class="sec-sub">온타리오 한인 커뮤니티의 가장 활발한 소통 공간입니다. 지역 정보부터 육아, 맛집, 생활 꿀팁까지.</p>
       <div class="kakao-features">
-        <div class="kfeat"><div class="kfeat-icon">📍</div><div class="kfeat-text"><h4>지역 정보 공유</h4><p>Hamilton·Burlington·Oakville·Niagara·Brantford 지역 생활 정보를 실시간으로 공유해요.</p></div></div>
+        <div class="kfeat"><div class="kfeat-icon">📍</div><div class="kfeat-text"><h4>지역 정보 공유</h4><p>Hamilton · Burlington · Brantford · 나이아가라 지역 생활 정보를 실시간으로 공유해요.</p></div></div>
         <div class="kfeat"><div class="kfeat-icon">🤝</div><div class="kfeat-text"><h4>비즈니스 네트워킹</h4><p>한인 업체 소개, 구인구직, 부동산 등 비즈니스 정보를 함께 나눠요.</p></div></div>
         <div class="kfeat"><div class="kfeat-icon">🎉</div><div class="kfeat-text"><h4>커뮤니티 이벤트</h4><p>지역 행사, 모임, 커뮤니티 이벤트 정보를 가장 빠르게 받아보세요.</p></div></div>
       </div>
@@ -405,8 +406,8 @@ footer { background:var(--navy); padding:48px 5% 32px; }
       <div class="kakao-card">
         <div class="kakao-logo">💬</div>
         <h3>온타리오 한인 커뮤니티</h3>
-        <p>Hamilton · Burlington · Oakville<br>Niagara · Brantford</p>
-        <div class="kakao-members"><span>900+</span><p>활성 멤버가 함께해요</p></div>
+        <p>Hamilton · Burlington · Brantford<br>나이아가라 지역</p>
+        <div class="kakao-members"><span>1,000+</span><p>활성 멤버가 함께해요</p></div>
         <a href="https://open.kakao.com/o/gEBvaZ7b" target="_blank" class="kakao-btn">카카오톡 오픈톡방 참여</a>
       </div>
     </div>
@@ -419,12 +420,12 @@ footer { background:var(--navy); padding:48px 5% 32px; }
     <div class="fade-up">
       <div class="sec-eyebrow">뉴스레터</div>
       <h2 class="sec-title">놓친 소식, 이제<br>사라지지 않아요</h2>
-      <p class="sec-sub">오픈톡방의 중요한 정보들이 시간이 지나면 찾기 어렵죠. 격주로 발행하는 더채움 뉴스레터에서 한 번에 모아 보세요.</p>
+      <p class="sec-sub">오픈톡방의 중요한 정보들이 시간이 지나면 찾기 어렵죠. 격주로 발행하는 OKC 뉴스레터에서 한 번에 모아 보세요.</p>
     </div>
     <div class="nl-grid">
       <div class="nl-preview fade-up">
         <div class="nl-preview-header">
-          <h4>📬 더채움 뉴스레터 미리보기</h4>
+          <h4>📬 OKC 뉴스레터 미리보기</h4>
           <span>격주 발행</span>
         </div>
         <div class="nl-preview-body">
@@ -443,7 +444,7 @@ footer { background:var(--navy); padding:48px 5% 32px; }
           <div class="nl-point">광고주 업체 노출 포함</div>
           <div class="nl-point">카카오톡 링크로 간편하게 공유</div>
         </div>
-        <div class="nl-coming">⏳ &nbsp; 2026년 6월 오픈 예정</div>
+        <div class="nl-coming">⏳ &nbsp; 2026년 5월 오픈 예정</div>
       </div>
     </div>
   </div>
@@ -467,12 +468,14 @@ footer { background:var(--navy); padding:48px 5% 32px; }
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <h3>더채움 <span>커뮤니티</span></h3>
-      <p>온타리오 남부 한인 커뮤니티 허브<br>Hamilton · Burlington · Oakville<br>Niagara · Brantford</p>
+      <h3>OKC <span>온타리오 한인 커뮤니티</span></h3>
+      <div class="footer-sub">Ontario Korean Community</div>
+      <p>Hamilton · Burlington · Brantford<br>나이아가라 지역 (2026년 5월 확장 예정)</p>
     </div>
     <div class="footer-col">
       <h4>서비스</h4>
       <a href="ads.html">커뮤니티 광고</a>
+      <a href="ads.html">광고플랜</a>
       <a href="#newsletter">뉴스레터</a>
       <a href="https://thechmarket.com" target="_blank">더채움마켓</a>
       <a href="#kakao">오픈톡방</a>
@@ -485,8 +488,8 @@ footer { background:var(--navy); padding:48px 5% 32px; }
     </div>
   </div>
   <div class="footer-bottom">
-    <p>2026 더채움 커뮤니티 · thechmarket.com</p>
-    <p>community.thechmarket.com</p>
+    <p>2026 Ontario Korean Community · OKC · ontariokc.com</p>
+    <p>Powered by 더채움마켓 · thechmarket.com</p>
   </div>
 </footer>
 
