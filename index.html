@@ -303,7 +303,7 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
       <p class="hero-desc">Hamilton부터 나이아가라 지역까지, 온타리오 한인 커뮤니티가 함께합니다. 지역 소식, 비즈니스 정보, 이웃과의 연결 — OKC가 이어드립니다.</p>
       <div class="hero-btns">
         <a href="ads.html#apply" class="btn-gold">광고 신청</a>
-        <a href="https://open.kakao.com/o/sahniO1e" target="_blank" class="btn-gold">오픈톡방 참여</a>
+        <a href="https://open.kakao.com/o/gEBvaZ7b" target="_blank" class="btn-gold">오픈톡방 참여</a>
         <a href="index.html#hub" class="btn-ghost">서비스 둘러보기</a>
       </div>
     </div>
@@ -338,7 +338,7 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
       <p class="sec-sub">오픈톡방의 실시간 소통, 아카이브의 정보 보존, 광고의 비즈니스 연결을 하나로.</p>
     </div>
     <div class="hub-grid">
-      <a href="https://open.kakao.com/o/sahniO1e" target="_blank" class="hcard cb fade">
+      <a href="https://open.kakao.com/o/gEBvaZ7b" target="_blank" class="hcard cb fade">
         <div class="hicon">💬</div>
         <div class="htitle">카카오 오픈 단톡</div>
         <div class="hdesc">실거주 1,000명의 한인 커뮤니티. 생활 속 찐 꿀팁부터 실시간 정보 공유까지 — 온타리오 한인의 일상이 모이는 곳.</div>
@@ -348,7 +348,7 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
         <div class="hicon">📢</div>
         <div class="htitle">커뮤니티 광고</div>
         <div class="hdesc">비즈니스 노출 보장 상품. 오픈톡방·네이버 카페·더채움마켓 통합 노출로 온타리오 한인 10,000명에게 직접 닿으세요.</div>
-        <span class="hlink">광고 신청하기 →</span>
+        <span class="hlink">광고 플랜 보기 →</span>
         <span class="hbadge b-hot">🔥 4월 할인</span>
       </a>
       <a href="https://thechmarket.com" target="_blank" class="hcard cr fade">
@@ -360,7 +360,7 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
       <a href="ads.html" class="hcard cg fade">
         <div class="hicon">🌐</div>
         <div class="htitle">다양한 노출 채널</div>
-        <div class="hdesc">더 많은 노출 기회를 위해 다양한 채널들과 협업합니다. 오픈톡방 · 네이버 카페 · 더채움마켓 · 뉴스레터 통합 노출.</div>
+        <div class="hdesc">더 많은 노출 기회를 위해 다양한 채널들과 협업합니다. 지역 리테일 업체, 언론사 등과 협업 예정.</div>
         <span class="hlink">광고 플랜 보기 →</span>
       </a>
     </div>
@@ -381,7 +381,7 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
         <h3>온타리오 한인 커뮤니티</h3>
         <p>Hamilton · Burlington · Brantford<br>Oakville · Milton · 나이아가라 지역</p>
         <div class="k-count"><span>1,000+</span><p>실거주 활성 멤버</p></div>
-        <a href="https://open.kakao.com/o/sahniO1e" target="_blank" class="k-btn">카카오톡 오픈톡방 참여</a>
+        <a href="https://open.kakao.com/o/gEBvaZ7b" target="_blank" class="k-btn">카카오톡 오픈톡방 참여</a>
         <a href="https://cafe.naver.com/canadalove" target="_blank" class="n-btn">
           <div class="n-icon">N</div>
           온타리오 한인커뮤니티 네이버 카페
@@ -471,8 +471,8 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
         <p>카카오톡 또는 이메일로 무료 상담 신청하시면, 업종에 맞는 광고 전략을 직접 안내드려요.</p>
       </div>
       <div class="cbar-btns">
-        <a href="https://open.kakao.com/o/sahniO1e" target="_blank" class="cbtn">카카오톡 무료 상담</a>
-        <a href="ads.html" class="cbtn2">이메일 상담</a>
+        <a href="https://open.kakao.com/o/gEBvaZ7b" target="_blank" class="cbtn">카카오톡 무료 상담</a>
+        <a href="javascript:void(0)" onclick="sendEmail()" class="cbtn2">이메일 상담</a>
       </div>
     </div>
   </div>
@@ -548,8 +548,8 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
     </div>
     <div class="fc2">
       <h4>문의</h4>
-      <a href="https://open.kakao.com/o/sahniO1e" target="_blank">카카오톡 문의</a>
-      <a href="ads.html#apply" id="email-link">이메일 문의</a>
+      <a href="https://open.kakao.com/o/gEBvaZ7b" target="_blank">카카오톡 문의</a>
+      <a href="javascript:void(0)" onclick="sendEmail()">이메일 문의</a>
       <a href="ads.html#apply">광고 신청</a>
     </div>
   </div>
@@ -559,25 +559,14 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
 </footer>
 
 <script>
-// 이메일 링크 (Cloudflare 우회)
-(function() {
-  var el = document.getElementById('email-link');
-  if (el) {
-    var u = 'ontariokc.ads';
-    var d = 'gmail.com';
-    el.href = 'mailto:' + u + '@' + d;
-  }
-})();
-
-// 상담바 이메일 버튼
-(function() {
-  var el = document.getElementById('email-consult');
-  if (el) {
-    var u = 'ontariokc.ads';
-    var d = 'gmail.com';
-    el.href = 'mailto:' + u + '@' + d;
-  }
-})();
+// 이메일 함수 (Cloudflare 우회)
+function sendEmail() {
+  var a = 'ontariokc';
+  var b = '.ads';
+  var c = '@gmail';
+  var d = '.com';
+  window.location.href = 'mailto:' + a + b + c + d;
+}
 
 // 스크롤 애니메이션
 var io = new IntersectionObserver(function(e) {
