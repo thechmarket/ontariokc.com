@@ -75,8 +75,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:62px;background:rgba(
 .plan-section-title{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding-bottom:9px;border-bottom:1.5px solid var(--g200)}
 .plan-section-title h3{font-size:13px;font-weight:700;color:var(--navy)}
 .plan-section-title .cnt{font-size:12px;color:var(--g500)}
-.grid-premium{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.grid-standard{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.grid-premium{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.grid-standard{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .grid-basic{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .bcard{background:var(--white);border-radius:14px;overflow:hidden;transition:transform .2s,box-shadow .2s;position:relative}
 .bcard.is-premium{border:2.5px solid var(--gold);box-shadow:0 4px 20px rgba(200,162,74,0.18)}
@@ -90,8 +90,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:62px;background:rgba(
 .badge-standard{background:var(--blue);color:var(--white)}
 .badge-basic{background:var(--g200);color:var(--g700)}
 .bcard-body{padding:14px 16px}
+.bcard.is-premium .bcard-body{padding:20px 22px}
+.bcard.is-standard .bcard-body{padding:12px 14px}
 .bcard-cat{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
 .bcard-name{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px;line-height:1.3}
+.bcard.is-standard .bcard-name{font-size:13px}
+.bcard.is-premium .bcard-name{font-size:16px;margin-bottom:5px}
 .bcard-region{font-size:11.5px;color:var(--g500);margin-bottom:8px}
 .bcard-desc{font-size:12px;color:var(--g700);line-height:1.55;margin-bottom:10px}
 .bcard-footer{display:flex;gap:6px;flex-wrap:wrap}
@@ -334,8 +338,11 @@ function renderCards(data) {
 
   // 카드 생성 헬퍼
   function makeCard(b, cls, badgeCls, badgeText) {
+    var isPremium  = cls === 'is-premium';
+    var isStandard = cls === 'is-standard';
+    // 전화: 모두 표시 / 카카오: Premium만
     var telHtml   = b.tel   ? '<a class="bcard-tel" href="tel:'+b.tel+'">&#128222; '+b.tel+'</a>' : '';
-    var kakaoHtml = b.kakao ? '<a class="bcard-kakao" href="'+b.kakao+'" target="_blank">&#128172; 카카오</a>' : '';
+    var kakaoHtml = (isPremium && b.kakao) ? '<a class="bcard-kakao" href="'+b.kakao+'" target="_blank">&#128172; 카카오</a>' : '';
     var ddayHtml  = '';
     if (b.expireDate) {
       var dd = getDday(b.expireDate);
@@ -343,12 +350,19 @@ function renderCards(data) {
         ddayHtml = '<span class="dday-badge">D-'+dd+'</span>';
       }
     }
-    var descHtml = (b.desc && (cls==='is-premium'||cls==='is-standard'))
+    // 메달 아이콘: Premium=금메달 크게, Standard=은메달 작게
+    var medalHtml = isPremium
+      ? '<div style="font-size:36px;line-height:1;margin-bottom:10px">&#127947;</div>'
+      : isStandard
+      ? '<div style="font-size:22px;line-height:1;margin-bottom:6px;opacity:0.75">&#129352;</div>'
+      : '';
+    var descHtml = (b.desc && (isPremium||isStandard))
       ? '<div class="bcard-desc">'+b.desc+'</div>' : '';
     return '<div class="bcard '+cls+'">'
       + '<span class="plan-badge '+badgeCls+'">'+badgeText+'</span>'
       + ddayHtml
       + '<div class="bcard-body">'
+      + medalHtml
       + '<div class="bcard-cat">'+b.cat+'</div>'
       + '<div class="bcard-name">'+b.name+'</div>'
       + '<div class="bcard-region">&#128205; '+b.region+'</div>'
