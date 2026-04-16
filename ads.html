@@ -476,35 +476,40 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
       </div>
 
       <div class="fade">
-        <form id="ad-form">
+        <!-- 히든 iframe: 폼 제출 타겟 (CORS 완전 우회) -->
+        <iframe name="okc_hidden" id="okc_hidden" style="display:none;" onload="iframeLoaded()"></iframe>
+
+        <form id="ad-form"
+              method="POST"
+              target="okc_hidden">
           <div class="form-row">
             <div class="form-group">
               <label>업체명 <span>*</span></label>
-              <input type="text" id="biz_name" placeholder="예: 해피 네일" required>
+              <input type="text" name="biz_name" placeholder="예: 해피 네일" required>
             </div>
             <div class="form-group">
               <label>업종 <span>*</span></label>
-              <input type="text" id="biz_type" placeholder="예: 미용, 음식점, 교육" required>
+              <input type="text" name="biz_type" placeholder="예: 미용, 음식점, 교육" required>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
               <label>담당자 성함 <span>*</span></label>
-              <input type="text" id="name" placeholder="성함 입력" required>
+              <input type="text" name="name" placeholder="성함 입력" required>
             </div>
             <div class="form-group">
               <label>연락처 <span>*</span></label>
-              <input type="tel" id="phone" placeholder="예: 905-000-0000" required>
+              <input type="tel" name="phone" placeholder="예: 905-000-0000" required>
             </div>
           </div>
           <div class="form-group">
             <label>이메일 <span>*</span></label>
-            <input type="email" id="email" placeholder="example@email.com" required>
+            <input type="email" name="email" placeholder="example@email.com" required>
           </div>
           <div class="form-row">
             <div class="form-group">
               <label>희망 플랜 <span>*</span></label>
-              <select id="plan" required>
+              <select name="plan" id="plan" required>
                 <option value="">선택해 주세요</option>
                 <option value="Free">Free — 무료</option>
                 <option value="Basic ($14.99/1회)">Basic — $14.99/1회</option>
@@ -514,7 +519,7 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
             </div>
             <div class="form-group">
               <label>계약 기간</label>
-              <select id="contract">
+              <select name="contract">
                 <option value="1개월">1개월</option>
                 <option value="6개월 (5% 할인)">6개월 (5% 할인 · ~4/30)</option>
                 <option value="12개월 (최대 혜택)">12개월 (최대 혜택)</option>
@@ -523,7 +528,7 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
           </div>
           <div class="form-group">
             <label>배너 제작 희망</label>
-            <select id="banner">
+            <select name="banner">
               <option value="없음">필요 없음</option>
               <option value="희망 ($50+Tax)">희망합니다 ($50+Tax)</option>
               <option value="추후 논의">추후 논의</option>
@@ -531,10 +536,10 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
           </div>
           <div class="form-group">
             <label>업체 소개 또는 문의 사항</label>
-            <textarea id="message" placeholder="업체 소개, 광고 목표, 문의사항 등을 자유롭게 적어주세요"></textarea>
+            <textarea name="message" placeholder="업체 소개, 광고 목표, 문의사항 등을 자유롭게 적어주세요"></textarea>
           </div>
           <div id="form-msg"></div>
-          <button type="submit" class="submit-btn" id="submit-btn">광고 신청서 제출하기 →</button>
+          <button type="submit" class="submit-btn" id="submit-btn" onclick="formSubmitting()">광고 신청서 제출하기 →</button>
         </form>
       </div>
     </div>
@@ -582,7 +587,39 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
 
 <script>
 // ★ Apps Script 배포 후 아래 URL을 교체해 주세요
-var GAS_URL = 'https://script.google.com/macros/s/AKfycbwfyiQF33CSAlZJ0NJ01s389oUAPUEbqykXPeLzzkzx6dIyYmOUQdw7MgFvfJ2yZeXc/exec';
+var GAS_URL = 'YOUR_APPS_SCRIPT_WEB_APP_URL';
+
+// 페이지 로드 시 폼 action에 GAS URL 설정
+window.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('ad-form').action = GAS_URL;
+});
+
+var formJustSubmitted = false;
+
+function formSubmitting() {
+  var form = document.getElementById('ad-form');
+  // HTML5 유효성 검사
+  if (!form.checkValidity()) return;
+  formJustSubmitted = true;
+  var btn = document.getElementById('submit-btn');
+  btn.textContent = '제출 중...';
+  btn.disabled = true;
+}
+
+// iframe에 응답이 오면 성공 처리
+function iframeLoaded() {
+  if (!formJustSubmitted) return;
+  formJustSubmitted = false;
+  var msg = document.getElementById('form-msg');
+  var btn = document.getElementById('submit-btn');
+  msg.textContent = '✅ 신청서가 접수되었습니다! 검토 후 24시간 이내 연락드리겠습니다.';
+  msg.className = 'success'; msg.style.display = 'block';
+  btn.textContent = '광고 신청서 제출하기 →';
+  btn.disabled = false;
+  document.getElementById('ad-form').reset();
+  // 성공 메시지로 스크롤
+  msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
 
 function selectPlan(plan) {
   setTimeout(function() {
@@ -600,43 +637,6 @@ document.querySelectorAll('.faq-q').forEach(function(btn) {
     document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
     if (!isOpen) item.classList.add('open');
   });
-});
-
-document.getElementById('ad-form').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  var btn = document.getElementById('submit-btn');
-  var msg = document.getElementById('form-msg');
-  btn.disabled = true; btn.textContent = '제출 중...';
-  msg.style.display = 'none';
-
-  var params = {
-    biz_name: document.getElementById('biz_name').value,
-    biz_type: document.getElementById('biz_type').value,
-    name:     document.getElementById('name').value,
-    phone:    document.getElementById('phone').value,
-    email:    document.getElementById('email').value,
-    plan:     document.getElementById('plan').value,
-    contract: document.getElementById('contract').value,
-    banner:   document.getElementById('banner').value,
-    message:  document.getElementById('message').value
-  };
-
-  try {
-    var res = await fetch(GAS_URL, {
-      method: 'POST',
-      mode: 'no-cors', // Apps Script CORS 우회
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(params)
-    });
-    // no-cors 모드에서는 응답 확인 불가 → 성공으로 처리
-    msg.textContent = '✅ 신청서가 접수되었습니다! 검토 후 24시간 이내 연락드리겠습니다.';
-    msg.className = 'success'; msg.style.display = 'block';
-    this.reset();
-  } catch(err) {
-    msg.textContent = '❌ 전송 오류가 발생했습니다. ontariokc.ads@gmail.com 으로 직접 문의해 주세요.';
-    msg.className = 'error'; msg.style.display = 'block';
-  }
-  btn.disabled = false; btn.textContent = '광고 신청서 제출하기 →';
 });
 
 var io = new IntersectionObserver(function(entries) {
