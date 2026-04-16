@@ -175,13 +175,11 @@ footer{background:var(--navy);padding:40px 4% 24px;border-top:1px solid rgba(255
         <strong>⚙️ 구글 시트 연동 설정</strong>
         <button onclick="document.getElementById('sheetInfo').style.display='none'" style="background:none;border:none;cursor:pointer;font-size:18px;color:var(--g500)">✕</button>
       </div>
-      구글 시트를 <strong>공개(링크가 있는 모든 사용자 — 뷰어)</strong>로 설정 후 시트 ID를 입력하세요.<br>
-      URL에서 ID 위치: docs.google.com/spreadsheets/d/<strong style="color:var(--blue)">【여기가 ID】</strong>/edit<br><br>
-      컬럼 순서: A업체명 · B업종 · C지역 · D전화 · E소개 · F플랜(Premium/Standard/Basic/Free) · G카카오링크 · H노출여부(Y/N)
-      <input class="sheet-id-input" id="sheetId" placeholder="시트 ID 붙여넣기 (예: 1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms)">
-      <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
-        <button class="sheet-load-btn" onclick="loadFromSheet()">📥 시트 데이터 불러오기</button>
-        <button onclick="localStorage.removeItem('okc_sheet_id');document.getElementById('sheetId').value='';alert('초기화 완료')" style="padding:9px 14px;border-radius:7px;border:1.5px solid var(--g200);background:var(--white);cursor:pointer;font-size:13px;font-family:'Noto Sans KR',sans-serif">🗑 초기화</button>
+      구글 시트가 연동되어 있어요. 시트 데이터를 수정하면 페이지 새로고침 시 자동 반영돼요.<br><br>
+      <strong>시트 컬럼 순서:</strong><br>
+      A업체명 · B업종 · C지역 · D전화 · E소개 · F계약플랜 · G등록일(YYYY-MM-DD) · H계약기간(월수) · I만료일 · J실제노출플랜 · K카카오링크 · L노출여부(Y/N)
+      <div style="margin-top:10px">
+        <button class="sheet-load-btn" onclick="loadFromSheet()">🔄 데이터 새로고침</button>
       </div>
     </div>
 
@@ -258,13 +256,33 @@ var planOrder = {Premium:0, Standard:1, Basic:2, Free:3};
 
 // 샘플 데이터 (구글 시트 연동 전 기본 표시)
 var sampleData = [
-  {name:'해피 네일 스파', cat:'미용·뷰티', region:'Hamilton', tel:'905-111-2222', desc:'OPI 정품 사용, 한국어 가능, 예약 우선', plan:'Premium', kakao:'https://open.kakao.com/o/gEBvaZ7b', banner:''},
-  {name:'김밥나라 Hamilton', cat:'음식점·마트', region:'Hamilton', tel:'905-333-4444', desc:'정통 한식, 김밥·비빔밥·된장찌개 전문', plan:'Standard', kakao:'', banner:''},
-  {name:'OO 수학·영어 학원', cat:'교육·과외', region:'Oakville', tel:'905-555-6666', desc:'초등~고등 전문, 한국인 선생님, 소그룹 수업', plan:'Standard', kakao:'', banner:''},
-  {name:'한인 부동산 그룹', cat:'부동산', region:'Burlington', tel:'905-777-8888', desc:'온타리오 부동산 전문, 한국어 상담 가능', plan:'Basic', kakao:'', banner:''},
-  {name:'김씨 세탁소', cat:'기타', region:'Brantford', tel:'', desc:'드라이클리닝, 당일 서비스 가능', plan:'Free', kakao:'', banner:''},
-  {name:'건강 한의원', cat:'의료·치과', region:'Milton', tel:'905-999-0000', desc:'침술, 부항, 한약 처방, 한국어 진료', plan:'Basic', kakao:'', banner:''}
+  {name:'해피 네일 스파', cat:'미용·뷰티', region:'Hamilton', tel:'905-111-2222', desc:'OPI 정품 사용, 한국어 가능, 예약 우선', contractPlan:'Premium', startDate:'2026-05-01', months:12, expireDate:'2027-05-01', plan:'Premium', kakao:'https://open.kakao.com/o/gEBvaZ7b', display:'Y'},
+  {name:'김밥나라 Hamilton', cat:'음식점·마트', region:'Hamilton', tel:'905-333-4444', desc:'정통 한식, 김밥·비빔밥·된장찌개 전문', contractPlan:'Standard', startDate:'2026-05-01', months:6, expireDate:'2026-11-01', plan:'Standard', kakao:'', display:'Y'},
+  {name:'OO 수학·영어 학원', cat:'교육·과외', region:'Oakville', tel:'905-555-6666', desc:'초등~고등 전문, 한국인 선생님, 소그룹 수업', contractPlan:'Standard', startDate:'2026-01-01', months:6, expireDate:'2026-07-01', plan:'Standard', kakao:'', display:'Y'},
+  {name:'한인 부동산 그룹', cat:'부동산', region:'Burlington', tel:'905-777-8888', desc:'온타리오 부동산 전문, 한국어 상담 가능', contractPlan:'Basic', startDate:'2026-05-01', months:1, expireDate:'2026-06-01', plan:'Basic', kakao:'', display:'Y'},
+  {name:'김씨 세탁소', cat:'기타', region:'Brantford', tel:'', desc:'드라이클리닝, 당일 서비스 가능', contractPlan:'Free', startDate:'', months:0, expireDate:'', plan:'Free', kakao:'', display:'Y'},
+  {name:'건강 한의원', cat:'의료·치과', region:'Milton', tel:'905-999-0000', desc:'침술, 부항, 한약 처방, 한국어 진료', contractPlan:'Basic', startDate:'2026-05-01', months:1, expireDate:'2026-06-01', plan:'Basic', kakao:'', display:'Y'}
 ];
+
+// 만료일 체크 후 실제 노출 플랜 결정
+function getEffectivePlan(b) {
+  if (b.contractPlan === 'Free' || !b.expireDate) return 'Free';
+  var today = new Date();
+  today.setHours(0,0,0,0);
+  var expire = new Date(b.expireDate);
+  if (expire < today) return 'Free'; // 만료 → 자동 Free 강등
+  return b.contractPlan;
+}
+
+// 만료 D-day 계산
+function getDday(expireDate) {
+  if (!expireDate) return null;
+  var today = new Date();
+  today.setHours(0,0,0,0);
+  var expire = new Date(expireDate);
+  var diff = Math.ceil((expire - today) / (1000*60*60*24));
+  return diff;
+}
 
 function renderCards(data) {
   var grid = document.getElementById('dirGrid');
@@ -274,22 +292,31 @@ function renderCards(data) {
     count.textContent = '0개 업체';
     return;
   }
-  // 플랜 순 정렬
+  // 유효 플랜 적용 후 정렬
+  data.forEach(function(b){ b.plan = getEffectivePlan(b); });
   data.sort(function(a,b){ return (planOrder[a.plan]||3) - (planOrder[b.plan]||3); });
   document.getElementById('total-count').textContent = allData.length;
   count.textContent = data.length + '개 업체';
   grid.innerHTML = data.map(function(b){
-    var isPremium = b.plan === 'Premium';
+    var isPremium  = b.plan === 'Premium';
     var isStandard = b.plan === 'Standard';
     var badgeClass = {Premium:'badge-premium', Standard:'badge-standard', Basic:'badge-basic', Free:'badge-free'}[b.plan] || 'badge-free';
     var telHtml = b.plan !== 'Free' && b.tel
       ? '<a class="bcard-tel" href="tel:'+b.tel+'">📞 '+b.tel+'</a>'
-      : b.plan === 'Free' ? '<span class="bcard-hidden">전화번호 — 등록 업체 전용</span>' : '';
+      : b.plan === 'Free' ? '<span class="bcard-hidden">전화번호 — 유료 플랜 전용</span>' : '';
     var kakaoHtml = b.kakao ? '<a class="bcard-kakao" href="'+b.kakao+'" target="_blank">💬 카카오 문의</a>' : '';
     var bannerHtml = isPremium
       ? '<div style="width:100%;height:90px;background:linear-gradient(135deg,#0d1f35,#1a3a6a);display:flex;align-items:center;justify-content:center"><span style="color:rgba(200,162,74,0.6);font-size:13px">배너 이미지 영역</span></div>'
       : '';
-    return '<div class="bcard'+(isPremium?' is-premium':'')+'">'+bannerHtml+'<span class="bcard-plan-badge '+badgeClass+'">'+b.plan+'</span><div class="bcard-body"><div class="bcard-cat">'+b.cat+'</div><div class="bcard-name">'+b.name+'</div><div class="bcard-region">📍 '+b.region+'</div>'+(b.desc&&(isStandard||isPremium)?'<div class="bcard-desc">'+b.desc+'</div>':'')+'<div class="bcard-footer">'+telHtml+kakaoHtml+'</div></div></div>';
+    // 만료 D-day 표시
+    var ddayHtml = '';
+    if (b.expireDate && b.plan !== 'Free') {
+      var dd = getDday(b.expireDate);
+      if (dd !== null && dd <= 30 && dd >= 0) {
+        ddayHtml = '<span style="position:absolute;bottom:10px;right:10px;font-size:10px;background:rgba(192,57,43,0.9);color:white;padding:2px 7px;border-radius:10px">만료 D-'+dd+'</span>';
+      }
+    }
+    return '<div class="bcard'+(isPremium?' is-premium':'')+'">'+bannerHtml+'<span class="bcard-plan-badge '+badgeClass+'">'+b.plan+'</span>'+ddayHtml+'<div class="bcard-body"><div class="bcard-cat">'+b.cat+'</div><div class="bcard-name">'+b.name+'</div><div class="bcard-region">📍 '+b.region+'</div>'+(b.desc&&(isStandard||isPremium)?'<div class="bcard-desc">'+b.desc+'</div>':'')+'<div class="bcard-footer">'+telHtml+kakaoHtml+'</div></div></div>';
   }).join('');
 }
 
@@ -318,45 +345,76 @@ function setRegion(region, btn) {
   filterCards();
 }
 
-// 구글 시트에서 CSV 불러오기
-function loadFromSheet() {
-  var id = document.getElementById('sheetId').value.trim();
-  if (!id) { alert('시트 ID를 입력해주세요'); return; }
-  var url = 'https://docs.google.com/spreadsheets/d/'+id+'/export?format=csv&gid=0';
-  document.getElementById('dirGrid').innerHTML = '<div class="loading"><div class="loading-spinner"></div><p>시트 데이터 불러오는 중...</p></div>';
-  fetch(url).then(function(r){ return r.text(); }).then(function(csv){
-    var rows = csv.split('\n').slice(1);
-    allData = rows.filter(function(r){ return r.trim(); }).map(function(row){
-      var cols = row.split(',');
-      return {
-        name: (cols[0]||'').replace(/"/g,'').trim(),
-        cat:  (cols[1]||'').replace(/"/g,'').trim(),
-        region:(cols[2]||'').replace(/"/g,'').trim(),
-        tel:  (cols[3]||'').replace(/"/g,'').trim(),
-        desc: (cols[4]||'').replace(/"/g,'').trim(),
-        plan: (cols[5]||'Free').replace(/"/g,'').trim(),
-        kakao:(cols[6]||'').replace(/"/g,'').trim(),
-        display:(cols[7]||'Y').replace(/"/g,'').trim()
-      };
-    }).filter(function(b){ return b.display === 'Y' && b.name; });
-    localStorage.setItem('okc_sheet_id', id);
-    filterCards();
-  }).catch(function(){ alert('시트를 불러올 수 없어요. 시트가 공개(링크 공유)로 설정되어 있는지 확인해주세요.'); });
+// 구글 시트 CSV 파싱
+// 컬럼: A업체명 B업종 C지역 D전화 E소개 F계약플랜 G등록일 H계약기간(월) I만료일 J실제노출플랜 K카카오 L노출여부
+function parseCSV(csv) {
+  var rows = csv.split('\n').slice(1);
+  return rows.filter(function(r){ return r.trim(); }).map(function(row){
+    // 콤마 CSV 파싱 (큰따옴표 처리)
+    var cols = [];
+    var cur = ''; var inQ = false;
+    for (var i = 0; i < row.length; i++) {
+      if (row[i] === '"') { inQ = !inQ; }
+      else if (row[i] === ',' && !inQ) { cols.push(cur.trim()); cur = ''; }
+      else { cur += row[i]; }
+    }
+    cols.push(cur.trim());
+    var contractPlan = (cols[5]||'Free').trim();
+    var startDate    = (cols[6]||'').trim();
+    var months       = parseInt(cols[7]||'0') || 0;
+    var expireDate   = (cols[8]||'').trim();
+    // I열 만료일 없으면 G+H로 계산
+    if (!expireDate && startDate && months) {
+      var d = new Date(startDate);
+      d.setMonth(d.getMonth() + months);
+      expireDate = d.toISOString().split('T')[0];
+    }
+    var display = (cols[11]||'Y').trim();
+    return {
+      name:         (cols[0]||'').trim(),
+      cat:          (cols[1]||'').trim(),
+      region:       (cols[2]||'').trim(),
+      tel:          (cols[3]||'').trim(),
+      desc:         (cols[4]||'').trim(),
+      contractPlan: contractPlan,
+      startDate:    startDate,
+      months:       months,
+      expireDate:   expireDate,
+      plan:         contractPlan, // 렌더 시 getEffectivePlan()으로 재계산
+      kakao:        (cols[10]||'').trim(),
+      display:      display
+    };
+  }).filter(function(b){ return b.display === 'Y' && b.name; });
 }
 
-// 초기 로드
+function loadFromSheet() {
+  var SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQO1rWbm6-_8oriirW5p_kluDJbF8oQ0VAr0GXXblaEnSnF30wipZwoTiPWd2TBwhZTBPKwv4t9IvWq/pub?gid=0&single=true&output=csv';
+  document.getElementById('dirGrid').innerHTML = '<div class="loading"><div class="loading-spinner"></div><p>시트 데이터 불러오는 중...</p></div>';
+  fetch(SHEET_URL)
+    .then(function(r){ return r.text(); })
+    .then(function(csv){
+      var parsed = parseCSV(csv);
+      if (parsed.length > 0) {
+        allData = parsed;
+        filterCards();
+        document.getElementById('total-count').textContent = allData.length;
+      } else {
+        // 시트가 비어있으면 샘플 데이터 유지
+        filterCards();
+      }
+    })
+    .catch(function(){
+      console.log('시트 로드 실패, 샘플 데이터 사용');
+      filterCards();
+    });
+}
+
 function init() {
-  var savedId = localStorage.getItem('okc_sheet_id');
-  if (savedId) {
-    document.getElementById('sheetId').value = savedId;
-    allData = sampleData;
-    filterCards();
-    loadFromSheet();
-  } else {
-    allData = sampleData;
-    filterCards();
-  }
-  document.getElementById('total-count').textContent = allData.length;
+  // 샘플 데이터 먼저 표시
+  allData = sampleData;
+  filterCards();
+  // 구글 시트에서 실제 데이터 로드
+  loadFromSheet();
 }
 
 init();
