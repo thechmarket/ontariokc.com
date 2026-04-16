@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>한인 업체 찾기 — Ontario Korean Community OKC</title>
+<meta name="description" content="온타리오 한인 업체 디렉토리. Hamilton, Burlington, Brantford, Oakville, Milton 한인 업체 목록.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1f35;--navy2:#162d4a;--blue:#1a5fa8;--blue2:#2478cc;--gold:#c8a24a;--gold2:#e6c46a;--red:#c0392b;--green:#1a7a4a;--cream:#f8f6f1;--warm:#f2efe8;--white:#ffffff;--g100:#f5f3ee;--g200:#e9e6df;--g500:#888480;--g700:#46443f;--text:#1a1815}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:999;height:62px;background:rgba(13,31,53,0.97);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 4%}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.nav-logo-mark{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:var(--navy);letter-spacing:-0.5px}
+.nav-title-wrap{display:flex;flex-direction:column}
+.nav-name{color:var(--white);font-weight:700;font-size:13px;line-height:1.3}
+.nav-name span{color:var(--gold)}
+.nav-url{color:rgba(255,255,255,0.35);font-size:10px}
+.nav-menu{display:flex;align-items:center;gap:16px}
+.nav-menu a{color:rgba(255,255,255,0.68);font-size:12.5px;text-decoration:none;white-space:nowrap;transition:color .2s}
+.nav-menu a:hover{color:var(--gold2)}
+.nav-menu a.active{color:var(--gold2)}
+.nav-btn{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy)!important;font-weight:700!important;padding:7px 14px;border-radius:6px;font-size:12px!important}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.ham span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px}
+.mob-nav{display:none;position:fixed;top:62px;left:0;right:0;background:rgba(13,31,53,0.98);backdrop-filter:blur(12px);padding:16px 4% 20px;z-index:998;flex-direction:column;gap:0;border-top:1px solid rgba(255,255,255,0.1)}
+.mob-nav.open{display:flex}
+.mob-nav a{color:rgba(255,255,255,0.75);font-size:14px;text-decoration:none;padding:13px 0;border-bottom:1px solid rgba(255,255,255,0.07);transition:color .2s}
+.mob-nav a:hover{color:var(--gold2)}
+.mob-btn{margin-top:12px!important;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy)!important;font-weight:700;padding:13px;border-radius:9px;text-align:center;border-bottom:none!important}
+
+/* HERO */
+.hero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 60%,#1a3a6a 100%);padding:100px 4% 60px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:50px;background:linear-gradient(to bottom right,transparent 49%,var(--cream) 50%)}
+.hero-glow{position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(26,95,168,0.2) 0%,transparent 65%);pointer-events:none}
+.hero-in{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(200,162,74,0.15);border:1px solid rgba(200,162,74,0.3);color:var(--gold2);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:18px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(28px,4.5vw,48px);font-weight:900;color:var(--white);line-height:1.2;margin-bottom:14px}
+.hero h1 span{background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-desc{color:rgba(255,255,255,0.65);font-size:15px;line-height:1.8;max-width:560px;margin-bottom:28px}
+.hero-stats{display:flex;gap:28px;flex-wrap:wrap}
+.hstat{text-align:center;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 20px}
+.hstat-n{font-size:24px;font-weight:900;color:var(--white);letter-spacing:-1px;line-height:1}
+.hstat-n small{font-size:14px;color:var(--gold)}
+.hstat-l{font-size:11px;color:rgba(255,255,255,0.5);margin-top:3px}
+
+/* SEARCH & FILTER */
+.search-sec{background:var(--cream);padding:40px 4% 20px}
+.search-in{max-width:1100px;margin:0 auto}
+.search-bar{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.search-input{flex:1;min-width:200px;font-family:'Noto Sans KR',sans-serif;font-size:14px;padding:13px 18px;border-radius:10px;border:1.5px solid var(--g200);background:var(--white);outline:none;transition:border-color .2s;color:var(--text)}
+.search-input:focus{border-color:var(--blue)}
+.search-btn{background:linear-gradient(135deg,var(--navy),var(--navy2));color:var(--white);font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:14px;padding:13px 24px;border-radius:10px;border:none;cursor:pointer;white-space:nowrap;transition:opacity .2s}
+.search-btn:hover{opacity:0.88}
+.filter-row{display:flex;gap:8px;flex-wrap:wrap}
+.filter-btn{font-family:'Noto Sans KR',sans-serif;font-size:12.5px;padding:7px 14px;border-radius:20px;border:1.5px solid var(--g200);background:var(--white);cursor:pointer;transition:all .2s;color:var(--g700)}
+.filter-btn:hover{border-color:var(--blue);color:var(--blue)}
+.filter-btn.active{background:var(--navy);color:var(--white);border-color:var(--navy)}
+
+/* REGISTER CTA */
+.reg-bar{max-width:1100px;margin:16px auto 0;background:var(--white);border-radius:12px;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;border:1.5px solid var(--g200)}
+.reg-bar p{font-size:13.5px;color:var(--g700)}
+.reg-bar p strong{color:var(--navy)}
+.reg-link{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);font-weight:700;font-size:13px;padding:9px 20px;border-radius:8px;text-decoration:none;white-space:nowrap;transition:opacity .2s}
+.reg-link:hover{opacity:0.88}
+
+/* DIRECTORY GRID */
+.dir-sec{padding:24px 4% 80px;background:var(--cream)}
+.dir-in{max-width:1100px;margin:0 auto}
+.dir-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px}
+.dir-count{font-size:13px;color:var(--g500)}
+.dir-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+
+/* BUSINESS CARD */
+.bcard{background:var(--white);border-radius:16px;border:1.5px solid var(--g200);overflow:hidden;transition:transform .25s,box-shadow .25s;position:relative}
+.bcard:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(13,31,53,0.10)}
+.bcard-banner{width:100%;height:80px;object-fit:cover;display:block;background:var(--g100)}
+.bcard-plan-badge{position:absolute;top:10px;right:10px;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.5px}
+.badge-premium{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy)}
+.badge-standard{background:var(--blue);color:var(--white)}
+.badge-basic{background:var(--g200);color:var(--g700)}
+.badge-free{background:var(--g100);color:var(--g500)}
+.bcard-body{padding:16px 18px}
+.bcard-cat{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+.bcard-name{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.bcard-region{font-size:12px;color:var(--g500);margin-bottom:8px;display:flex;align-items:center;gap:4px}
+.bcard-desc{font-size:12.5px;color:var(--g700);line-height:1.6;margin-bottom:12px}
+.bcard-footer{display:flex;gap:8px;flex-wrap:wrap}
+.bcard-tel{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--navy);background:var(--g100);padding:6px 12px;border-radius:7px;text-decoration:none;transition:background .2s}
+.bcard-tel:hover{background:var(--g200)}
+.bcard-kakao{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:#3A1D1D;background:#FEE500;padding:6px 12px;border-radius:7px;text-decoration:none;transition:opacity .2s}
+.bcard-kakao:hover{opacity:0.88}
+.bcard-hidden{font-size:12px;color:var(--g500);font-style:italic}
+
+/* PREMIUM CARD STYLE */
+.bcard.is-premium{border-color:var(--gold);box-shadow:0 4px 20px rgba(200,162,74,0.15)}
+.bcard.is-premium .bcard-banner{height:100px}
+
+/* LOADING / EMPTY */
+.loading{text-align:center;padding:60px 20px;color:var(--g500)}
+.loading-spinner{width:36px;height:36px;border:3px solid var(--g200);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 14px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.empty{text-align:center;padding:60px 20px}
+.empty-icon{font-size:48px;margin-bottom:14px}
+.empty h3{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.empty p{font-size:14px;color:var(--g500)}
+
+/* REGISTER SECTION */
+.reg-sec{background:var(--navy);padding:70px 4%}
+.reg-in{max-width:780px;margin:0 auto;text-align:center}
+.reg-in h2{font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,36px);font-weight:700;color:var(--white);margin-bottom:12px}
+.reg-in p{color:rgba(255,255,255,0.6);font-size:15px;margin-bottom:28px;line-height:1.7}
+.reg-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);font-weight:700;font-size:14px;padding:14px 28px;border-radius:9px;text-decoration:none;transition:opacity .2s;display:inline-block}
+.btn-gold:hover{opacity:0.88}
+.btn-ghost{color:rgba(255,255,255,0.8);font-size:14px;font-weight:500;padding:14px 26px;border-radius:9px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.22);transition:border-color .2s,background .2s;display:inline-block}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.06)}
+
+/* FOOTER */
+footer{background:var(--navy);padding:40px 4% 24px;border-top:1px solid rgba(255,255,255,0.08)}
+.fg{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:44px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.fb h3{color:var(--white);font-size:17px;font-weight:900;margin-bottom:2px}
+.fb h3 span{color:var(--gold)}
+.fb .fe{color:var(--gold);font-size:11px;letter-spacing:1px;margin-bottom:3px}
+.fb .fu{color:rgba(255,255,255,0.28);font-size:11px;margin-bottom:12px}
+.fb p{color:rgba(255,255,255,0.42);font-size:12.5px;line-height:1.85}
+.fc2 h4{color:var(--white);font-size:13px;font-weight:700;margin-bottom:14px}
+.fc2 a{display:block;color:rgba(255,255,255,0.42);font-size:12.5px;text-decoration:none;margin-bottom:8px;transition:color .2s}
+.fc2 a:hover{color:var(--gold2)}
+.fbot{max-width:1100px;margin:20px auto 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.fbot p{color:rgba(255,255,255,0.25);font-size:11.5px}
+
+/* SHEET INFO BOX */
+.sheet-info{background:rgba(26,95,168,0.08);border:1.5px solid rgba(26,95,168,0.2);border-radius:10px;padding:14px 18px;font-size:13px;color:var(--g700);margin-bottom:20px;display:none}
+.sheet-info.show{display:block}
+.sheet-info strong{color:var(--navy)}
+.sheet-id-input{width:100%;font-family:'Noto Sans KR',sans-serif;font-size:13px;padding:9px 12px;border-radius:7px;border:1.5px solid var(--g200);background:var(--white);outline:none;margin-top:8px;color:var(--text)}
+.sheet-id-input:focus{border-color:var(--blue)}
+.sheet-load-btn{margin-top:8px;background:var(--blue);color:var(--white);font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:700;padding:9px 18px;border-radius:7px;border:none;cursor:pointer;transition:opacity .2s}
+.sheet-load-btn:hover{opacity:0.88}
+
+@media(max-width:960px){.nav-menu{display:none}.ham{display:flex}.dir-grid{grid-template-columns:1fr 1fr}.fg{grid-template-columns:1fr 1fr}}
+@media(max-width:580px){.dir-grid{grid-template-columns:1fr}.fg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="okc-nav"></div>
+<script src="nav.js"></script>
+
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-in">
+    <div class="hero-badge">온타리오 한인 업체 디렉토리</div>
+    <h1>가까운 <span>한인 업체</span>를<br>한눈에 찾으세요</h1>
+    <p class="hero-desc">Hamilton · Burlington · Brantford · Oakville · Milton — 믿을 수 있는 한인 업체를 지역과 업종별로 쉽게 찾을 수 있어요.</p>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-n" id="total-count">0<small>개</small></div><div class="hstat-l">등록 업체</div></div>
+      <div class="hstat"><div class="hstat-n">6<small>개</small></div><div class="hstat-l">커버 지역</div></div>
+      <div class="hstat"><div class="hstat-n">8<small>개</small></div><div class="hstat-l">업종 카테고리</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SEARCH -->
+<section class="search-sec">
+  <div class="search-in">
+    <!-- 구글 시트 연동 안내 (운영자용) -->
+    <div class="sheet-info" id="sheetInfo">
+      <strong>구글 시트 연동 설정</strong><br>
+      구글 시트를 공개(링크 공유)로 설정 후 시트 ID를 입력하세요.<br>
+      URL: docs.google.com/spreadsheets/d/<strong>여기가 ID</strong>/edit
+      <input class="sheet-id-input" id="sheetId" placeholder="구글 시트 ID 입력 (예: 1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms)" value="">
+      <button class="sheet-load-btn" onclick="loadFromSheet()">시트 데이터 불러오기</button>
+    </div>
+
+    <div class="search-bar">
+      <input class="search-input" id="searchInput" placeholder="업체명, 업종, 지역으로 검색..." oninput="filterCards()">
+      <button class="search-btn" onclick="filterCards()">검색</button>
+    </div>
+    <div class="filter-row" id="catFilters">
+      <button class="filter-btn active" onclick="setFilter('all',this)">전체</button>
+      <button class="filter-btn" onclick="setFilter('미용·뷰티',this)">미용·뷰티</button>
+      <button class="filter-btn" onclick="setFilter('음식점·마트',this)">음식점·마트</button>
+      <button class="filter-btn" onclick="setFilter('의료·치과',this)">의료·치과</button>
+      <button class="filter-btn" onclick="setFilter('부동산',this)">부동산</button>
+      <button class="filter-btn" onclick="setFilter('교육·과외',this)">교육·과외</button>
+      <button class="filter-btn" onclick="setFilter('수리·건설',this)">수리·건설</button>
+      <button class="filter-btn" onclick="setFilter('법률·회계',this)">법률·회계</button>
+      <button class="filter-btn" onclick="setFilter('기타',this)">기타</button>
+    </div>
+    <div style="margin-top:10px">
+      <div class="filter-row">
+        <button class="filter-btn active" onclick="setRegion('all',this)" id="reg-all">전체 지역</button>
+        <button class="filter-btn" onclick="setRegion('Hamilton',this)">Hamilton</button>
+        <button class="filter-btn" onclick="setRegion('Burlington',this)">Burlington</button>
+        <button class="filter-btn" onclick="setRegion('Brantford',this)">Brantford</button>
+        <button class="filter-btn" onclick="setRegion('Oakville',this)">Oakville</button>
+        <button class="filter-btn" onclick="setRegion('Milton',this)">Milton</button>
+      </div>
+    </div>
+    <div class="reg-bar">
+      <p>내 업체를 등록하고 싶으신가요? <strong>무료 등록</strong>부터 시작하세요.</p>
+      <a href="ads.html#apply" class="reg-link">업체 등록 신청 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- DIRECTORY -->
+<section class="dir-sec">
+  <div class="dir-in">
+    <div class="dir-header">
+      <div class="dir-count" id="dirCount">업체 불러오는 중...</div>
+      <div style="font-size:12px;color:var(--g500)">플랜 순서대로 노출 (Premium → Standard → Basic → Free)</div>
+    </div>
+    <div class="dir-grid" id="dirGrid">
+      <div class="loading">
+        <div class="loading-spinner"></div>
+        <p>업체 정보를 불러오는 중이에요...</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTER CTA -->
+<section class="reg-sec">
+  <div class="reg-in">
+    <h2>내 업체를 등록하세요</h2>
+    <p>무료로 시작해서 더 많은 노출이 필요할 때 업그레이드하세요.<br>Premium은 업종별 1개 한정이에요.</p>
+    <div class="reg-btns">
+      <a href="ads.html" class="btn-gold">광고 플랜 보기</a>
+      <a href="ads.html#apply" class="btn-ghost">무료 등록 신청</a>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+var allData = [];
+var currentCat = 'all';
+var currentRegion = 'all';
+
+// 플랜 우선순위
+var planOrder = {Premium:0, Standard:1, Basic:2, Free:3};
+
+// 샘플 데이터 (구글 시트 연동 전 기본 표시)
+var sampleData = [
+  {name:'해피 네일 스파', cat:'미용·뷰티', region:'Hamilton', tel:'905-111-2222', desc:'OPI 정품 사용, 한국어 가능, 예약 우선', plan:'Premium', kakao:'https://open.kakao.com/o/gEBvaZ7b', banner:''},
+  {name:'김밥나라 Hamilton', cat:'음식점·마트', region:'Hamilton', tel:'905-333-4444', desc:'정통 한식, 김밥·비빔밥·된장찌개 전문', plan:'Standard', kakao:'', banner:''},
+  {name:'OO 수학·영어 학원', cat:'교육·과외', region:'Oakville', tel:'905-555-6666', desc:'초등~고등 전문, 한국인 선생님, 소그룹 수업', plan:'Standard', kakao:'', banner:''},
+  {name:'한인 부동산 그룹', cat:'부동산', region:'Burlington', tel:'905-777-8888', desc:'온타리오 부동산 전문, 한국어 상담 가능', plan:'Basic', kakao:'', banner:''},
+  {name:'김씨 세탁소', cat:'기타', region:'Brantford', tel:'', desc:'드라이클리닝, 당일 서비스 가능', plan:'Free', kakao:'', banner:''},
+  {name:'건강 한의원', cat:'의료·치과', region:'Milton', tel:'905-999-0000', desc:'침술, 부항, 한약 처방, 한국어 진료', plan:'Basic', kakao:'', banner:''}
+];
+
+function renderCards(data) {
+  var grid = document.getElementById('dirGrid');
+  var count = document.getElementById('dirCount');
+  if (!data.length) {
+    grid.innerHTML = '<div class="empty"><div class="empty-icon">🔍</div><h3>검색 결과가 없어요</h3><p>다른 키워드나 카테고리로 찾아보세요</p></div>';
+    count.textContent = '0개 업체';
+    return;
+  }
+  // 플랜 순 정렬
+  data.sort(function(a,b){ return (planOrder[a.plan]||3) - (planOrder[b.plan]||3); });
+  document.getElementById('total-count').textContent = allData.length;
+  count.textContent = data.length + '개 업체';
+  grid.innerHTML = data.map(function(b){
+    var isPremium = b.plan === 'Premium';
+    var isStandard = b.plan === 'Standard';
+    var badgeClass = {Premium:'badge-premium', Standard:'badge-standard', Basic:'badge-basic', Free:'badge-free'}[b.plan] || 'badge-free';
+    var telHtml = b.plan !== 'Free' && b.tel
+      ? '<a class="bcard-tel" href="tel:'+b.tel+'">📞 '+b.tel+'</a>'
+      : b.plan === 'Free' ? '<span class="bcard-hidden">전화번호 — 등록 업체 전용</span>' : '';
+    var kakaoHtml = b.kakao ? '<a class="bcard-kakao" href="'+b.kakao+'" target="_blank">💬 카카오 문의</a>' : '';
+    var bannerHtml = isPremium
+      ? '<div style="width:100%;height:90px;background:linear-gradient(135deg,#0d1f35,#1a3a6a);display:flex;align-items:center;justify-content:center"><span style="color:rgba(200,162,74,0.6);font-size:13px">배너 이미지 영역</span></div>'
+      : '';
+    return '<div class="bcard'+(isPremium?' is-premium':'')+'">'+bannerHtml+'<span class="bcard-plan-badge '+badgeClass+'">'+b.plan+'</span><div class="bcard-body"><div class="bcard-cat">'+b.cat+'</div><div class="bcard-name">'+b.name+'</div><div class="bcard-region">📍 '+b.region+'</div>'+(b.desc&&(isStandard||isPremium)?'<div class="bcard-desc">'+b.desc+'</div>':'')+'<div class="bcard-footer">'+telHtml+kakaoHtml+'</div></div></div>';
+  }).join('');
+}
+
+function filterCards() {
+  var q = document.getElementById('searchInput').value.toLowerCase();
+  var filtered = allData.filter(function(b){
+    var matchCat = currentCat === 'all' || b.cat === currentCat;
+    var matchReg = currentRegion === 'all' || b.region === currentRegion;
+    var matchQ = !q || b.name.toLowerCase().includes(q) || b.cat.toLowerCase().includes(q) || b.region.toLowerCase().includes(q);
+    return matchCat && matchReg && matchQ;
+  });
+  renderCards(filtered);
+}
+
+function setFilter(cat, btn) {
+  currentCat = cat;
+  document.querySelectorAll('#catFilters .filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  filterCards();
+}
+
+function setRegion(region, btn) {
+  currentRegion = region;
+  btn.parentElement.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  filterCards();
+}
+
+// 구글 시트에서 CSV 불러오기
+function loadFromSheet() {
+  var id = document.getElementById('sheetId').value.trim();
+  if (!id) { alert('시트 ID를 입력해주세요'); return; }
+  var url = 'https://docs.google.com/spreadsheets/d/'+id+'/export?format=csv&gid=0';
+  document.getElementById('dirGrid').innerHTML = '<div class="loading"><div class="loading-spinner"></div><p>시트 데이터 불러오는 중...</p></div>';
+  fetch(url).then(function(r){ return r.text(); }).then(function(csv){
+    var rows = csv.split('\n').slice(1);
+    allData = rows.filter(function(r){ return r.trim(); }).map(function(row){
+      var cols = row.split(',');
+      return {
+        name: (cols[0]||'').replace(/"/g,'').trim(),
+        cat:  (cols[1]||'').replace(/"/g,'').trim(),
+        region:(cols[2]||'').replace(/"/g,'').trim(),
+        tel:  (cols[3]||'').replace(/"/g,'').trim(),
+        desc: (cols[4]||'').replace(/"/g,'').trim(),
+        plan: (cols[5]||'Free').replace(/"/g,'').trim(),
+        kakao:(cols[6]||'').replace(/"/g,'').trim(),
+        display:(cols[7]||'Y').replace(/"/g,'').trim()
+      };
+    }).filter(function(b){ return b.display === 'Y' && b.name; });
+    localStorage.setItem('okc_sheet_id', id);
+    filterCards();
+  }).catch(function(){ alert('시트를 불러올 수 없어요. 시트가 공개(링크 공유)로 설정되어 있는지 확인해주세요.'); });
+}
+
+// 초기 로드
+function init() {
+  var savedId = localStorage.getItem('okc_sheet_id');
+  if (savedId) {
+    document.getElementById('sheetId').value = savedId;
+    allData = sampleData;
+    filterCards();
+    loadFromSheet();
+  } else {
+    allData = sampleData;
+    filterCards();
+  }
+  document.getElementById('total-count').textContent = allData.length;
+}
+
+// 햄버거
+
+
+});
+
+// URL에 ?admin=1 이면 시트 설정 보이기
+if (location.search.includes('admin=1')) {
+  document.getElementById('sheetInfo').classList.add('show');
+}
+
+init();
+</script>
+
+<div id="okc-footer"></div>
+<script src="footer.js"></script>
+</body>
+</html>

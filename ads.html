@@ -297,30 +297,11 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
 </style>
 </head>
 <body>
+<div id="okc-nav"></div>
+<script src="nav.js"></script>
 
 <!-- NAV -->
-<nav>
-  <a class="nav-brand" href="index.html">
-    <div class="nav-logo-mark">OKC</div>
-    <div class="nav-title-wrap">
-      <div class="nav-name">온타리오 한인 커뮤니티 <span>OKC</span></div>
-      <div class="nav-url">ontariokc.com</div>
-    </div>
-  </a>
-  <div class="nav-menu">
-    <a href="index.html">홈</a>
-    <a href="index.html#hub">서비스</a>
-    <a href="index.html#kakao">오픈톡방</a>
-    <a href="https://cafe.naver.com/canadalove" target="_blank">네이버카페</a>
-    <a href="index.html#newsletter">뉴스레터</a>
-    <a href="ads.html" class="active">광고 상품 안내</a>
-    <a href="https://thechmarket.com" target="_blank">더채움마켓</a>
-    <a href="#apply" class="nav-btn">광고 신청</a>
-  </div>
-  <button class="nav-hamburger" id="hamBtn" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+
 
 <!-- 모바일 메뉴 -->
 <div class="nav-mobile" id="mobileMenu">
@@ -598,35 +579,7 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div class="f-brand">
-      <h3>OKC <span>온타리오 한인 커뮤니티</span></h3>
-      <div class="f-eng">Ontario Korean Community</div>
-      <div class="f-url">ontariokc.com</div>
-      <p>Hamilton · Burlington · Brantford<br>Oakville · Milton<br>나이아가라 지역 (2026년 5월 확장 예정)</p>
-    </div>
-    <div class="f-col">
-      <h4>서비스</h4>
-      <a href="ads.html">광고 상품 안내</a>
-      <a href="index.html#newsletter">뉴스레터</a>
-      <a href="https://cafe.naver.com/canadalove" target="_blank">네이버 카페</a>
-      <a href="https://thechmarket.com" target="_blank">더채움마켓</a>
-      <a href="index.html#kakao">오픈톡방</a>
-    </div>
-    <div class="f-col">
-      <h4>문의</h4>
-      <a href="mailto:ontariokc.ads@gmail.com">ontariokc.ads@gmail.com</a>
-      <a href="https://open.kakao.com/o/gEBvaZ7b" target="_blank">카카오톡 문의</a>
-      <a href="https://cafe.naver.com/canadalove" target="_blank">네이버 카페 문의</a>
-      <a href="#apply">광고 신청</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>2026 Ontario Korean Community · OKC · ontariokc.com</p>
-    <p>Powered by 더채움마켓 · thechmarket.com</p>
-  </div>
-</footer>
+
 
 <script>
 emailjs.init("YOUR_PUBLIC_KEY");
@@ -690,5 +643,8 @@ var io = new IntersectionObserver(function(entries) {
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade').forEach(function(el) { io.observe(el); });
 </script>
+
+<div id="okc-footer"></div>
+<script src="footer.js"></script>
 </body>
 </html>

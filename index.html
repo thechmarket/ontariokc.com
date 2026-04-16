@@ -255,43 +255,13 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
 </style>
 </head>
 <body>
+<div id="okc-nav"></div>
+<script src="nav.js"></script>
 
 <!-- NAV -->
-<nav>
-  <a class="nav-brand" href="index.html">
-    <div class="nav-logo-mark">OKC</div>
-    <div class="nav-title-wrap">
-      <div class="nav-name">온타리오 한인 커뮤니티 <span>OKC</span></div>
-      <div class="nav-url">ontariokc.com</div>
-    </div>
-  </a>
-  <div class="nav-menu">
-    <a href="index.html">홈</a>
-    <a href="index.html#hub">서비스</a>
-    <a href="index.html#kakao">오픈톡방</a>
-    <a href="https://cafe.naver.com/canadalove" target="_blank">네이버카페</a>
-    <a href="index.html#newsletter">뉴스레터</a>
-    <a href="ads.html">광고 상품 안내</a>
-    <a href="https://thechmarket.com" target="_blank">더채움마켓</a>
-    <a href="ads.html#apply" class="nav-btn">광고 신청</a>
-  </div>
-  <button class="ham" id="hamBtn">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+
 
 <!-- 모바일 메뉴 -->
-<div class="mob-nav" id="mobNav">
-  <a href="index.html">홈</a>
-  <a href="index.html#hub">서비스</a>
-  <a href="index.html#kakao">오픈톡방</a>
-  <a href="https://cafe.naver.com/canadalove" target="_blank">네이버카페</a>
-  <a href="index.html#newsletter">뉴스레터</a>
-  <a href="ads.html">광고 상품 안내</a>
-  <a href="https://thechmarket.com" target="_blank">더채움마켓</a>
-  <a href="ads.html#apply" class="mob-btn">광고 신청</a>
-</div>
-
 <!-- HERO -->
 <section class="hero">
   <div class="hero-g1"></div>
@@ -529,34 +499,7 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="fg">
-    <div class="fb">
-      <h3>OKC <span>온타리오 한인 커뮤니티</span></h3>
-      <div class="fe">Ontario Korean Community</div>
-      <div class="fu">ontariokc.com</div>
-      <p>Hamilton · Burlington · Brantford<br>Oakville · Milton<br>나이아가라 지역 (2026년 5월 확장 예정)</p>
-    </div>
-    <div class="fc2">
-      <h4>서비스</h4>
-      <a href="ads.html">커뮤니티 광고</a>
-      <a href="ads.html">광고 상품 안내</a>
-      <a href="index.html#newsletter">뉴스레터</a>
-      <a href="https://cafe.naver.com/canadalove" target="_blank">네이버 카페</a>
-      <a href="https://thechmarket.com" target="_blank">더채움마켓</a>
-      <a href="index.html#kakao">오픈톡방</a>
-    </div>
-    <div class="fc2">
-      <h4>문의</h4>
-      <a href="https://open.kakao.com/o/sahniO1e" target="_blank">카카오톡 문의</a>
-      <span style="color:rgba(255,255,255,0.42); font-size:12.5px; user-select:all; cursor:default;">ontariokc.ads&#64;gmail.com</span>
-      <a href="ads.html#apply">광고 신청</a>
-    </div>
-  </div>
-  <div class="fbot">
-    <p>2026 Ontario Korean Community · OKC · ontariokc.com</p>
-  </div>
-</footer>
+
 
 <script>
 // 이메일 함수 (Cloudflare 우회)
@@ -575,14 +518,12 @@ var io = new IntersectionObserver(function(e) {
 document.querySelectorAll('.fade').forEach(function(el) { io.observe(el); });
 
 // 햄버거 메뉴
-document.getElementById('hamBtn').addEventListener('click', function() {
-  document.getElementById('mobNav').classList.toggle('open');
-});
-document.querySelectorAll('.mob-nav a').forEach(function(a) {
-  a.addEventListener('click', function() {
-    document.getElementById('mobNav').classList.remove('open');
-  });
+
+
 });
 </script>
+
+<div id="okc-footer"></div>
+<script src="footer.js"></script>
 </body>
 </html>

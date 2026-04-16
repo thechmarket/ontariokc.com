@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>도움 주고받기 — Ontario Korean Community OKC</title>
+<meta name="description" content="온타리오 한인 소일거리 중개. 잔디깎기, 공항픽업, 청소, 수리 등 한인끼리 도움 주고받기.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+:root{--navy:#0d1f35;--navy2:#162d4a;--blue:#1a5fa8;--blue2:#2478cc;--gold:#c8a24a;--gold2:#e6c46a;--red:#c0392b;--green:#1a7a4a;--cream:#f8f6f1;--warm:#f2efe8;--white:#ffffff;--g100:#f5f3ee;--g200:#e9e6df;--g500:#888480;--g700:#46443f;--text:#1a1815}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:999;height:62px;background:rgba(13,31,53,0.97);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 4%}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.nav-logo-mark{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:var(--navy);letter-spacing:-0.5px}
+.nav-title-wrap{display:flex;flex-direction:column}
+.nav-name{color:var(--white);font-weight:700;font-size:13px;line-height:1.3}
+.nav-name span{color:var(--gold)}
+.nav-url{color:rgba(255,255,255,0.35);font-size:10px}
+.nav-menu{display:flex;align-items:center;gap:16px}
+.nav-menu a{color:rgba(255,255,255,0.68);font-size:12.5px;text-decoration:none;white-space:nowrap;transition:color .2s}
+.nav-menu a:hover{color:var(--gold2)}
+.nav-menu a.active{color:var(--gold2)}
+.nav-btn{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy)!important;font-weight:700!important;padding:7px 14px;border-radius:6px;font-size:12px!important}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.ham span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px}
+.mob-nav{display:none;position:fixed;top:62px;left:0;right:0;background:rgba(13,31,53,0.98);backdrop-filter:blur(12px);padding:16px 4% 20px;z-index:998;flex-direction:column;gap:0;border-top:1px solid rgba(255,255,255,0.1)}
+.mob-nav.open{display:flex}
+.mob-nav a{color:rgba(255,255,255,0.75);font-size:14px;text-decoration:none;padding:13px 0;border-bottom:1px solid rgba(255,255,255,0.07);transition:color .2s}
+.mob-nav a:hover{color:var(--gold2)}
+.mob-btn{margin-top:12px!important;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy)!important;font-weight:700;padding:13px;border-radius:9px;text-align:center;border-bottom:none!important}
+
+/* HERO */
+.hero{background:linear-gradient(160deg,var(--navy) 0%,#1a3a2a 60%,#0f4a2a 100%);padding:100px 4% 60px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:50px;background:linear-gradient(to bottom right,transparent 49%,var(--cream) 50%)}
+.hero-in{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(26,122,74,0.25);border:1px solid rgba(26,122,74,0.4);color:#6ee7a0;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:18px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(28px,4.5vw,48px);font-weight:900;color:var(--white);line-height:1.2;margin-bottom:14px}
+.hero h1 span{background:linear-gradient(135deg,#6ee7a0,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-desc{color:rgba(255,255,255,0.65);font-size:15px;line-height:1.8;max-width:580px;margin-bottom:20px}
+.hero-notice{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:12px 18px;font-size:13px;color:rgba(255,255,255,0.7);max-width:560px;line-height:1.7}
+
+/* TABS */
+.tabs-sec{background:var(--cream);padding:36px 4% 0;position:sticky;top:62px;z-index:10;border-bottom:2px solid var(--g200)}
+.tabs-in{max-width:1100px;margin:0 auto;display:flex;gap:0}
+.tab-btn{flex:1;font-family:'Noto Sans KR',sans-serif;font-size:15px;font-weight:700;padding:16px;border:none;background:none;cursor:pointer;color:var(--g500);border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.tab-btn.active{color:var(--navy);border-bottom-color:var(--navy)}
+.tab-btn:hover{color:var(--navy)}
+.tab-count{font-size:11px;background:var(--g200);color:var(--g700);padding:2px 8px;border-radius:10px;font-weight:500}
+.tab-btn.active .tab-count{background:var(--navy);color:var(--white)}
+
+/* CATEGORIES */
+.cat-sec{padding:24px 4% 0;background:var(--cream)}
+.cat-in{max-width:1100px;margin:0 auto}
+.cat-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:10px;margin-bottom:16px}
+.cat-card{background:var(--white);border:1.5px solid var(--g200);border-radius:12px;padding:14px 8px;text-align:center;cursor:pointer;transition:all .2s}
+.cat-card:hover{border-color:var(--green);transform:translateY(-2px)}
+.cat-card.active{border-color:var(--green);background:rgba(26,122,74,0.06)}
+.cat-icon{font-size:24px;margin-bottom:6px}
+.cat-name{font-size:11px;font-weight:600;color:var(--navy)}
+
+/* FILTER BAR */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.filter-btn{font-family:'Noto Sans KR',sans-serif;font-size:12.5px;padding:7px 14px;border-radius:20px;border:1.5px solid var(--g200);background:var(--white);cursor:pointer;transition:all .2s;color:var(--g700)}
+.filter-btn:hover{border-color:var(--green);color:var(--green)}
+.filter-btn.active{background:var(--green);color:var(--white);border-color:var(--green)}
+
+/* MAIN LAYOUT */
+.main-sec{padding:24px 4% 80px;background:var(--cream)}
+.main-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:start}
+
+/* JOB CARDS */
+.jobs-col{}
+.jobs-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.jobs-count{font-size:13px;color:var(--g500)}
+.post-btn{background:linear-gradient(135deg,var(--green),#27ae60);color:var(--white);font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:700;padding:9px 18px;border-radius:8px;border:none;cursor:pointer;transition:opacity .2s}
+.post-btn:hover{opacity:0.88}
+
+.jcard{background:var(--white);border-radius:14px;border:1.5px solid var(--g200);padding:18px 20px;margin-bottom:12px;transition:transform .2s,box-shadow .2s;position:relative}
+.jcard:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(13,31,53,0.08)}
+.jcard-header{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.jcard-type{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;flex-shrink:0;margin-top:2px;letter-spacing:0.5px}
+.type-need{background:rgba(192,57,43,0.1);color:var(--red)}
+.type-offer{background:rgba(26,122,74,0.1);color:var(--green)}
+.jcard-title{font-size:15px;font-weight:700;color:var(--navy);flex:1;line-height:1.4}
+.jcard-meta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.jcard-tag{font-size:11.5px;color:var(--g500);display:flex;align-items:center;gap:3px}
+.jcard-desc{font-size:13px;color:var(--g700);line-height:1.7;margin-bottom:12px}
+.jcard-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.jcard-budget{font-size:14px;font-weight:700;color:var(--navy)}
+.jcard-contact{background:#FEE500;color:#3A1D1D;font-size:12px;font-weight:700;padding:7px 14px;border-radius:7px;text-decoration:none;transition:opacity .2s}
+.jcard-contact:hover{opacity:0.88}
+.jcard-date{font-size:11px;color:var(--g500)}
+.jcard-urgent{position:absolute;top:14px;right:14px;font-size:10px;font-weight:700;background:#c0392b;color:white;padding:2px 8px;border-radius:10px}
+
+/* FORM PANEL */
+.form-panel{background:var(--white);border-radius:16px;border:1.5px solid var(--g200);padding:24px;position:sticky;top:130px}
+.form-panel h3{font-size:17px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.form-panel p{font-size:13px;color:var(--g500);margin-bottom:20px;line-height:1.6}
+.form-tabs{display:flex;gap:6px;margin-bottom:18px}
+.ftab{flex:1;font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:600;padding:10px;border-radius:8px;border:1.5px solid var(--g200);background:var(--g100);cursor:pointer;color:var(--g700);transition:all .2s;text-align:center}
+.ftab.active.need{background:rgba(192,57,43,0.1);border-color:var(--red);color:var(--red)}
+.ftab.active.offer{background:rgba(26,122,74,0.1);border-color:var(--green);color:var(--green)}
+.fg{display:flex;flex-direction:column;gap:13px}
+label{font-size:12px;font-weight:600;color:var(--navy);display:block;margin-bottom:4px}
+label span{color:var(--red)}
+input,select,textarea{font-family:'Noto Sans KR',sans-serif;font-size:13.5px;color:var(--text);background:var(--g100);border:1.5px solid var(--g200);border-radius:8px;padding:10px 13px;outline:none;width:100%;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);background:var(--white)}
+textarea{resize:vertical;min-height:80px}
+.submit-btn{background:linear-gradient(135deg,var(--green),#27ae60);color:white;font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:700;padding:13px;border-radius:9px;border:none;cursor:pointer;width:100%;transition:opacity .2s;margin-top:4px}
+.submit-btn:hover{opacity:0.88}
+.submit-btn:disabled{opacity:0.5;cursor:not-allowed}
+.form-msg{padding:10px 14px;border-radius:8px;font-size:13px;font-weight:500;display:none;margin-top:8px}
+.form-msg.ok{background:#e8f5e9;color:#2e7d32}
+.form-msg.err{background:#fce4ec;color:#b71c1c}
+.notice-box{background:var(--g100);border-radius:10px;padding:14px;font-size:12px;color:var(--g700);line-height:1.7;margin-top:16px;border:1px solid var(--g200)}
+
+/* FOOTER */
+footer{background:var(--navy);padding:40px 4% 24px;border-top:1px solid rgba(255,255,255,0.08)}
+.fg2{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:44px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.fb h3{color:var(--white);font-size:17px;font-weight:900;margin-bottom:2px}
+.fb h3 span{color:var(--gold)}
+.fb .fe{color:var(--gold);font-size:11px;letter-spacing:1px;margin-bottom:3px}
+.fb .fu{color:rgba(255,255,255,0.28);font-size:11px;margin-bottom:12px}
+.fb p{color:rgba(255,255,255,0.42);font-size:12.5px;line-height:1.85}
+.fc2 h4{color:var(--white);font-size:13px;font-weight:700;margin-bottom:14px}
+.fc2 a{display:block;color:rgba(255,255,255,0.42);font-size:12.5px;text-decoration:none;margin-bottom:8px;transition:color .2s}
+.fc2 a:hover{color:var(--gold2)}
+.fbot{max-width:1100px;margin:20px auto 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.fbot p{color:rgba(255,255,255,0.25);font-size:11.5px}
+
+@media(max-width:960px){.nav-menu{display:none}.ham{display:flex}.cat-grid{grid-template-columns:repeat(4,1fr)}.main-in{grid-template-columns:1fr}.form-panel{position:static}.fg2{grid-template-columns:1fr 1fr}}
+@media(max-width:580px){.cat-grid{grid-template-columns:repeat(4,1fr)}.fg2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="okc-nav"></div>
+<script src="nav.js"></script>
+
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-in">
+    <div class="hero-badge">한인 소일거리 중개</div>
+    <h1>한인끼리 <span>도움을</span><br>주고받아요</h1>
+    <p class="hero-desc">잔디깎기, 공항 픽업, 눈 치우기, 수도 수리 — 업체보다 저렴하게, 이웃보다 믿을 수 있게. OKC 커뮤니티가 연결해 드려요.</p>
+    <div class="hero-notice">거래는 카카오톡으로 직접 연락 후 Interac e-Transfer로 개인 간 진행됩니다. OKC는 중개 플랫폼이며 거래에 개입하지 않습니다.</div>
+  </div>
+</section>
+
+<!-- TABS -->
+<div class="tabs-sec">
+  <div class="tabs-in">
+    <button class="tab-btn active" id="tab-need" onclick="switchTab('need')">
+      🙋 도움이 필요해요 <span class="tab-count" id="count-need">0</span>
+    </button>
+    <button class="tab-btn" id="tab-offer" onclick="switchTab('offer')">
+      🤝 제가 할 수 있어요 <span class="tab-count" id="count-offer">0</span>
+    </button>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="cat-sec">
+  <div class="cat-in">
+    <div class="cat-grid">
+      <div class="cat-card active" onclick="setCat('all',this)"><div class="cat-icon">🌟</div><div class="cat-name">전체</div></div>
+      <div class="cat-card" onclick="setCat('이동·운전',this)"><div class="cat-icon">🚗</div><div class="cat-name">이동·운전</div></div>
+      <div class="cat-card" onclick="setCat('집·마당',this)"><div class="cat-icon">🏡</div><div class="cat-name">집·마당</div></div>
+      <div class="cat-card" onclick="setCat('수리·설치',this)"><div class="cat-icon">🔧</div><div class="cat-name">수리·설치</div></div>
+      <div class="cat-card" onclick="setCat('청소',this)"><div class="cat-icon">🧹</div><div class="cat-name">청소</div></div>
+      <div class="cat-card" onclick="setCat('교육·돌봄',this)"><div class="cat-icon">📚</div><div class="cat-name">교육·돌봄</div></div>
+      <div class="cat-card" onclick="setCat('음식',this)"><div class="cat-icon">🍱</div><div class="cat-name">음식</div></div>
+      <div class="cat-card" onclick="setCat('기타',this)"><div class="cat-icon">💼</div><div class="cat-name">기타</div></div>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="setRegion2('all',this)">전체 지역</button>
+      <button class="filter-btn" onclick="setRegion2('Hamilton',this)">Hamilton</button>
+      <button class="filter-btn" onclick="setRegion2('Burlington',this)">Burlington</button>
+      <button class="filter-btn" onclick="setRegion2('Brantford',this)">Brantford</button>
+      <button class="filter-btn" onclick="setRegion2('Oakville',this)">Oakville</button>
+      <button class="filter-btn" onclick="setRegion2('Milton',this)">Milton</button>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<section class="main-sec">
+  <div class="main-in">
+    <!-- JOB LIST -->
+    <div class="jobs-col">
+      <div class="jobs-header">
+        <div class="jobs-count" id="jobsCount">게시글 불러오는 중...</div>
+      </div>
+      <div id="jobsList"></div>
+    </div>
+
+    <!-- FORM PANEL -->
+    <div class="form-panel">
+      <h3>글 등록하기</h3>
+      <p>도움이 필요하거나 도움을 드릴 수 있는 내용을 등록하세요. 카카오로 연락받으실 수 있어요.</p>
+      <div class="form-tabs">
+        <button class="ftab active need" id="ftab-need" onclick="switchFormTab('need')">🙋 필요해요</button>
+        <button class="ftab offer" id="ftab-offer" onclick="switchFormTab('offer')">🤝 할 수 있어요</button>
+      </div>
+      <form class="fg" id="jobForm">
+        <div>
+          <label>제목 <span>*</span></label>
+          <input id="j_title" placeholder="예: 이번 주말 잔디깎기 필요해요" required>
+        </div>
+        <div>
+          <label>카테고리 <span>*</span></label>
+          <select id="j_cat" required>
+            <option value="">선택해주세요</option>
+            <option>이동·운전</option>
+            <option>집·마당</option>
+            <option>수리·설치</option>
+            <option>청소</option>
+            <option>교육·돌봄</option>
+            <option>음식</option>
+            <option>기타</option>
+          </select>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div>
+            <label>지역 <span>*</span></label>
+            <select id="j_region" required>
+              <option value="">선택</option>
+              <option>Hamilton</option>
+              <option>Burlington</option>
+              <option>Brantford</option>
+              <option>Oakville</option>
+              <option>Milton</option>
+            </select>
+          </div>
+          <div>
+            <label>희망 날짜</label>
+            <input type="date" id="j_date">
+          </div>
+        </div>
+        <div>
+          <label>상세 내용 <span>*</span></label>
+          <textarea id="j_desc" placeholder="구체적으로 설명해주세요. 어떤 도움이 필요한지, 장소, 예상 시간 등" required></textarea>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div>
+            <label>예산/희망단가</label>
+            <input id="j_budget" placeholder="예: $30~50 또는 협의">
+          </div>
+          <div>
+            <label>연락 방법 <span>*</span></label>
+            <select id="j_contact_type">
+              <option value="kakao">카카오톡</option>
+              <option value="phone">전화</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label>카카오ID 또는 전화번호 <span>*</span></label>
+          <input id="j_contact" placeholder="카카오 ID 또는 905-000-0000" required>
+        </div>
+        <div id="jobFormMsg" class="form-msg"></div>
+        <button type="submit" class="submit-btn" id="jobSubmitBtn">게시글 등록하기 →</button>
+      </form>
+      <div class="notice-box">
+        등록된 글은 OKC 관리자 검토 후 게시됩니다.<br>
+        연락처 정보는 게시글에 공개되므로 개인정보에 유의해 주세요.<br>
+        거래는 당사자 간 직접 진행하며 OKC는 책임지지 않습니다.
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+emailjs.init("YOUR_PUBLIC_KEY");
+
+var currentTab = 'need';
+var currentCat = 'all';
+var currentRegion = 'all';
+var formType = 'need';
+
+// 샘플 데이터
+var sampleJobs = [
+  {type:'need',title:'이번 주말 잔디깎기 도와주실 분',cat:'집·마당',region:'Hamilton',date:'2026-04-20',desc:'앞뒤 마당 포함 약 2시간 예상. 장비 있으신 분 우선.',budget:'$40~60',contact:'kakao123',contactType:'kakao',urgent:true},
+  {type:'offer',title:'공항 픽업 드려요 (토론토)',cat:'이동·운전',region:'Burlington',date:'',desc:'토론토 피어슨 공항 픽업 가능. 7인승 SUV. 새벽/심야 가능.',budget:'$60부터',contact:'905-111-2222',contactType:'phone',urgent:false},
+  {type:'need',title:'눈 치워주실 분 구해요',cat:'집·마당',region:'Oakville',date:'2026-04-25',desc:'진입로 + 현관 앞. 30분~1시간 예상. 장비 있으시면 더 좋아요.',budget:'$30',contact:'kakaoabc',contactType:'kakao',urgent:false},
+  {type:'offer',title:'한국음식 케이터링 해드려요',cat:'음식',region:'Hamilton',date:'',desc:'생일파티, 돌잔치, 모임 케이터링. 10인 이상. 메뉴 상담 가능.',budget:'인원수 협의',contact:'905-333-4444',contactType:'phone',urgent:false},
+  {type:'need',title:'수도 파이프 수리 도와주실 분',cat:'수리·설치',region:'Milton',date:'2026-04-18',desc:'욕실 파이프에서 물 새는 곳 있어요. 경험 있으신 분만.',budget:'협의',contact:'kakao456',contactType:'kakao',urgent:true},
+  {type:'offer',title:'초등학생 수학 과외 가능',cat:'교육·돌봄',region:'Burlington',date:'',desc:'수학 전공, 초등 1~6학년. 주 2회. 한국어 수업 가능.',budget:'$25/시간',contact:'905-555-6666',contactType:'phone',urgent:false}
+];
+
+function renderJobs() {
+  var filtered = sampleJobs.filter(function(j){
+    var matchTab = j.type === currentTab;
+    var matchCat = currentCat === 'all' || j.cat === currentCat;
+    var matchReg = currentRegion === 'all' || j.region === currentRegion;
+    return matchTab && matchCat && matchReg;
+  });
+
+  var needCount = sampleJobs.filter(function(j){ return j.type==='need'; }).length;
+  var offerCount = sampleJobs.filter(function(j){ return j.type==='offer'; }).length;
+  document.getElementById('count-need').textContent = needCount;
+  document.getElementById('count-offer').textContent = offerCount;
+  document.getElementById('jobsCount').textContent = filtered.length + '개 게시글';
+
+  var html = '';
+  if (!filtered.length) {
+    html = '<div style="text-align:center;padding:60px 20px;color:var(--g500)"><div style="font-size:48px;margin-bottom:14px">📭</div><h3 style="font-size:18px;font-weight:700;color:var(--navy);margin-bottom:8px">게시글이 없어요</h3><p style="font-size:14px">첫 번째로 등록해 보세요!</p></div>';
+  } else {
+    filtered.forEach(function(j){
+      var typeClass = j.type==='need'?'type-need':'type-offer';
+      var typeLabel = j.type==='need'?'도움 필요':'도움 가능';
+      var contactHtml = j.contactType==='kakao'
+        ? '<a class="jcard-contact" href="https://open.kakao.com/o/gEBvaZ7b" target="_blank">💬 카카오 문의</a>'
+        : '<a class="jcard-contact" href="tel:'+j.contact+'">📞 '+j.contact+'</a>';
+      html += '<div class="jcard">'+(j.urgent?'<span class="jcard-urgent">긴급</span>':'')+'<div class="jcard-header"><span class="jcard-type '+typeClass+'">'+typeLabel+'</span><div class="jcard-title">'+j.title+'</div></div><div class="jcard-meta"><span class="jcard-tag">📂 '+j.cat+'</span><span class="jcard-tag">📍 '+j.region+'</span>'+(j.date?'<span class="jcard-tag">📅 '+j.date+'</span>':'')+'</div><div class="jcard-desc">'+j.desc+'</div><div class="jcard-footer"><div class="jcard-budget">'+j.budget+'</div>'+contactHtml+'</div></div>';
+    });
+  }
+  document.getElementById('jobsList').innerHTML = html;
+}
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.getElementById('tab-need').classList.toggle('active', tab==='need');
+  document.getElementById('tab-offer').classList.toggle('active', tab==='offer');
+  renderJobs();
+}
+
+function setCat(cat, el) {
+  currentCat = cat;
+  document.querySelectorAll('.cat-card').forEach(function(c){ c.classList.remove('active'); });
+  el.classList.add('active');
+  renderJobs();
+}
+
+function setRegion2(region, btn) {
+  currentRegion = region;
+  btn.parentElement.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderJobs();
+}
+
+function switchFormTab(type) {
+  formType = type;
+  document.getElementById('ftab-need').className = 'ftab'+(type==='need'?' active need':'');
+  document.getElementById('ftab-offer').className = 'ftab'+(type==='offer'?' active offer':'');
+}
+
+document.getElementById('jobForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  var btn = document.getElementById('jobSubmitBtn');
+  var msg = document.getElementById('jobFormMsg');
+  btn.disabled = true; btn.textContent = '등록 중...';
+  msg.style.display = 'none';
+  var params = {
+    form_type: formType==='need'?'도움 필요':'도움 가능',
+    title: document.getElementById('j_title').value,
+    cat: document.getElementById('j_cat').value,
+    region: document.getElementById('j_region').value,
+    date: document.getElementById('j_date').value,
+    desc: document.getElementById('j_desc').value,
+    budget: document.getElementById('j_budget').value,
+    contact_type: document.getElementById('j_contact_type').value,
+    contact: document.getElementById('j_contact').value
+  };
+  try {
+    await emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID", params);
+    msg.textContent = '✅ 등록 신청이 완료됐어요! 검토 후 게시됩니다.';
+    msg.className = 'form-msg ok'; msg.style.display = 'block';
+    document.getElementById('jobForm').reset();
+  } catch(err) {
+    msg.textContent = '❌ 전송 오류. 카카오톡으로 직접 문의해 주세요.';
+    msg.className = 'form-msg err'; msg.style.display = 'block';
+  }
+  btn.disabled = false; btn.textContent = '게시글 등록하기 →';
+});
+
+
+
+});
+
+renderJobs();
+</script>
+
+<div id="okc-footer"></div>
+<script src="footer.js"></script>
+</body>
+</html>
