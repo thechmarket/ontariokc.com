@@ -7,7 +7,6 @@
 <meta name="description" content="온타리오 한인 커뮤니티 OKC 광고 상품 안내. Free, Basic, Standard, Premium 플랜.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
 :root {
   --navy: #0d1f35;
@@ -582,7 +581,8 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
 
 
 <script>
-emailjs.init("YOUR_PUBLIC_KEY");
+// ★ Apps Script 배포 후 아래 URL을 교체해 주세요
+var GAS_URL = 'YOUR_APPS_SCRIPT_WEB_APP_URL';
 
 function selectPlan(plan) {
   setTimeout(function() {
@@ -606,22 +606,30 @@ document.getElementById('ad-form').addEventListener('submit', async function(e) 
   e.preventDefault();
   var btn = document.getElementById('submit-btn');
   var msg = document.getElementById('form-msg');
-  btn.disabled = true; btn.textContent = '전송 중...';
+  btn.disabled = true; btn.textContent = '제출 중...';
   msg.style.display = 'none';
+
   var params = {
     biz_name: document.getElementById('biz_name').value,
     biz_type: document.getElementById('biz_type').value,
-    name: document.getElementById('name').value,
-    phone: document.getElementById('phone').value,
-    email: document.getElementById('email').value,
-    plan: document.getElementById('plan').value,
+    name:     document.getElementById('name').value,
+    phone:    document.getElementById('phone').value,
+    email:    document.getElementById('email').value,
+    plan:     document.getElementById('plan').value,
     contract: document.getElementById('contract').value,
-    banner: document.getElementById('banner').value,
-    message: document.getElementById('message').value
+    banner:   document.getElementById('banner').value,
+    message:  document.getElementById('message').value
   };
+
   try {
-    await emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params);
-    msg.textContent = '✅ 신청서가 접수되었습니다! 24시간 이내 연락드리겠습니다.';
+    var res = await fetch(GAS_URL, {
+      method: 'POST',
+      mode: 'no-cors', // Apps Script CORS 우회
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(params)
+    });
+    // no-cors 모드에서는 응답 확인 불가 → 성공으로 처리
+    msg.textContent = '✅ 신청서가 접수되었습니다! 검토 후 24시간 이내 연락드리겠습니다.';
     msg.className = 'success'; msg.style.display = 'block';
     this.reset();
   } catch(err) {
@@ -630,13 +638,6 @@ document.getElementById('ad-form').addEventListener('submit', async function(e) 
   }
   btn.disabled = false; btn.textContent = '광고 신청서 제출하기 →';
 });
-
-function toggleMenu() {
-  document.getElementById('mobileMenu').classList.toggle('open');
-}
-function closeMenu() {
-  document.getElementById('mobileMenu').classList.remove('open');
-}
 
 var io = new IntersectionObserver(function(entries) {
   entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('on'); });

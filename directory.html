@@ -71,31 +71,36 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:62px;background:rgba(
 .dir-in{max-width:1100px;margin:0 auto}
 .dir-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px}
 .dir-count{font-size:13px;color:var(--g500)}
-.dir-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-
-/* PREMIUM 카드 - 눈에 띄는 금색 테두리 */
-.bcard{background:var(--white);border-radius:16px;overflow:hidden;transition:transform .25s,box-shadow .25s;position:relative}
-.bcard.is-premium{border:2.5px solid var(--gold);box-shadow:0 6px 28px rgba(200,162,74,0.22)}
-.bcard.is-premium:hover{transform:translateY(-5px);box-shadow:0 16px 44px rgba(200,162,74,0.28)}
-.bcard.is-standard{border:1.5px solid #b0c8e8;box-shadow:0 2px 12px rgba(26,95,168,0.08)}
-.bcard.is-standard:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(26,95,168,0.12)}
+.plan-section{margin-bottom:28px}
+.plan-section-title{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding-bottom:9px;border-bottom:1.5px solid var(--g200)}
+.plan-section-title h3{font-size:13px;font-weight:700;color:var(--navy)}
+.plan-section-title .cnt{font-size:12px;color:var(--g500)}
+.grid-premium{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid-standard{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.grid-basic{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.bcard{background:var(--white);border-radius:14px;overflow:hidden;transition:transform .2s,box-shadow .2s;position:relative}
+.bcard.is-premium{border:2.5px solid var(--gold);box-shadow:0 4px 20px rgba(200,162,74,0.18)}
+.bcard.is-premium:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(200,162,74,0.26)}
+.bcard.is-standard{border:1.5px solid #b0c8e8;box-shadow:0 1px 8px rgba(26,95,168,0.07)}
+.bcard.is-standard:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(26,95,168,0.12)}
 .bcard.is-basic{border:1.5px solid var(--g200)}
-.bcard.is-basic:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(13,31,53,0.07)}
-.bcard-banner-area{width:100%;height:80px;background:linear-gradient(135deg,#0d1f35,#1a3a6a);display:flex;align-items:center;justify-content:center}
-.plan-medal{position:absolute;top:10px;right:12px;line-height:1}
-.bcard-body{padding:16px 18px}
-.bcard-cat{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
-.bcard-name{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:4px}
-.bcard-region{font-size:12px;color:var(--g500);margin-bottom:8px}
-.bcard-desc{font-size:12.5px;color:var(--g700);line-height:1.6;margin-bottom:12px}
-.bcard-footer{display:flex;gap:8px;flex-wrap:wrap}
-.bcard-tel{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--navy);background:var(--g100);padding:6px 12px;border-radius:7px;text-decoration:none;transition:background .2s}
+.bcard.is-basic:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(13,31,53,0.07)}
+.plan-badge{position:absolute;top:8px;right:8px;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;letter-spacing:0.5px;z-index:1}
+.badge-premium{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy)}
+.badge-standard{background:var(--blue);color:var(--white)}
+.badge-basic{background:var(--g200);color:var(--g700)}
+.bcard-body{padding:14px 16px}
+.bcard-cat{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.bcard-name{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px;line-height:1.3}
+.bcard-region{font-size:11.5px;color:var(--g500);margin-bottom:8px}
+.bcard-desc{font-size:12px;color:var(--g700);line-height:1.55;margin-bottom:10px}
+.bcard-footer{display:flex;gap:6px;flex-wrap:wrap}
+.bcard-tel{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:600;color:var(--navy);background:var(--g100);padding:5px 10px;border-radius:6px;text-decoration:none;transition:background .2s}
 .bcard-tel:hover{background:var(--g200)}
-.bcard-kakao{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:#3A1D1D;background:#FEE500;padding:6px 12px;border-radius:7px;text-decoration:none;transition:opacity .2s}
+.bcard-kakao{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:600;color:#3A1D1D;background:#FEE500;padding:5px 10px;border-radius:6px;text-decoration:none;transition:opacity .2s}
 .bcard-kakao:hover{opacity:0.88}
-
-/* FREE 줄 형태 */
-.dir-free-list{grid-column:1/-1;background:var(--white);border-radius:12px;border:1.5px solid var(--g200);overflow:hidden;margin-top:4px}
+.dday-badge{position:absolute;bottom:8px;right:8px;font-size:10px;font-weight:700;background:rgba(192,57,43,0.88);color:#fff;padding:2px 7px;border-radius:10px}
+.dir-free-list{background:var(--white);border-radius:12px;border:1.5px solid var(--g200);overflow:hidden}
 .dir-free-header{padding:9px 18px;background:var(--g100);font-size:11px;font-weight:700;letter-spacing:1px;color:var(--g500);text-transform:uppercase;border-bottom:1px solid var(--g200)}
 .bcard-free{display:flex;align-items:center;gap:14px;padding:11px 18px;border-bottom:1px solid var(--g200);transition:background .15s}
 .bcard-free:last-child{border-bottom:none}
@@ -103,6 +108,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:62px;background:rgba(
 .bcard-free-cat{font-size:11px;font-weight:700;color:var(--blue);min-width:72px;flex-shrink:0}
 .bcard-free-name{font-size:13.5px;font-weight:600;color:var(--navy);flex:1}
 .bcard-free-region{font-size:12px;color:var(--g500);flex-shrink:0}
+.pagination{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:14px;flex-wrap:wrap}
+.page-btn{font-family:'Noto Sans KR',sans-serif;font-size:13px;padding:7px 13px;border-radius:8px;border:1.5px solid var(--g200);background:var(--white);cursor:pointer;color:var(--g700);transition:all .2s}
+.page-btn:hover{border-color:var(--blue);color:var(--blue)}
+.page-btn.active{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.page-btn:disabled{opacity:0.4;cursor:not-allowed}
 
 /* LOADING / EMPTY */
 .loading{text-align:center;padding:60px 20px;color:var(--g500)}
@@ -224,7 +234,7 @@ footer{background:var(--navy);padding:40px 4% 24px;border-top:1px solid rgba(255
     <div class="dir-header">
       <div class="dir-count" id="dirCount">업체 불러오는 중...</div>
     </div>
-    <div class="dir-grid" id="dirGrid">
+    <div id="dirGrid">
       <div class="loading">
         <div class="loading-spinner"></div>
         <p>업체 정보를 불러오는 중이에요...</p>
@@ -301,73 +311,122 @@ function buildCatFilters(data) {
 }
 
 function renderCards(data) {
-  var grid = document.getElementById('dirGrid');
+  var container = document.getElementById('dirGrid');
   var count = document.getElementById('dirCount');
+
   if (!data.length) {
-    grid.innerHTML = '<div class="empty"><div class="empty-icon">🔍</div><h3>검색 결과가 없어요</h3><p>다른 키워드나 카테고리로 찾아보세요</p></div>';
+    container.innerHTML = '<div class="empty"><div class="empty-icon">&#128269;</div><h3>검색 결과가 없어요</h3><p>다른 키워드나 카테고리로 찾아보세요</p></div>';
     count.textContent = '0개 업체';
     return;
   }
-  // 유효 플랜 적용
+
   data.forEach(function(b){ b.plan = getEffectivePlan(b); });
-  // 유료 / Free 분리
-  var paid = data.filter(function(b){ return b.plan !== 'Free'; });
-  var free = data.filter(function(b){ return b.plan === 'Free'; });
-  // 유료: Premium→Standard→Basic 정렬
-  paid.sort(function(a,b){ return (planOrder[a.plan]||3)-(planOrder[b.plan]||3); });
+
+  var premium  = data.filter(function(b){ return b.plan==='Premium'; }).slice(0,10);
+  var standard = data.filter(function(b){ return b.plan==='Standard'; });
+  var basic    = data.filter(function(b){ return b.plan==='Basic'; });
+  var free     = data.filter(function(b){ return b.plan==='Free'; });
 
   document.getElementById('total-count').textContent = allData.length;
   count.textContent = data.length + '개 업체';
 
   var html = '';
 
-  // 유료 플랜 카드
-  paid.forEach(function(b){
-    var isPremium  = b.plan==='Premium';
-    var isStandard = b.plan==='Standard';
-    var isBasic    = b.plan==='Basic';
-    var cardClass  = 'bcard ' + (isPremium?'is-premium':isStandard?'is-standard':'is-basic');
-    // 메달 이모지 (Premium=🥇크게, Standard=🥈보통, Basic=🥉작게)
-    var medalStyle = isPremium?'font-size:26px':isStandard?'font-size:20px':'font-size:15px';
-    var medalEmoji = isPremium?'🥇':isStandard?'🥈':'🥉';
-    var medalHtml  = '<span class="plan-medal" style="'+medalStyle+'">'+medalEmoji+'</span>';
-    var bannerHtml = isPremium
-      ? '<div class="bcard-banner-area"><span style="color:rgba(200,162,74,0.55);font-size:12px">배너 이미지 영역</span></div>'
-      : '';
-    var telHtml = b.tel ? '<a class="bcard-tel" href="tel:'+b.tel+'">📞 '+b.tel+'</a>' : '';
-    var kakaoHtml = b.kakao ? '<a class="bcard-kakao" href="'+b.kakao+'" target="_blank">💬 카카오</a>' : '';
-    var ddayHtml = '';
+  // 카드 생성 헬퍼
+  function makeCard(b, cls, badgeCls, badgeText) {
+    var telHtml   = b.tel   ? '<a class="bcard-tel" href="tel:'+b.tel+'">&#128222; '+b.tel+'</a>' : '';
+    var kakaoHtml = b.kakao ? '<a class="bcard-kakao" href="'+b.kakao+'" target="_blank">&#128172; 카카오</a>' : '';
+    var ddayHtml  = '';
     if (b.expireDate) {
       var dd = getDday(b.expireDate);
       if (dd !== null && dd <= 30 && dd >= 0) {
-        ddayHtml = '<span style="position:absolute;bottom:8px;right:10px;font-size:10px;background:rgba(192,57,43,0.9);color:#fff;padding:2px 7px;border-radius:10px;font-weight:700">D-'+dd+'</span>';
+        ddayHtml = '<span class="dday-badge">D-'+dd+'</span>';
       }
     }
-    html += '<div class="'+cardClass+'">'+bannerHtml+medalHtml+ddayHtml;
-    html += '<div class="bcard-body">';
-    html += '<div class="bcard-cat">'+b.cat+'</div>';
-    html += '<div class="bcard-name">'+b.name+'</div>';
-    html += '<div class="bcard-region">📍 '+b.region+'</div>';
-    if (b.desc && (isPremium||isStandard)) html += '<div class="bcard-desc">'+b.desc+'</div>';
-    html += '<div class="bcard-footer">'+telHtml+kakaoHtml+'</div>';
-    html += '</div></div>';
-  });
+    var descHtml = (b.desc && (cls==='is-premium'||cls==='is-standard'))
+      ? '<div class="bcard-desc">'+b.desc+'</div>' : '';
+    return '<div class="bcard '+cls+'">'
+      + '<span class="plan-badge '+badgeCls+'">'+badgeText+'</span>'
+      + ddayHtml
+      + '<div class="bcard-body">'
+      + '<div class="bcard-cat">'+b.cat+'</div>'
+      + '<div class="bcard-name">'+b.name+'</div>'
+      + '<div class="bcard-region">&#128205; '+b.region+'</div>'
+      + descHtml
+      + '<div class="bcard-footer">'+telHtml+kakaoHtml+'</div>'
+      + '</div></div>';
+  }
 
-  // Free 줄 형태
+  // PREMIUM (3개/줄, 최대 10개)
+  if (premium.length) {
+    html += '<div class="plan-section">';
+    html += '<div class="plan-section-title"><h3>&#11088; Premium</h3><span class="cnt">('+premium.length+'개)</span></div>';
+    html += '<div class="grid-premium">';
+    premium.forEach(function(b){ html += makeCard(b,'is-premium','badge-premium','PREMIUM'); });
+    html += '</div></div>';
+  }
+
+  // STANDARD (4개/줄, 무제한)
+  if (standard.length) {
+    html += '<div class="plan-section">';
+    html += '<div class="plan-section-title"><h3>&#127775; Standard</h3><span class="cnt">('+standard.length+'개)</span></div>';
+    html += '<div class="grid-standard">';
+    standard.forEach(function(b){ html += makeCard(b,'is-standard','badge-standard','STANDARD'); });
+    html += '</div></div>';
+  }
+
+  // BASIC (4개/줄)
+  if (basic.length) {
+    html += '<div class="plan-section">';
+    html += '<div class="plan-section-title"><h3>Basic</h3><span class="cnt">('+basic.length+'개)</span></div>';
+    html += '<div class="grid-basic">';
+    basic.forEach(function(b){ html += makeCard(b,'is-basic','badge-basic','BASIC'); });
+    html += '</div></div>';
+  }
+
+  // FREE (줄 형태, 10개씩 페이지네이션)
   if (free.length) {
+    var PAGE_SIZE = 10;
+    var totalPages = Math.ceil(free.length / PAGE_SIZE);
+    var page = freeCurrentPage || 1;
+    if (page > totalPages) page = 1;
+    freeCurrentPage = page;
+    var pageItems = free.slice((page-1)*PAGE_SIZE, page*PAGE_SIZE);
+
+    html += '<div class="plan-section">';
+    html += '<div class="plan-section-title"><h3>일반 등록</h3><span class="cnt">('+free.length+'개)</span></div>';
     html += '<div class="dir-free-list">';
-    html += '<div class="dir-free-header">일반 등록 업체 (' + free.length + '개)</div>';
-    free.forEach(function(b){
-      html += '<div class="bcard-free">';
-      html += '<div class="bcard-free-cat">'+b.cat+'</div>';
-      html += '<div class="bcard-free-name">'+b.name+'</div>';
-      html += '<div class="bcard-free-region">📍 '+b.region+'</div>';
-      html += '</div>';
+    html += '<div class="dir-free-header">무료 등록 업체 — 페이지 '+page+' / '+totalPages+'</div>';
+    pageItems.forEach(function(b){
+      html += '<div class="bcard-free">'
+        + '<div class="bcard-free-cat">'+b.cat+'</div>'
+        + '<div class="bcard-free-name">'+b.name+'</div>'
+        + '<div class="bcard-free-region">&#128205; '+b.region+'</div>'
+        + '</div>';
     });
+    html += '</div>';
+
+    // 페이지 버튼
+    if (totalPages > 1) {
+      html += '<div class="pagination">';
+      html += '<button class="page-btn" '+(page<=1?'disabled':'')+' onclick="goPage(0,-1)">&#8592; 이전</button>';
+      for (var p = 1; p <= totalPages; p++) {
+        html += '<button class="page-btn'+(p===page?' active':'')+'" onclick="goPage(0,'+p+',true)">'+p+'</button>';
+      }
+      html += '<button class="page-btn" '+(page>=totalPages?'disabled':'')+' onclick="goPage(0,1)">다음 &#8594;</button>';
+      html += '</div>';
+    }
     html += '</div>';
   }
 
-  grid.innerHTML = html;
+  container.innerHTML = html;
+}
+
+var freeCurrentPage = 1;
+function goPage(p, absolute) {
+  if (absolute === true) { freeCurrentPage = p; }
+  else { freeCurrentPage = Math.max(1, freeCurrentPage + p); }
+  filterCards();
 }
 
 function filterCards() {
