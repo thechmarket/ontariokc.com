@@ -73,30 +73,36 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:62px;background:rgba(
 .dir-count{font-size:13px;color:var(--g500)}
 .dir-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 
-/* BUSINESS CARD */
-.bcard{background:var(--white);border-radius:16px;border:1.5px solid var(--g200);overflow:hidden;transition:transform .25s,box-shadow .25s;position:relative}
-.bcard:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(13,31,53,0.10)}
-.bcard-banner{width:100%;height:80px;object-fit:cover;display:block;background:var(--g100)}
-.bcard-plan-badge{position:absolute;top:10px;right:10px;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.5px}
-.badge-premium{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy)}
-.badge-standard{background:var(--blue);color:var(--white)}
-.badge-basic{background:var(--g200);color:var(--g700)}
-.badge-free{background:var(--g100);color:var(--g500)}
+/* PREMIUM 카드 - 눈에 띄는 금색 테두리 */
+.bcard{background:var(--white);border-radius:16px;overflow:hidden;transition:transform .25s,box-shadow .25s;position:relative}
+.bcard.is-premium{border:2.5px solid var(--gold);box-shadow:0 6px 28px rgba(200,162,74,0.22)}
+.bcard.is-premium:hover{transform:translateY(-5px);box-shadow:0 16px 44px rgba(200,162,74,0.28)}
+.bcard.is-standard{border:1.5px solid #b0c8e8;box-shadow:0 2px 12px rgba(26,95,168,0.08)}
+.bcard.is-standard:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(26,95,168,0.12)}
+.bcard.is-basic{border:1.5px solid var(--g200)}
+.bcard.is-basic:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(13,31,53,0.07)}
+.bcard-banner-area{width:100%;height:80px;background:linear-gradient(135deg,#0d1f35,#1a3a6a);display:flex;align-items:center;justify-content:center}
+.plan-medal{position:absolute;top:10px;right:12px;line-height:1}
 .bcard-body{padding:16px 18px}
 .bcard-cat{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
 .bcard-name{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:4px}
-.bcard-region{font-size:12px;color:var(--g500);margin-bottom:8px;display:flex;align-items:center;gap:4px}
+.bcard-region{font-size:12px;color:var(--g500);margin-bottom:8px}
 .bcard-desc{font-size:12.5px;color:var(--g700);line-height:1.6;margin-bottom:12px}
 .bcard-footer{display:flex;gap:8px;flex-wrap:wrap}
 .bcard-tel{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--navy);background:var(--g100);padding:6px 12px;border-radius:7px;text-decoration:none;transition:background .2s}
 .bcard-tel:hover{background:var(--g200)}
 .bcard-kakao{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:#3A1D1D;background:#FEE500;padding:6px 12px;border-radius:7px;text-decoration:none;transition:opacity .2s}
 .bcard-kakao:hover{opacity:0.88}
-.bcard-hidden{font-size:12px;color:var(--g500);font-style:italic}
 
-/* PREMIUM CARD STYLE */
-.bcard.is-premium{border-color:var(--gold);box-shadow:0 4px 20px rgba(200,162,74,0.15)}
-.bcard.is-premium .bcard-banner{height:100px}
+/* FREE 줄 형태 */
+.dir-free-list{grid-column:1/-1;background:var(--white);border-radius:12px;border:1.5px solid var(--g200);overflow:hidden;margin-top:4px}
+.dir-free-header{padding:9px 18px;background:var(--g100);font-size:11px;font-weight:700;letter-spacing:1px;color:var(--g500);text-transform:uppercase;border-bottom:1px solid var(--g200)}
+.bcard-free{display:flex;align-items:center;gap:14px;padding:11px 18px;border-bottom:1px solid var(--g200);transition:background .15s}
+.bcard-free:last-child{border-bottom:none}
+.bcard-free:hover{background:var(--g100)}
+.bcard-free-cat{font-size:11px;font-weight:700;color:var(--blue);min-width:72px;flex-shrink:0}
+.bcard-free-name{font-size:13.5px;font-weight:600;color:var(--navy);flex:1}
+.bcard-free-region{font-size:12px;color:var(--g500);flex-shrink:0}
 
 /* LOADING / EMPTY */
 .loading{text-align:center;padding:60px 20px;color:var(--g500)}
@@ -156,7 +162,7 @@ footer{background:var(--navy);padding:40px 4% 24px;border-top:1px solid rgba(255
   <div class="hero-in">
     <div class="hero-badge">온타리오 한인 업체 디렉토리</div>
     <h1>가까운 <span>한인 업체</span>를<br>한눈에 찾으세요</h1>
-    <p class="hero-desc">Hamilton · Burlington · Brantford · Oakville · Milton — 믿을 수 있는 한인 업체를 지역과 업종별로 쉽게 찾을 수 있어요.</p>
+    <p class="hero-desc">Hamilton · Burlington · Brantford · Oakville · Milton · Niagara Region — 믿을 수 있는 한인 업체를 지역과 업종별로 쉽게 찾을 수 있어요.</p>
     <div class="hero-stats">
       <div class="hstat"><div class="hstat-n" id="total-count">0<small>개</small></div><div class="hstat-l">등록 업체</div></div>
       <div class="hstat"><div class="hstat-n">6<small>개</small></div><div class="hstat-l">커버 지역</div></div>
@@ -190,14 +196,6 @@ footer{background:var(--navy);padding:40px 4% 24px;border-top:1px solid rgba(255
     </div>
     <div class="filter-row" id="catFilters">
       <button class="filter-btn active" onclick="setFilter('all',this)">전체</button>
-      <button class="filter-btn" onclick="setFilter('미용·뷰티',this)">미용·뷰티</button>
-      <button class="filter-btn" onclick="setFilter('음식점·마트',this)">음식점·마트</button>
-      <button class="filter-btn" onclick="setFilter('의료·치과',this)">의료·치과</button>
-      <button class="filter-btn" onclick="setFilter('부동산',this)">부동산</button>
-      <button class="filter-btn" onclick="setFilter('교육·과외',this)">교육·과외</button>
-      <button class="filter-btn" onclick="setFilter('수리·건설',this)">수리·건설</button>
-      <button class="filter-btn" onclick="setFilter('법률·회계',this)">법률·회계</button>
-      <button class="filter-btn" onclick="setFilter('기타',this)">기타</button>
     </div>
     <div style="margin-top:10px">
       <div class="filter-row">
@@ -207,11 +205,15 @@ footer{background:var(--navy);padding:40px 4% 24px;border-top:1px solid rgba(255
         <button class="filter-btn" onclick="setRegion('Brantford',this)">Brantford</button>
         <button class="filter-btn" onclick="setRegion('Oakville',this)">Oakville</button>
         <button class="filter-btn" onclick="setRegion('Milton',this)">Milton</button>
+        <button class="filter-btn" onclick="setRegion('Niagara Region',this)">Niagara Region</button>
       </div>
     </div>
     <div class="reg-bar">
-      <p>내 업체를 등록하고 싶으신가요? <strong>무료 등록</strong>부터 시작하세요.</p>
-      <a href="ads.html#apply" class="reg-link">업체 등록 신청 →</a>
+      <p>실제 거주하는 지역 주민에게 <strong>장기 노출</strong>로 비즈니스에 날개를 달아보세요</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <a href="ads.html" class="reg-link" style="background:var(--navy);color:var(--white)">광고 플랜 보기</a>
+        <a href="ads.html#apply" class="reg-link">업체 등록 신청 →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -221,7 +223,6 @@ footer{background:var(--navy);padding:40px 4% 24px;border-top:1px solid rgba(255
   <div class="dir-in">
     <div class="dir-header">
       <div class="dir-count" id="dirCount">업체 불러오는 중...</div>
-      <div style="font-size:12px;color:var(--g500)">플랜 순서대로 노출 (Premium → Standard → Basic → Free)</div>
     </div>
     <div class="dir-grid" id="dirGrid">
       <div class="loading">
@@ -236,7 +237,7 @@ footer{background:var(--navy);padding:40px 4% 24px;border-top:1px solid rgba(255
 <section class="reg-sec">
   <div class="reg-in">
     <h2>내 업체를 등록하세요</h2>
-    <p>무료로 시작해서 더 많은 노출이 필요할 때 업그레이드하세요.<br>Premium은 업종별 1개 한정이에요.</p>
+    <p>무료로 시작해서 더 많은 노출이 필요할 때 업그레이드하세요.</p>
     <div class="reg-btns">
       <a href="ads.html" class="btn-gold">광고 플랜 보기</a>
       <a href="ads.html#apply" class="btn-ghost">무료 등록 신청</a>
@@ -266,22 +267,37 @@ var sampleData = [
 
 // 만료일 체크 후 실제 노출 플랜 결정
 function getEffectivePlan(b) {
-  if (b.contractPlan === 'Free' || !b.expireDate) return 'Free';
-  var today = new Date();
-  today.setHours(0,0,0,0);
+  var cp = (b.contractPlan || '').trim();
+  if (!cp || cp === 'Free') return 'Free';
+  // 만료일 없으면 계약플랜 그대로 유지
+  if (!b.expireDate) return cp;
+  var today = new Date(); today.setHours(0,0,0,0);
   var expire = new Date(b.expireDate);
-  if (expire < today) return 'Free'; // 만료 → 자동 Free 강등
-  return b.contractPlan;
+  if (isNaN(expire.getTime())) return cp; // 날짜 파싱 실패 시 그대로
+  return expire < today ? 'Free' : cp;
 }
 
 // 만료 D-day 계산
 function getDday(expireDate) {
   if (!expireDate) return null;
-  var today = new Date();
-  today.setHours(0,0,0,0);
+  var today = new Date(); today.setHours(0,0,0,0);
   var expire = new Date(expireDate);
-  var diff = Math.ceil((expire - today) / (1000*60*60*24));
-  return diff;
+  if (isNaN(expire.getTime())) return null;
+  return Math.ceil((expire - today) / (1000*60*60*24));
+}
+
+// 카테고리 필터 동적 생성 (시트 데이터 기반, 최대 8개)
+function buildCatFilters(data) {
+  var cats = [];
+  data.forEach(function(b){
+    if (b.cat && cats.indexOf(b.cat) === -1) cats.push(b.cat);
+  });
+  cats = cats.slice(0, 8); // 최대 8개
+  var html = '<button class="filter-btn'+(currentCat==='all'?' active':'')+'" onclick="setFilter(\'all\',this)">전체</button>';
+  cats.forEach(function(cat){
+    html += '<button class="filter-btn'+(currentCat===cat?' active':'')+'" onclick="setFilter(\''+cat+'\',this)">'+cat+'</button>';
+  });
+  document.getElementById('catFilters').innerHTML = html;
 }
 
 function renderCards(data) {
@@ -292,35 +308,70 @@ function renderCards(data) {
     count.textContent = '0개 업체';
     return;
   }
-  // 유효 플랜 적용 후 정렬
+  // 유효 플랜 적용
   data.forEach(function(b){ b.plan = getEffectivePlan(b); });
-  data.sort(function(a,b){ return (planOrder[a.plan]||3) - (planOrder[b.plan]||3); });
+  // 유료 / Free 분리
+  var paid = data.filter(function(b){ return b.plan !== 'Free'; });
+  var free = data.filter(function(b){ return b.plan === 'Free'; });
+  // 유료: Premium→Standard→Basic 정렬
+  paid.sort(function(a,b){ return (planOrder[a.plan]||3)-(planOrder[b.plan]||3); });
+
   document.getElementById('total-count').textContent = allData.length;
   count.textContent = data.length + '개 업체';
-  grid.innerHTML = data.map(function(b){
-    var isPremium  = b.plan === 'Premium';
-    var isStandard = b.plan === 'Standard';
-    var badgeClass = {Premium:'badge-premium', Standard:'badge-standard', Basic:'badge-basic', Free:'badge-free'}[b.plan] || 'badge-free';
-    var telHtml = b.plan !== 'Free' && b.tel
-      ? '<a class="bcard-tel" href="tel:'+b.tel+'">📞 '+b.tel+'</a>'
-      : b.plan === 'Free' ? '<span class="bcard-hidden">전화번호 — 유료 플랜 전용</span>' : '';
-    var kakaoHtml = b.kakao ? '<a class="bcard-kakao" href="'+b.kakao+'" target="_blank">💬 카카오 문의</a>' : '';
+
+  var html = '';
+
+  // 유료 플랜 카드
+  paid.forEach(function(b){
+    var isPremium  = b.plan==='Premium';
+    var isStandard = b.plan==='Standard';
+    var isBasic    = b.plan==='Basic';
+    var cardClass  = 'bcard ' + (isPremium?'is-premium':isStandard?'is-standard':'is-basic');
+    // 메달 이모지 (Premium=🥇크게, Standard=🥈보통, Basic=🥉작게)
+    var medalStyle = isPremium?'font-size:26px':isStandard?'font-size:20px':'font-size:15px';
+    var medalEmoji = isPremium?'🥇':isStandard?'🥈':'🥉';
+    var medalHtml  = '<span class="plan-medal" style="'+medalStyle+'">'+medalEmoji+'</span>';
     var bannerHtml = isPremium
-      ? '<div style="width:100%;height:90px;background:linear-gradient(135deg,#0d1f35,#1a3a6a);display:flex;align-items:center;justify-content:center"><span style="color:rgba(200,162,74,0.6);font-size:13px">배너 이미지 영역</span></div>'
+      ? '<div class="bcard-banner-area"><span style="color:rgba(200,162,74,0.55);font-size:12px">배너 이미지 영역</span></div>'
       : '';
-    // 만료 D-day 표시
+    var telHtml = b.tel ? '<a class="bcard-tel" href="tel:'+b.tel+'">📞 '+b.tel+'</a>' : '';
+    var kakaoHtml = b.kakao ? '<a class="bcard-kakao" href="'+b.kakao+'" target="_blank">💬 카카오</a>' : '';
     var ddayHtml = '';
-    if (b.expireDate && b.plan !== 'Free') {
+    if (b.expireDate) {
       var dd = getDday(b.expireDate);
       if (dd !== null && dd <= 30 && dd >= 0) {
-        ddayHtml = '<span style="position:absolute;bottom:10px;right:10px;font-size:10px;background:rgba(192,57,43,0.9);color:white;padding:2px 7px;border-radius:10px">만료 D-'+dd+'</span>';
+        ddayHtml = '<span style="position:absolute;bottom:8px;right:10px;font-size:10px;background:rgba(192,57,43,0.9);color:#fff;padding:2px 7px;border-radius:10px;font-weight:700">D-'+dd+'</span>';
       }
     }
-    return '<div class="bcard'+(isPremium?' is-premium':'')+'">'+bannerHtml+'<span class="bcard-plan-badge '+badgeClass+'">'+b.plan+'</span>'+ddayHtml+'<div class="bcard-body"><div class="bcard-cat">'+b.cat+'</div><div class="bcard-name">'+b.name+'</div><div class="bcard-region">📍 '+b.region+'</div>'+(b.desc&&(isStandard||isPremium)?'<div class="bcard-desc">'+b.desc+'</div>':'')+'<div class="bcard-footer">'+telHtml+kakaoHtml+'</div></div></div>';
-  }).join('');
+    html += '<div class="'+cardClass+'">'+bannerHtml+medalHtml+ddayHtml;
+    html += '<div class="bcard-body">';
+    html += '<div class="bcard-cat">'+b.cat+'</div>';
+    html += '<div class="bcard-name">'+b.name+'</div>';
+    html += '<div class="bcard-region">📍 '+b.region+'</div>';
+    if (b.desc && (isPremium||isStandard)) html += '<div class="bcard-desc">'+b.desc+'</div>';
+    html += '<div class="bcard-footer">'+telHtml+kakaoHtml+'</div>';
+    html += '</div></div>';
+  });
+
+  // Free 줄 형태
+  if (free.length) {
+    html += '<div class="dir-free-list">';
+    html += '<div class="dir-free-header">일반 등록 업체 (' + free.length + '개)</div>';
+    free.forEach(function(b){
+      html += '<div class="bcard-free">';
+      html += '<div class="bcard-free-cat">'+b.cat+'</div>';
+      html += '<div class="bcard-free-name">'+b.name+'</div>';
+      html += '<div class="bcard-free-region">📍 '+b.region+'</div>';
+      html += '</div>';
+    });
+    html += '</div>';
+  }
+
+  grid.innerHTML = html;
 }
 
 function filterCards() {
+  buildCatFilters(allData);
   var q = document.getElementById('searchInput').value.toLowerCase();
   var filtered = allData.filter(function(b){
     var matchCat = currentCat === 'all' || b.cat === currentCat;
