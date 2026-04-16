@@ -476,12 +476,9 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
       </div>
 
       <div class="fade">
-        <!-- 히든 iframe: 폼 제출 타겟 (CORS 완전 우회) -->
         <iframe name="okc_hidden" id="okc_hidden" style="display:none;" onload="iframeLoaded()"></iframe>
 
-        <form id="ad-form"
-              method="POST"
-              target="okc_hidden">
+        <form id="ad-form" method="POST" action="https://script.google.com/macros/s/AKfycbwfyiQF33CSAlZJ0NJ01s389oUAPUEbqykXPeLzzkzx6dIyYmOUQdw7MgFvfJ2yZeXc/exec" target="okc_hidden">
           <div class="form-row">
             <div class="form-group">
               <label>업체명 <span>*</span></label>
@@ -489,22 +486,48 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
             </div>
             <div class="form-group">
               <label>업종 <span>*</span></label>
-              <input type="text" name="biz_type" placeholder="예: 미용, 음식점, 교육" required>
+              <select name="biz_type" required>
+                <option value="">선택해 주세요</option>
+                <option>미용·뷰티</option>
+                <option>음식점·마트</option>
+                <option>의료·치과</option>
+                <option>부동산</option>
+                <option>교육·과외</option>
+                <option>수리·건설</option>
+                <option>법률·회계</option>
+                <option>여행·관광</option>
+                <option>기타</option>
+              </select>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
+              <label>지역 <span>*</span></label>
+              <select name="region" required>
+                <option value="">선택해 주세요</option>
+                <option>Hamilton</option>
+                <option>Burlington</option>
+                <option>Brantford</option>
+                <option>Oakville</option>
+                <option>Milton</option>
+                <option>Niagara Region</option>
+                <option>기타</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label>담당자 성함 <span>*</span></label>
               <input type="text" name="name" placeholder="성함 입력" required>
             </div>
+          </div>
+          <div class="form-row">
             <div class="form-group">
               <label>연락처 <span>*</span></label>
               <input type="tel" name="phone" placeholder="예: 905-000-0000" required>
             </div>
-          </div>
-          <div class="form-group">
-            <label>이메일 <span>*</span></label>
-            <input type="email" name="email" placeholder="example@email.com" required>
+            <div class="form-group">
+              <label>이메일 <span>*</span></label>
+              <input type="email" name="email" placeholder="example@email.com" required>
+            </div>
           </div>
           <div class="form-row">
             <div class="form-group">
@@ -539,7 +562,7 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
             <textarea name="message" placeholder="업체 소개, 광고 목표, 문의사항 등을 자유롭게 적어주세요"></textarea>
           </div>
           <div id="form-msg"></div>
-          <button type="submit" class="submit-btn" id="submit-btn" onclick="formSubmitting()">광고 신청서 제출하기 →</button>
+          <button type="submit" class="submit-btn" id="submit-btn">광고 신청서 제출하기 →</button>
         </form>
       </div>
     </div>
@@ -586,27 +609,16 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
 
 
 <script>
-// ★ Apps Script 배포 후 아래 URL을 교체해 주세요
-var GAS_URL = 'YOUR_APPS_SCRIPT_WEB_APP_URL';
-
-// 페이지 로드 시 폼 action에 GAS URL 설정
-window.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('ad-form').action = GAS_URL;
-});
-
+// 폼 제출 피드백
 var formJustSubmitted = false;
 
-function formSubmitting() {
-  var form = document.getElementById('ad-form');
-  // HTML5 유효성 검사
-  if (!form.checkValidity()) return;
+document.getElementById('ad-form').addEventListener('submit', function() {
   formJustSubmitted = true;
   var btn = document.getElementById('submit-btn');
   btn.textContent = '제출 중...';
   btn.disabled = true;
-}
+});
 
-// iframe에 응답이 오면 성공 처리
 function iframeLoaded() {
   if (!formJustSubmitted) return;
   formJustSubmitted = false;
@@ -617,7 +629,6 @@ function iframeLoaded() {
   btn.textContent = '광고 신청서 제출하기 →';
   btn.disabled = false;
   document.getElementById('ad-form').reset();
-  // 성공 메시지로 스크롤
   msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
