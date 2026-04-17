@@ -311,6 +311,22 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
 @media (max-width: 580px) {
   .plans-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
 }
+
+/* OKC 서비스 카드 */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.svc-card{background:var(--white);border-radius:16px;border:1.5px solid var(--g200);padding:24px 22px;display:flex;flex-direction:column;gap:10px;transition:transform .2s,box-shadow .2s}
+.svc-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(13,31,53,0.09)}
+.svc-card.highlight{background:var(--navy);border-color:var(--gold)}
+.svc-icon{font-size:28px;line-height:1}
+.svc-name{font-size:15px;font-weight:700;color:var(--navy)}
+.svc-card.highlight .svc-name{color:var(--gold)}
+.svc-desc{font-size:12.5px;color:var(--g500);line-height:1.7;flex:1}
+.svc-card.highlight .svc-desc{color:rgba(255,255,255,0.6)}
+.svc-link{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700;color:var(--blue);text-decoration:none;margin-top:4px;transition:gap .2s}
+.svc-link:hover{gap:8px}
+.svc-card.highlight .svc-link{color:var(--gold2)}
+@media(max-width:700px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){.svc-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -344,6 +360,62 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
       단톡, 네이버 카페, 더채움마켓 통합 노출로 타겟 광고 효과를 경험하세요.
     </p>
     <div class="promo-badge">🔥 4월 30일까지 — 6개월 등록 5% · 12개월 등록 10% 할인</div>
+  </div>
+</section>
+
+<!-- OKC 서비스 소개 -->
+<section class="section" style="background:var(--cream)" id="services">
+  <div class="sec-inner">
+    <div class="fade">
+      <div class="eyebrow">OKC 서비스</div>
+      <h2 class="sec-title">OKC가 제공하는 것들</h2>
+      <p class="sec-sub">온타리오 한인 커뮤니티를 위한 다양한 채널과 서비스를 운영하고 있어요.</p>
+    </div>
+    <div class="svc-grid">
+
+      <div class="svc-card fade">
+        <div class="svc-icon">💬</div>
+        <div class="svc-name">카카오 오픈 단톡방</div>
+        <div class="svc-desc">온타리오 실거주 한인 1,000명+ 이 모인 오픈 단톡방. 생활 정보, 업체 추천, 커뮤니티 소식을 실시간으로 공유해요.</div>
+        <a href="https://open.kakao.com/o/gEBvaZ7b" target="_blank" class="svc-link">단톡방 입장 →</a>
+      </div>
+
+      <div class="svc-card fade">
+        <div class="svc-icon">🍀</div>
+        <div class="svc-name">네이버 카페</div>
+        <div class="svc-desc">캐나다 한인 정보 카페. 업체광고란에 무료로 직접 등록할 수 있고, 유료 플랜으로 상단 고정 노출이 가능해요.</div>
+        <a href="https://cafe.naver.com/canadalove" target="_blank" class="svc-link">카페 바로가기 →</a>
+      </div>
+
+      <div class="svc-card fade">
+        <div class="svc-icon">📣</div>
+        <div class="svc-name">커뮤니티 광고</div>
+        <div class="svc-desc">단톡, 네이버 카페, 더채움마켓, 한인 업체 찾기를 통해 온타리오 한인 1만 명에게 직접 닿을 수 있어요. 플랜에 따라 다채널 통합 노출이 가능해요.</div>
+        <a href="#plans" class="svc-link">광고 플랜 보기 →</a>
+      </div>
+
+      <div class="svc-card highlight fade">
+        <div class="svc-icon">🏪</div>
+        <div class="svc-name">한인 업체 찾기</div>
+        <div class="svc-desc">Hamilton · Burlington · Brantford · Oakville · Milton · Niagara Region 지역의 한인 업체를 업종별로 찾을 수 있어요. 무료 줄광고부터 프리미엄 박스광고까지 등록 가능해요.</div>
+        <a href="directory.html" class="svc-link">업체 찾기 →</a>
+      </div>
+
+      <div class="svc-card highlight fade">
+        <div class="svc-icon">🤝</div>
+        <div class="svc-name">도움 주고받기</div>
+        <div class="svc-desc">이웃 간 소소한 도움을 주고받는 공간이에요. 이동·운전, 집·마당, 수리·설치, 교육·돌봄 등 생활 밀착형 도움 요청과 제공이 가능해요.</div>
+        <a href="jobs.html" class="svc-link">도움 주고받기 →</a>
+      </div>
+
+      <div class="svc-card fade">
+        <div class="svc-icon">📮</div>
+        <div class="svc-name">OKC 뉴스레터</div>
+        <div class="svc-desc">온타리오 한인 커뮤니티 소식, 업체 정보, 생활 정보를 정기적으로 받아볼 수 있어요. 2026년 7월 오픈 예정이에요.</div>
+        <span class="svc-link" style="color:var(--g500);cursor:default">2026년 7월 오픈 예정</span>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -510,7 +582,7 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
       </div>
 
       <div class="fade">
-        <iframe name="okc_hidden" id="okc_hidden" style="display:none;" onload="iframeLoaded()"></iframe>
+        <iframe name="okc_hidden" id="okc_hidden" style="display:none;"></iframe>
 
         <form id="ad-form" method="POST" action="https://script.google.com/macros/s/AKfycbxS07YDGD4RZ1TFK-9FI6yAmo7wf_Mn5n9_y00mGDdSWBlcHIQWRl0GkaJTla2iwfev/exec" target="okc_hidden">
           <div class="form-row">
@@ -654,6 +726,10 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
 <script>
 // 폼 제출 피드백
 var formJustSubmitted = false;
+
+document.getElementById('okc_hidden').addEventListener('load', function() {
+  iframeLoaded();
+});
 
 document.getElementById('ad-form').addEventListener('submit', function() {
   formJustSubmitted = true;
