@@ -470,11 +470,12 @@ function setRegion(region, btn) {
 }
 
 // 구글 시트 CSV 파싱
-// 컬럼: A업체명 B업종 C지역 D전화 E소개 F계약플랜 G등록일 H계약기간(월) I만료일 J실제노출플랜 K카카오 L노출여부
+// 광고신청 시트 컬럼:
+// A업체명 B업종 C지역 D전화 E소개 F계약플랜 G등록일 H계약기간(월)
+// I만료일 J실제노출플랜 K카카오링크 L노출여부 M~R(신청 전용, 무시)
 function parseCSV(csv) {
   var rows = csv.split('\n').slice(1);
   return rows.filter(function(r){ return r.trim(); }).map(function(row){
-    // 콤마 CSV 파싱 (큰따옴표 처리)
     var cols = [];
     var cur = ''; var inQ = false;
     for (var i = 0; i < row.length; i++) {
@@ -483,28 +484,33 @@ function parseCSV(csv) {
       else { cur += row[i]; }
     }
     cols.push(cur.trim());
-    var contractPlan = (cols[5]||'Free').trim();
+
+    // A~L 앞 12개만 사용 (M~R 신청 전용 컬럼은 무시)
+    var contractPlan = (cols[5]||'').trim() || 'Free';
     var startDate    = (cols[6]||'').trim();
     var months       = parseInt(cols[7]||'0') || 0;
     var expireDate   = (cols[8]||'').trim();
-    // I열 만료일 없으면 G+H로 계산
+    // 만료일 없으면 등록일+계약기간으로 계산
     if (!expireDate && startDate && months) {
       var d = new Date(startDate);
       d.setMonth(d.getMonth() + months);
       expireDate = d.toISOString().split('T')[0];
     }
+    // J열: 실제노출플랜이 있으면 우선 사용, 없으면 계약플랜
+    var effectivePlan = (cols[9]||'').trim() || contractPlan;
     var display = (cols[11]||'Y').trim();
+
     return {
       name:         (cols[0]||'').trim(),
       cat:          (cols[1]||'').trim(),
       region:       (cols[2]||'').trim(),
       tel:          (cols[3]||'').trim(),
       desc:         (cols[4]||'').trim(),
-      contractPlan: contractPlan,
+      contractPlan: effectivePlan,
       startDate:    startDate,
       months:       months,
       expireDate:   expireDate,
-      plan:         contractPlan, // 렌더 시 getEffectivePlan()으로 재계산
+      plan:         effectivePlan,
       kakao:        (cols[10]||'').trim(),
       display:      display
     };
@@ -512,7 +518,9 @@ function parseCSV(csv) {
 }
 
 function loadFromSheet() {
-  var SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQO1rWbm6-_8oriirW5p_kluDJbF8oQ0VAr0GXXblaEnSnF30wipZwoTiPWd2TBwhZTBPKwv4t9IvWq/pub?gid=0&single=true&output=csv';
+  // ★ 광고신청 시트의 CSV URL로 교체해 주세요
+  // (파일 → 공유 → 웹에 게시 → 광고신청 시트 선택 → CSV → 게시 → URL 복사)
+  var SHEET_URL = 'PASTE_광고신청_CSV_URL_HERE';
   document.getElementById('dirGrid').innerHTML = '<div class="loading"><div class="loading-spinner"></div><p>시트 데이터 불러오는 중...</p></div>';
   fetch(SHEET_URL)
     .then(function(r){ return r.text(); })
@@ -523,7 +531,6 @@ function loadFromSheet() {
         filterCards();
         document.getElementById('total-count').textContent = allData.length;
       } else {
-        // 시트가 비어있으면 샘플 데이터 유지
         filterCards();
       }
     })
