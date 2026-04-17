@@ -269,6 +269,16 @@ var currentRegion = 'all';
 // 플랜 우선순위
 var planOrder = {Premium:0, Standard:1, Basic:2, Free:3};
 
+// 플랜 정규화: "Premium ($99/월)" -> "Premium" 등 어떤 형식이든 처리
+function normalizePlan(val) {
+  if (!val) return 'Free';
+  var v = val.toString().toLowerCase();
+  if (v.indexOf('premium') !== -1) return 'Premium';
+  if (v.indexOf('standard') !== -1) return 'Standard';
+  if (v.indexOf('basic') !== -1) return 'Basic';
+  return 'Free';
+}
+
 // 샘플 데이터 (구글 시트 연동 전 기본 표시)
 var sampleData = [
   {name:'해피 네일 스파', cat:'미용·뷰티', region:'Hamilton', tel:'905-111-2222', desc:'OPI 정품 사용, 한국어 가능, 예약 우선', contractPlan:'Premium', startDate:'2026-05-01', months:12, expireDate:'2027-05-01', plan:'Premium', kakao:'https://open.kakao.com/o/gEBvaZ7b', display:'Y'},
@@ -281,13 +291,12 @@ var sampleData = [
 
 // 만료일 체크 후 실제 노출 플랜 결정
 function getEffectivePlan(b) {
-  var cp = (b.contractPlan || '').trim();
-  if (!cp || cp === 'Free') return 'Free';
-  // 만료일 없으면 계약플랜 그대로 유지
+  var cp = normalizePlan(b.contractPlan);
+  if (cp === 'Free') return 'Free';
   if (!b.expireDate) return cp;
   var today = new Date(); today.setHours(0,0,0,0);
   var expire = new Date(b.expireDate);
-  if (isNaN(expire.getTime())) return cp; // 날짜 파싱 실패 시 그대로
+  if (isNaN(expire.getTime())) return cp;
   return expire < today ? 'Free' : cp;
 }
 
@@ -559,7 +568,7 @@ function parseCSV(csv) {
 function loadFromSheet() {
   // ★ 광고신청 시트의 CSV URL로 교체해 주세요
   // (파일 → 공유 → 웹에 게시 → 광고신청 시트 선택 → CSV → 게시 → URL 복사)
-  var SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQO1rWbm6-_8oriirW5p_kluDJbF8oQ0VAr0GXXblaEnSnF30wipZwoTiPWd2TBwhZTBPKwv4t9IvWq/pub?gid=1895427408&single=true&output=csv';
+  var SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQO1rWbm6-_8oriirW5p_kluDJbF8oQ0VAr0GXXblaEnSnF30wipZwoTiPWd2TBwhZTBPKwv4t9IvWq/pub?gid=1723577959&single=true&output=csv';
   document.getElementById('dirGrid').innerHTML = '<div class="loading"><div class="loading-spinner"></div><p>시트 데이터 불러오는 중...</p></div>';
   fetch(SHEET_URL)
     .then(function(r){ return r.text(); })
