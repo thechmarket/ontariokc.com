@@ -177,12 +177,30 @@ nav {
 /* FREE TIER */
 .free-bar {
   background: var(--white); border-radius: 16px; border: 2px dashed var(--g200);
-  padding: 28px 32px; margin-top: 48px;
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+  padding: 24px 28px; margin-top: 48px;
 }
-.free-bar-left h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
-.free-bar-left p { font-size: 13.5px; color: var(--g500); line-height: 1.7; }
+.free-bar-top { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 16px; }
+.free-bar-left h3 { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.free-bar-left p { font-size: 13px; color: var(--g500); line-height: 1.7; }
 .free-bar-badge { background: var(--g100); border: 1.5px solid var(--g200); color: var(--g700); font-size: 12px; font-weight: 700; padding: 8px 18px; border-radius: 8px; white-space: nowrap; }
+.free-bar-btns { display: flex; gap: 10px; flex-wrap: wrap; padding-top: 14px; border-top: 1px solid var(--g200); }
+.free-btn-naver { display:inline-flex;align-items:center;gap:6px;background:#03C75A;color:#fff;font-weight:700;font-size:13px;padding:9px 18px;border-radius:8px;text-decoration:none;transition:opacity .2s; }
+.free-btn-naver:hover { opacity:0.88; }
+.free-btn-apply { display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);font-weight:700;font-size:13px;padding:9px 18px;border-radius:8px;text-decoration:none;transition:opacity .2s; }
+.free-btn-apply:hover { opacity:0.88; }
+/* 플랜 그리드: Basic+Standard 나란히, Premium 풀폭 */
+.plans-top-row { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px; }
+.plans-premium-row { width:100%; }
+.plans-premium-row .plan-card { flex-direction:row; gap:32px; align-items:flex-start; }
+.plans-premium-row .plan-card .plan-left { min-width:180px; }
+.plans-premium-row .plan-card .plan-right { flex:1; display:flex; flex-direction:column; }
+.plans-premium-row .plan-card .plan-features { margin-bottom:16px; }
+.plans-premium-row .plan-card .plan-contract { margin-bottom:16px; }
+@media(max-width:640px){
+  .plans-top-row { grid-template-columns:1fr; }
+  .plans-premium-row .plan-card { flex-direction:column; }
+  .plans-premium-row .plan-card .plan-left { min-width:unset; }
+}
 
 /* BANNER NOTE */
 .banner-note {
@@ -340,18 +358,26 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
 
     <!-- FREE BAR -->
     <div class="free-bar fade">
-      <div class="free-bar-left">
-        <h3>🆓 무료 (Free)</h3>
-        <p>
-          단톡 게재는 불가합니다.<br>
-          네이버 카페 <strong>'업체광고란'</strong>에 직접 등록 가능해요. 누구나 무료로 이용할 수 있어요.
-        </p>
+      <div class="free-bar-top">
+        <div class="free-bar-left">
+          <h3>🆓 무료 (Free)</h3>
+          <p>
+            단톡 게재는 불가합니다.<br>
+            네이버 카페 <strong>'업체광고란'</strong>에 직접 등록 가능해요. 누구나 무료로 이용할 수 있어요.<br>
+            <strong>한인 업체 찾기</strong>에도 무료로 등록할 수 있어요.
+          </p>
+        </div>
+        <div class="free-bar-badge">무료 · 직접 등록</div>
       </div>
-      <div class="free-bar-badge">무료 · 직접 등록</div>
+      <div class="free-bar-btns">
+        <a href="https://cafe.naver.com/canadalove" target="_blank" class="free-btn-naver">🍀 네이버 카페 바로가기</a>
+        <a href="#apply" class="free-btn-apply" onclick="selectPlan('Free')">무료 업체 등록 신청 →</a>
+      </div>
     </div>
 
     <!-- PAID PLANS -->
-    <div class="plans-grid" style="margin-top: 24px;">
+    <div style="margin-top:24px">
+    <div class="plans-top-row">
 
       <!-- BASIC -->
       <div class="plan-card fade">
@@ -393,35 +419,42 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
         <a href="#apply" class="plan-cta" onclick="selectPlan('Standard ($40/월)')">신청하기</a>
       </div>
 
-      <!-- PREMIUM -->
-      <div class="plan-card premium fade">
-        <div class="plan-badge gold">프리미엄</div>
-        <div class="plan-tier">Premium</div>
-        <div class="plan-price"><sup>$</sup>99</div>
-        <div class="plan-per">/월 · HST 별도</div>
-        <div class="plan-divider"></div>
-        <ul class="plan-features">
-          <li>단톡 월 2회 광고</li>
-          <li>네이버 카페 메인 배너 등록</li>
-          <li>네이버 카페 비즈니스/업체 정보 상단 고정</li>
-          <li>단톡 상단 업체 소개 고정 노출</li>
-          <li>더채움마켓 쇼핑몰 배너 등록</li>
-          <li>전체 10개 업체 한정 (프리미엄 회원 전용)</li>
-          <li>카테고리별 1업체 제한 (선착순 배정)</li>
-        </ul>
-        <div class="plan-contract">
-          <div class="plan-contract-title">📋 계약 조건</div>
-          1개월 · 6개월 · 12개월 계약 가능<br>
-          6개월 등록 시 <strong>5% 할인</strong> (~4/30)<br>
-          12개월 등록 시 <strong>1개월 무료</strong> ($99×13 = $1,188)<br>
-          12개월 등록 시 <strong>배너 무료 제작</strong> ★ Premium 한정<br>
-          12개월 등록 시 <strong>10% 할인</strong> (~4/30)
-        </div>
-        <a href="#apply" class="plan-cta" onclick="selectPlan('Premium ($99/월)')">신청하기</a>
-        <p class="plan-limit">* 전체 10개 업체 한정</p>
-      </div>
+    </div><!-- /plans-top-row -->
 
-    </div>
+    <!-- PREMIUM - 풀폭 -->
+    <div class="plans-premium-row">
+      <div class="plan-card premium fade">
+        <div class="plan-left">
+          <div class="plan-badge gold">프리미엄</div>
+          <div class="plan-tier">Premium</div>
+          <div class="plan-price"><sup>$</sup>99</div>
+          <div class="plan-per">/월 · HST 별도</div>
+          <div class="plan-divider"></div>
+        </div><!-- /plan-left -->
+        <div class="plan-right">
+          <ul class="plan-features">
+            <li>단톡 월 2회 광고</li>
+            <li>네이버 카페 메인 배너 등록</li>
+            <li>네이버 카페 비즈니스/업체 정보 상단 고정</li>
+            <li>단톡 상단 업체 소개 고정 노출</li>
+            <li>더채움마켓 쇼핑몰 배너 등록</li>
+            <li>전체 10개 업체 한정 (프리미엄 회원 전용)</li>
+            <li>카테고리별 1업체 제한 (선착순 배정)</li>
+          </ul>
+          <div class="plan-contract">
+            <div class="plan-contract-title">📋 계약 조건</div>
+            1개월 · 6개월 · 12개월 계약 가능<br>
+            6개월 등록 시 <strong>5% 할인</strong> (~4/30)<br>
+            12개월 등록 시 <strong>1개월 무료</strong> ($99×13 = $1,188)<br>
+            12개월 등록 시 <strong>배너 무료 제작</strong> ★ Premium 한정<br>
+            12개월 등록 시 <strong>10% 할인</strong> (~4/30)
+          </div>
+          <a href="#apply" class="plan-cta" onclick="selectPlan('Premium ($99/월)')">신청하기</a>
+          <p class="plan-limit">* 전체 10개 업체 한정</p>
+        </div><!-- /plan-right -->
+      </div>
+    </div><!-- /plans-premium-row -->
+    </div><!-- /plans wrapper -->
 
     <!-- 배너 제작 안내 -->
     <div class="banner-note fade">
