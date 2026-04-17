@@ -520,7 +520,7 @@ function parseCSV(csv) {
 function loadFromSheet() {
   // ★ 광고신청 시트의 CSV URL로 교체해 주세요
   // (파일 → 공유 → 웹에 게시 → 광고신청 시트 선택 → CSV → 게시 → URL 복사)
-  var SHEET_URL = 'PASTE_광고신청_CSV_URL_HERE';
+  var SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQO1rWbm6-_8oriirW5p_kluDJbF8oQ0VAr0GXXblaEnSnF30wipZwoTiPWd2TBwhZTBPKwv4t9IvWq/pub?gid=895714501&single=true&output=csv';
   document.getElementById('dirGrid').innerHTML = '<div class="loading"><div class="loading-spinner"></div><p>시트 데이터 불러오는 중...</p></div>';
   fetch(SHEET_URL)
     .then(function(r){ return r.text(); })
