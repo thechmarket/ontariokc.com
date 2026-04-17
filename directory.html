@@ -295,10 +295,13 @@ function getEffectivePlan(b) {
   var cp = normalizePlan(b.contractPlan);
   if (cp === 'Free') return 'Free';
   if (!b.expireDate) return cp;
-  var today = new Date(); today.setHours(0,0,0,0);
-  var expire = new Date(b.expireDate);
+  // 날짜 파싱 (parseExpireDate로 정규화된 값)
+  var expStr = parseExpireDate(b.expireDate, b.startDate, b.months);
+  if (!expStr) return cp;
+  var today  = new Date(); today.setHours(0,0,0,0);
+  var expire = new Date(expStr); expire.setHours(0,0,0,0);
   if (isNaN(expire.getTime())) return cp;
-  // 만료 시 → Free로 강등 (노출여부 Y 유지, 플랜만 Free로 변경)
+  // 만료 시 Free로 강등 (노출은 계속)
   return expire < today ? 'Free' : cp;
 }
 
@@ -508,14 +511,28 @@ function buildHeaderMap(headerRow) {
 // 만료일 파싱 (날짜 문자열 또는 구글 시리얼 번호 모두 처리)
 function parseExpireDate(val, startDate, months) {
   if (val) {
-    // 구글 시트 날짜 시리얼 번호 처리 (숫자만인 경우)
-    if (/^\d{5}$/.test(val)) {
-      var d = new Date((parseInt(val) - 25569) * 86400 * 1000);
+    var s = val.toString().trim();
+    // 구글 시트 날짜 시리얼 번호 (숫자 5자리)
+    if (/^\d{5}$/.test(s)) {
+      var d = new Date((parseInt(s) - 25569) * 86400 * 1000);
       return d.toISOString().split('T')[0];
     }
-    // 일반 날짜 문자열
-    if (val.match(/\d{4}-\d{2}-\d{2}/)) return val.substring(0, 10);
-    if (val.match(/\d{4}\/\d{2}\/\d{2}/)) return val.substring(0, 10).replace(/\//g, '-');
+    // yyyy-mm-dd 또는 yyyy/mm/dd
+    if (s.match(/^\d{4}[-\/]\d{2}[-\/]\d{2}/)) {
+      return s.substring(0,10).replace(/\//g,'-');
+    }
+    // M/D/YYYY 또는 MM/DD/YYYY (구글 시트 미국식 CSV 내보내기 형식)
+    var mdy = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+    if (mdy) {
+      var mo = mdy[1].padStart(2,'0');
+      var dy = mdy[2].padStart(2,'0');
+      return mdy[3] + '-' + mo + '-' + dy;
+    }
+    // D/M/YYYY
+    var dmy = s.match(/^(\d{1,2})-(\d{1,2})-(\d{4})/);
+    if (dmy) {
+      return dmy[3] + '-' + dmy[2].padStart(2,'0') + '-' + dmy[1].padStart(2,'0');
+    }
   }
   // 만료일 없으면 등록일 + 계약기간으로 계산
   if (startDate && months) {
