@@ -106,13 +106,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:62px;background:rgba(
 .dday-badge{position:absolute;bottom:8px;right:8px;font-size:10px;font-weight:700;background:rgba(192,57,43,0.88);color:#fff;padding:2px 7px;border-radius:10px}
 .dir-free-list{background:var(--white);border-radius:12px;border:1.5px solid var(--g200);overflow:hidden}
 .dir-free-header{padding:9px 18px;background:var(--g100);font-size:11px;font-weight:700;letter-spacing:1px;color:var(--g500);text-transform:uppercase;border-bottom:1px solid var(--g200)}
-.bcard-free{display:flex;align-items:center;gap:14px;padding:11px 18px;border-bottom:1px solid var(--g200);transition:background .15s}
+.bcard-free{display:flex;align-items:center;gap:10px;padding:11px 18px;border-bottom:1px solid var(--g200);transition:background .15s}
 .bcard-free:last-child{border-bottom:none}
 .bcard-free:hover{background:var(--g100)}
-.bcard-free-cat{font-size:11px;font-weight:700;color:var(--blue);min-width:72px;flex-shrink:0}
-.bcard-free-name{font-size:13.5px;font-weight:600;color:var(--navy);flex:1}
-.bcard-free-region{font-size:12px;color:var(--g500);flex-shrink:0}
-.bcard-free-tel{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:600;color:var(--navy);background:var(--g100);padding:4px 10px;border-radius:6px;text-decoration:none;margin-left:auto;flex-shrink:0}
+.bcard-free-cat{font-size:10.5px;font-weight:700;color:var(--blue);min-width:60px;flex-shrink:0}
+.bcard-free-name{font-size:13px;font-weight:600;color:var(--navy);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bcard-free-right{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0;margin-left:auto}
+.bcard-free-tel{display:inline-flex;align-items:center;gap:3px;font-size:11.5px;font-weight:600;color:var(--navy);background:var(--g100);padding:3px 9px;border-radius:6px;text-decoration:none;white-space:nowrap}
+.bcard-free-region{font-size:11px;color:var(--g500);white-space:nowrap}
 .pagination{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:14px;flex-wrap:wrap}
 .page-btn{font-family:'Noto Sans KR',sans-serif;font-size:13px;padding:7px 13px;border-radius:8px;border:1.5px solid var(--g200);background:var(--white);cursor:pointer;color:var(--g700);transition:all .2s}
 .page-btn:hover{border-color:var(--blue);color:var(--blue)}
@@ -428,14 +429,14 @@ function renderCards(data) {
       html += '<div class="dir-free-header">페이지 '+page+' / '+totalPages+'</div>';
     }
     pageItems.forEach(function(b){
-      var telLink = b.tel
-        ? '<a href="tel:'+b.tel+'" class="bcard-free-tel">&#128222; '+b.tel+'</a>'
-        : '';
+      var rightHtml = '<div class="bcard-free-right">'
+        + (b.tel ? '<a href="tel:'+b.tel+'" class="bcard-free-tel">&#128222; '+b.tel+'</a>' : '')
+        + '<span class="bcard-free-region">&#128205; '+b.region+'</span>'
+        + '</div>';
       html += '<div class="bcard-free">'
         + '<div class="bcard-free-cat">'+b.cat+'</div>'
         + '<div class="bcard-free-name">'+b.name+'</div>'
-        + '<div class="bcard-free-region">&#128205; '+b.region+'</div>'
-        + telLink
+        + rightHtml
         + '</div>';
     });
     html += '</div>';
