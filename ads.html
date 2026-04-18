@@ -140,6 +140,14 @@ nav {
 .plan-card.premium .plan-price { color: var(--white); }
 .plan-price sup { font-size: 18px; font-weight: 700; vertical-align: super; letter-spacing: 0; }
 .plan-price sub { font-size: 14px; font-weight: 400; letter-spacing: 0; }
+
+/* 정가 표시 (할인 전) */
+.plan-original-price { display:flex;align-items:center;gap:8px;margin-bottom:6px; }
+.plan-original-price s { font-size:15px;color:var(--g500);font-weight:500;text-decoration:line-through;text-decoration-thickness:1.5px; }
+.plan-card.premium .plan-original-price s { color:rgba(255,255,255,0.38); }
+.discount-tag { background:var(--red);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:0.5px;padding:3px 8px;border-radius:5px;line-height:1; }
+.discount-tag.gold-tag { background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy); }
+
 .plan-per { font-size: 12px; color: var(--g500); margin-bottom: 20px; }
 .plan-card.premium .plan-per { color: rgba(255,255,255,0.5); }
 
@@ -262,6 +270,31 @@ textarea { resize: vertical; min-height: 100px; }
 #form-msg.success { background: #e8f5e9; color: #2e7d32; }
 #form-msg.error { background: #fce4ec; color: #b71c1c; }
 
+/* PRICE SUMMARY BOX (장바구니 스타일) */
+.price-box {
+  background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
+  border: 2px solid var(--blue);
+  border-radius: 14px; padding: 20px 22px;
+  box-shadow: 0 4px 20px rgba(26,95,168,0.08);
+}
+.price-header {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 14px; font-weight: 700; color: var(--navy);
+  padding-bottom: 12px; margin-bottom: 12px;
+  border-bottom: 2px dashed var(--g200);
+}
+.price-header-icon { font-size: 18px; }
+.price-row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 13px; color: var(--g700); padding: 6px 0;
+}
+.price-row > span:first-child { color: var(--g700); }
+.ps-val { font-weight: 600; color: var(--navy); }
+.price-divider { height: 1px; background: var(--g200); margin: 8px 0; }
+.price-total { font-size: 16px; padding: 10px 0 6px; border-top: 2px solid var(--navy); margin-top: 4px; }
+.price-total > span:first-child { color: var(--navy); font-weight: 700; }
+.price-total .ps-val { color: var(--blue); font-size: 20px; font-weight: 900; }
+
 /* FAQ */
 .faq-bg { background: var(--cream); }
 .faq-list { margin-top: 44px; display: flex; flex-direction: column; gap: 10px; max-width: 820px; }
@@ -359,7 +392,8 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
       온타리오 한인이라면 누구나 접하는 채널에 광고하세요.
       단톡, 네이버 카페, 더채움마켓 통합 노출로 타겟 광고 효과를 경험하세요.
     </p>
-    <div class="promo-badge">🔥 4월 30일까지 — 6개월 등록 5% · 12개월 등록 10% 할인</div>
+    <div class="promo-badge">🔥 런칭 기념 — 전 티어 <strong style="font-size:15px;">40% 할인</strong> · 5월 10일까지</div>
+    <div id="launch-countdown" style="margin-top:12px;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(230,196,106,0.3);padding:8px 14px;border-radius:8px;color:#e6c46a;font-size:12.5px;font-weight:600;letter-spacing:0.3px;"></div>
   </div>
 </section>
 
@@ -454,8 +488,9 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
       <!-- BASIC -->
       <div class="plan-card fade">
         <div class="plan-tier">Basic</div>
-        <div class="plan-price"><sup>$</sup>14<sub>.99</sub></div>
-        <div class="plan-per">/1회 · HST 별도</div>
+        <div class="plan-original-price"><s>$19.99</s> <span class="discount-tag">40% OFF</span></div>
+        <div class="plan-price"><sup>$</sup>11<sub>.99</sub></div>
+        <div class="plan-per">/월 · HST 별도 · CAD</div>
         <div class="plan-divider"></div>
         <ul class="plan-features">
           <li>단톡 1회 게재 (월 2회 한정)</li>
@@ -464,17 +499,19 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
         </ul>
         <div class="plan-contract">
           <div class="plan-contract-title">📋 계약 조건</div>
-          월 2회 한정
+          1개월 단위 계약<br>
+          <span style="color:var(--red);font-weight:700">런칭 특가 ~5/10</span>
         </div>
-        <a href="#apply" class="plan-cta" onclick="selectPlan('Basic ($14.99/1회)')">신청하기</a>
+        <a href="#apply" class="plan-cta" onclick="selectPlan('Basic')">신청하기</a>
       </div>
 
       <!-- STANDARD -->
       <div class="plan-card featured fade">
         <div class="plan-badge">가장 인기</div>
         <div class="plan-tier">Standard</div>
+        <div class="plan-original-price"><s>$50</s> <span class="discount-tag">40% OFF</span></div>
         <div class="plan-price"><sup>$</sup>30</div>
-        <div class="plan-per">/월 · HST 별도</div>
+        <div class="plan-per">/월 · HST 별도 · CAD</div>
         <div class="plan-divider"></div>
         <ul class="plan-features">
           <li>단톡 월 2회 광고</li>
@@ -484,12 +521,11 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
         </ul>
         <div class="plan-contract">
           <div class="plan-contract-title">📋 계약 조건</div>
-          1개월 · 6개월 · 12개월 계약 가능<br>
-          6개월 등록 시 <strong>5% 할인</strong> (~4/30)<br>
-          12개월 등록 시 <strong>1개월 무료</strong><br>
-          12개월 등록 시 <strong>10% 할인</strong> (~4/30)
+          3개월 · 6개월 · 12개월 계약<br>
+          <span style="color:var(--red);font-weight:700">런칭 특가 ~5/10</span><br>
+          12개월 등록 시 <strong>배너 무료 제작</strong>
         </div>
-        <a href="#apply" class="plan-cta" onclick="selectPlan('Standard ($30/월)')">신청하기</a>
+        <a href="#apply" class="plan-cta" onclick="selectPlan('Standard')">신청하기</a>
       </div>
 
     </div><!-- /plans-top-row -->
@@ -500,8 +536,9 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
         <div class="plan-left">
           <div class="plan-badge gold">프리미엄</div>
           <div class="plan-tier">Premium</div>
-          <div class="plan-price"><sup>$</sup>99</div>
-          <div class="plan-per">/월 · HST 별도</div>
+          <div class="plan-original-price premium-orig"><s>$120</s> <span class="discount-tag gold-tag">40% OFF</span></div>
+          <div class="plan-price"><sup>$</sup>72</div>
+          <div class="plan-per">/월 · HST 별도 · CAD</div>
           <div class="plan-divider"></div>
         </div><!-- /plan-left -->
         <div class="plan-right">
@@ -516,13 +553,11 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
           </ul>
           <div class="plan-contract">
             <div class="plan-contract-title">📋 계약 조건</div>
-            1개월 · 6개월 · 12개월 계약 가능<br>
-            6개월 등록 시 <strong>5% 할인</strong> (~4/30)<br>
-            12개월 등록 시 <strong>1개월 무료</strong><br>
-            12개월 등록 시 <strong>배너 무료 제작</strong> ★ Premium 한정<br>
-            12개월 등록 시 <strong>10% 할인</strong> (~4/30)
+            1개월 · 3개월 · 6개월 · 12개월 계약 가능<br>
+            <span style="color:var(--gold2);font-weight:700">런칭 특가 ~5/10</span><br>
+            12개월 등록 시 <strong>배너 무료 제작</strong> ★ Premium 한정
           </div>
-          <a href="#apply" class="plan-cta" onclick="selectPlan('Premium ($99/월)')">신청하기</a>
+          <a href="#apply" class="plan-cta" onclick="selectPlan('Premium')">신청하기</a>
           <p class="plan-limit">* 전체 10개 업체 한정</p>
         </div><!-- /plan-right -->
       </div>
@@ -540,22 +575,24 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
 <section class="section promo-sec">
   <div class="sec-inner">
     <div class="fade">
-      <div class="eyebrow">4월 프로모션</div>
-      <h2 class="sec-title">4월 30일까지<br>특별 할인 혜택</h2>
-      <p class="sec-sub">지금 등록하시면 더 많은 혜택을 받으실 수 있어요.</p>
+      <div class="eyebrow">🔥 런칭 프로모션</div>
+      <h2 class="sec-title">5월 10일까지<br>전 티어 40% 할인</h2>
+      <p class="sec-sub">정식 서비스 시작을 기념해 한 번뿐인 런칭 특가를 진행합니다. 5월 11일부터는 상시 25% 할인으로 전환됩니다.</p>
     </div>
     <div class="promo-grid fade">
       <div class="promo-card">
-        <div class="promo-title">6개월 등록 혜택</div>
-        <div class="promo-item">Standard · Premium 모두 해당</div>
-        <div class="promo-item">4월 30일까지 등록 시 <strong>5% 할인</strong></div>
+        <div class="promo-title">런칭 특가 (~5/10)</div>
+        <div class="promo-item">Basic <s style="color:var(--g500)">$19.99</s> → <strong>$11.99</strong> /월</div>
+        <div class="promo-item">Standard <s style="color:var(--g500)">$50</s> → <strong>$30</strong> /월</div>
+        <div class="promo-item">Premium <s style="color:var(--g500)">$120</s> → <strong>$72</strong> /월</div>
+        <div class="promo-item" style="font-size:12.5px;color:var(--g500);margin-top:6px;">※ HST 13% 별도 · CAD 기준</div>
       </div>
       <div class="promo-card highlight">
-        <div class="promo-title">12개월 등록 혜택 (최고 혜택)</div>
+        <div class="promo-title">12개월 등록 추가 혜택</div>
         <div class="promo-item">안정적인 장기 노출로 광고 효과 극대화</div>
-        <div class="promo-item">1개월 무료 제공</div>
-        <div class="promo-item">배너 무료 제작 ($50 상당) — <strong style="color:var(--gold);">Premium 한정</strong></div>
-        <div class="promo-item">4월 30일까지 등록 시 추가 <strong style="color:var(--gold);">10% 할인</strong></div>
+        <div class="promo-item">가격 변동 없이 1년 고정</div>
+        <div class="promo-item"><strong style="color:var(--gold);">배너 무료 제작</strong> ($50 상당 · Standard & Premium)</div>
+        <div class="promo-item">계약 기간 동안 지속 노출 보장</div>
       </div>
     </div>
   </div>
@@ -636,6 +673,14 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
               <input type="email" name="email" placeholder="example@email.com" required>
             </div>
           </div>
+
+          <!-- 매장 주소 (선택) -->
+          <div class="form-group">
+            <label>매장/사무실 주소 <span style="color:var(--g500);font-weight:400;font-size:11.5px;">(선택 · 입력 시 광고 카드에 구글 지도 연결)</span></label>
+            <input type="text" name="address" id="address" placeholder="예: 123 King St W, Hamilton, ON L8P 1A5">
+            <div style="font-size:11.5px;color:var(--g500);margin-top:5px">고객이 광고를 클릭하면 구글 지도로 바로 연결됩니다. 매장이 있는 경우에만 입력하세요.</div>
+          </div>
+
           <div class="form-group">
             <label>카카오 오픈채팅 링크</label>
             <div style="display:flex;align-items:center;gap:0;border:1.5px solid var(--g200);border-radius:9px;overflow:hidden;background:var(--g100);">
@@ -644,34 +689,94 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
             </div>
             <div style="font-size:11.5px;color:var(--g500);margin-top:5px">카카오 오픈채팅방 링크에서 마지막 /o/ 뒤의 코드만 입력해 주세요</div>
           </div>
+
           <div class="form-row">
             <div class="form-group">
               <label>희망 플랜 <span>*</span></label>
-              <select name="plan" id="plan" required>
+              <select name="plan" id="plan" required onchange="updatePlanUI()">
                 <option value="">선택해 주세요</option>
                 <option value="Free">Free — 무료</option>
-                <option value="Basic ($14.99/1회)">Basic — $14.99/1회</option>
-                <option value="Standard ($30/월)">Standard — $30/월</option>
-                <option value="Premium ($99/월)">Premium — $99/월</option>
+                <option value="Basic">Basic — $11.99/월 (정가 $19.99)</option>
+                <option value="Standard">Standard — $30/월 (정가 $50)</option>
+                <option value="Premium">Premium — $72/월 (정가 $120)</option>
               </select>
             </div>
-            <div class="form-group">
-              <label>계약 기간</label>
-              <select name="contract_months">
-                <option value="1">1개월</option>
-                <option value="6">6개월 (5% 할인 · ~4/30)</option>
-                <option value="12">12개월 (최대 혜택)</option>
+            <div class="form-group" id="contract-group">
+              <label>계약 기간 <span>*</span></label>
+              <select name="contract_months" id="contract_months" onchange="updatePriceSummary()">
+                <option value="">플랜을 먼저 선택하세요</option>
               </select>
             </div>
           </div>
-          <div class="form-group">
+
+          <div class="form-group" id="banner-group">
             <label>배너 제작 희망</label>
-            <select name="banner">
+            <select name="banner" id="banner">
               <option value="없음">필요 없음</option>
               <option value="희망 ($50+Tax)">희망합니다 ($50+Tax)</option>
               <option value="추후 논의">추후 논의</option>
             </select>
+            <div id="banner-free-note" style="display:none;font-size:12px;color:var(--green);margin-top:6px;font-weight:600;">🎁 12개월 계약 선택 시 배너 무료 제작이 자동 포함됩니다.</div>
           </div>
+
+          <!-- 실시간 가격 요약 (장바구니 스타일) -->
+          <div id="price-summary" style="display:none;">
+            <div class="price-box">
+              <div class="price-header">
+                <span class="price-header-icon">🛒</span>
+                <span>광고 요금 계산</span>
+              </div>
+              <div class="price-row">
+                <span>선택 플랜</span>
+                <span id="ps-plan" class="ps-val">-</span>
+              </div>
+              <div class="price-row">
+                <span>정가 (월)</span>
+                <span id="ps-original" class="ps-val" style="text-decoration:line-through;color:var(--g500);">-</span>
+              </div>
+              <div class="price-row">
+                <span>할인가 (월)</span>
+                <span id="ps-monthly" class="ps-val" style="color:var(--blue);font-weight:700;">-</span>
+              </div>
+              <div class="price-row">
+                <span>계약 기간</span>
+                <span id="ps-months" class="ps-val">-</span>
+              </div>
+              <div class="price-divider"></div>
+              <div class="price-row">
+                <span>소계</span>
+                <span id="ps-subtotal" class="ps-val">-</span>
+              </div>
+              <div class="price-row" id="ps-save-row">
+                <span style="color:var(--red);">💰 절약 금액</span>
+                <span id="ps-saved" class="ps-val" style="color:var(--red);font-weight:700;">-</span>
+              </div>
+              <div class="price-row">
+                <span>HST (13%)</span>
+                <span id="ps-tax" class="ps-val">-</span>
+              </div>
+              <div class="price-divider"></div>
+              <div class="price-row price-total">
+                <span>총 결제 금액</span>
+                <span id="ps-total" class="ps-val">-</span>
+              </div>
+              <div class="price-row">
+                <span style="font-size:11.5px;color:var(--g500);">월 환산</span>
+                <span id="ps-per-month" class="ps-val" style="font-size:11.5px;color:var(--g500);">-</span>
+              </div>
+              <div id="ps-save-highlight" style="display:none;margin-top:12px;padding:10px 14px;background:linear-gradient(135deg,#fff4e6,#ffe8d6);border-radius:8px;text-align:center;font-size:13px;font-weight:700;color:#c0392b;"></div>
+              <div id="ps-banner-highlight" style="display:none;margin-top:8px;padding:10px 14px;background:linear-gradient(135deg,#e8f5e9,#d4edda);border-radius:8px;text-align:center;font-size:12.5px;font-weight:700;color:#1a7a4a;">🎁 12개월 계약 혜택: 배너 무료 제작 포함</div>
+            </div>
+            <!-- hidden fields - 폼 전송 시 포함 -->
+            <input type="hidden" name="price_original" id="hidden-original">
+            <input type="hidden" name="price_monthly" id="hidden-monthly">
+            <input type="hidden" name="price_subtotal" id="hidden-subtotal">
+            <input type="hidden" name="price_saved" id="hidden-saved">
+            <input type="hidden" name="price_tax" id="hidden-tax">
+            <input type="hidden" name="price_total" id="hidden-total">
+            <input type="hidden" name="promo_period" id="hidden-promo">
+          </div>
+
           <div class="form-group">
             <label>업체 소개 또는 문의 사항</label>
             <textarea name="message" placeholder="업체 소개, 광고 목표, 문의사항 등을 자유롭게 적어주세요"></textarea>
@@ -694,7 +799,27 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
     <div class="faq-list fade">
       <div class="faq-item">
         <button class="faq-q"><span>광고 시행일은 언제인가요?</span><span class="faq-icon">+</span></button>
-        <div class="faq-a">모든 유료 광고 플랜은 2025년 5월 1일부터 정식 시행됩니다. 4월 30일까지 신청하시면 할인 혜택이 적용됩니다.</div>
+        <div class="faq-a">모든 유료 광고 플랜은 2026년 5월 1일부터 정식 시행됩니다. 5월 10일까지 신청하시면 <strong>런칭 특가 40% 할인</strong>이 적용되며, 5월 11일부터는 <strong>상시 25% 할인가</strong>로 전환됩니다.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>런칭 특가(40% 할인)는 언제까지인가요?</span><span class="faq-icon">+</span></button>
+        <div class="faq-a">런칭 특가는 <strong>2026년 5월 10일 23:59 (EST)</strong>까지 신청 건에 한해 적용됩니다. 이 기간 중 신청하신 모든 계약은 계약 기간 내내 40% 할인가가 그대로 유지됩니다. 5월 11일부터는 상시 25% 할인가가 적용됩니다.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>플랜별 가격은 어떻게 되나요?</span><span class="faq-icon">+</span></button>
+        <div class="faq-a">월 요금 기준 CAD · HST 별도입니다.<br><br>
+          • <strong>Basic</strong>: 정가 $19.99 → 런칭 $11.99 / 상시 $14.99<br>
+          • <strong>Standard</strong>: 정가 $50 → 런칭 $30 / 상시 $37.50<br>
+          • <strong>Premium</strong>: 정가 $120 → 런칭 $72 / 상시 $90<br><br>
+          신청 폼에서 플랜과 계약 기간을 선택하면 HST 포함 최종 금액이 실시간으로 계산됩니다.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>계약 기간은 어떻게 선택할 수 있나요?</span><span class="faq-icon">+</span></button>
+        <div class="faq-a">
+          • <strong>Basic</strong>: 1개월 단위 계약<br>
+          • <strong>Standard</strong>: 3개월 · 6개월 · 12개월 중 선택<br>
+          • <strong>Premium</strong>: 1개월 · 3개월 · 6개월 · 12개월 중 선택<br><br>
+          모든 플랜은 정기 갱신이 아닌 <strong>선납 방식</strong>으로, 계약 기간이 끝나면 자동 종료됩니다.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q"><span>무료 플랜과 유료 플랜의 차이는?</span><span class="faq-icon">+</span></button>
@@ -706,7 +831,11 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
       </div>
       <div class="faq-item">
         <button class="faq-q"><span>배너는 어떻게 제작하나요?</span><span class="faq-icon">+</span></button>
-        <div class="faq-a">업체 로고, 홍보 문구, 연락처 등 자료를 제공해 주시면 제작 후 검토 및 최종 승인하는 방식으로 진행됩니다. 12개월 계약 시 무료 제작, 별도 의뢰 시 $50+TAX입니다.</div>
+        <div class="faq-a">업체 로고, 홍보 문구, 연락처 등 자료를 제공해 주시면 제작 후 검토 및 최종 승인하는 방식으로 진행됩니다. <strong>Standard 또는 Premium의 12개월 계약 시 배너 무료 제작</strong>이 포함됩니다. 별도 의뢰 시 $50 + HST입니다.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>매장 주소는 꼭 입력해야 하나요?</span><span class="faq-icon">+</span></button>
+        <div class="faq-a">매장 주소는 <strong>선택 입력</strong>입니다. 주소를 입력하시면 광고 카드에 구글 지도 링크가 자동으로 연결되어, 고객이 클릭 한 번으로 위치를 확인할 수 있습니다. 매장이 없는 출장·온라인 기반 업체는 비워두셔도 됩니다.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q"><span>단톡 광고는 어떤 방식으로 진행되나요?</span><span class="faq-icon">+</span></button>
@@ -714,7 +843,7 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
       </div>
       <div class="faq-item">
         <button class="faq-q"><span>계약 중도 해지가 가능한가요?</span><span class="faq-icon">+</span></button>
-        <div class="faq-a">월 단위 계약은 매월 갱신 여부를 결정하실 수 있습니다. 6개월·12개월 약정의 경우 중도 해지 조건은 계약 시 별도 안내드립니다.</div>
+        <div class="faq-a">선납 방식으로 운영되므로 <strong>중도 해지 시 환불은 불가</strong>합니다. 단, 서비스 측 귀책 사유로 인한 노출 불가 기간은 연장으로 보전해 드립니다. 계약 만료 전 연장/갱신 여부는 자유롭게 선택하실 수 있습니다.</div>
       </div>
     </div>
   </div>
@@ -724,14 +853,200 @@ footer { background: var(--navy); padding: 48px 4% 28px; }
 
 
 <script>
+// ==========================================================================
+// OKC 광고 가격 엔진 - 플랜별/기간별 가격 계산 및 UI 동기화
+// ==========================================================================
+
+// 런칭 프로모션 마감일 (5/10 EST 23:59)
+var PROMO_DEADLINE = new Date('2026-05-10T23:59:59-04:00');
+
+// 플랜 가격 데이터 (CAD, HST 별도)
+var PLAN_DATA = {
+  Free:     { original: 0,     promo: 0,     regular: 0 },
+  Basic:    { original: 19.99, promo: 11.99, regular: 14.99 },
+  Standard: { original: 50,    promo: 30,    regular: 37.50 },
+  Premium:  { original: 120,   promo: 72,    regular: 90 }
+};
+
+// 플랜별 계약기간 옵션
+var CONTRACT_OPTIONS = {
+  Free:     [],
+  Basic:    [{value:1,  label:'1개월'}],
+  Standard: [{value:3,  label:'3개월'}, {value:6,  label:'6개월'}, {value:12, label:'12개월'}],
+  Premium:  [{value:1,  label:'1개월'}, {value:3,  label:'3개월'}, {value:6,  label:'6개월'}, {value:12, label:'12개월'}]
+};
+
+var HST_RATE = 0.13;
+
+// 현재 런칭 프로모션 기간인지 확인
+function isPromoActive() {
+  return new Date() <= PROMO_DEADLINE;
+}
+
+// 현재 적용 월 요금 반환
+function getCurrentMonthly(plan) {
+  var data = PLAN_DATA[plan];
+  if (!data) return 0;
+  return isPromoActive() ? data.promo : data.regular;
+}
+
+// 런칭 카운트다운 업데이트
+function updateCountdown() {
+  var el = document.getElementById('launch-countdown');
+  if (!el) return;
+  var diff = PROMO_DEADLINE - new Date();
+  if (diff <= 0) {
+    el.innerHTML = '✅ 상시 25% 할인 진행 중';
+    return;
+  }
+  var days = Math.floor(diff / (1000*60*60*24));
+  var hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+  el.innerHTML = '⏰ 런칭 특가 마감까지 <strong style="color:#fff;">' + days + '일 ' + hours + '시간</strong>';
+}
+
+// 플랜 선택 시 UI 업데이트 (계약기간 옵션 + 요약)
+function updatePlanUI() {
+  var plan = document.getElementById('plan').value;
+  var contractGroup = document.getElementById('contract-group');
+  var contractSel = document.getElementById('contract_months');
+  var bannerGroup = document.getElementById('banner-group');
+
+  // 계약기간 옵션 재구성
+  contractSel.innerHTML = '';
+  var options = CONTRACT_OPTIONS[plan] || [];
+
+  if (!plan || plan === 'Free') {
+    // Free는 계약기간/배너 필드 숨김
+    contractGroup.style.display = 'none';
+    if (plan === 'Free') bannerGroup.style.display = 'none';
+    else bannerGroup.style.display = '';
+    document.getElementById('price-summary').style.display = 'none';
+    return;
+  }
+
+  contractGroup.style.display = '';
+  bannerGroup.style.display = '';
+
+  if (options.length === 1) {
+    // Basic: 1개월 고정
+    var o = options[0];
+    var opt = document.createElement('option');
+    opt.value = o.value;
+    opt.textContent = o.label + ' (고정)';
+    opt.selected = true;
+    contractSel.appendChild(opt);
+  } else {
+    // Standard/Premium: 여러 옵션
+    var placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = '계약 기간을 선택하세요';
+    contractSel.appendChild(placeholder);
+    options.forEach(function(o) {
+      var opt = document.createElement('option');
+      opt.value = o.value;
+      var extra = '';
+      if (o.value === 12) extra = ' · 🎁 배너 무료 제작';
+      opt.textContent = o.label + extra;
+      contractSel.appendChild(opt);
+    });
+  }
+
+  updatePriceSummary();
+}
+
+// 실시간 가격 계산 및 요약 표시
+function updatePriceSummary() {
+  var plan = document.getElementById('plan').value;
+  var months = parseInt(document.getElementById('contract_months').value) || 0;
+  var summary = document.getElementById('price-summary');
+  var bannerFreeNote = document.getElementById('banner-free-note');
+
+  // 12개월 선택 시 배너 무료 안내 표시
+  if (months === 12 && (plan === 'Standard' || plan === 'Premium')) {
+    bannerFreeNote.style.display = 'block';
+    document.getElementById('banner').value = '12개월 혜택 (무료 제작)';
+  } else {
+    bannerFreeNote.style.display = 'none';
+  }
+
+  // 계산 조건 미충족 시 숨김
+  if (!plan || plan === 'Free' || !months) {
+    summary.style.display = 'none';
+    return;
+  }
+
+  var data = PLAN_DATA[plan];
+  var monthly = getCurrentMonthly(plan);
+  var original = data.original;
+  var subtotal = monthly * months;
+  var originalTotal = original * months;
+  var saved = originalTotal - subtotal;
+  var tax = subtotal * HST_RATE;
+  var total = subtotal + tax;
+
+  document.getElementById('ps-plan').textContent = plan;
+  document.getElementById('ps-original').textContent = '$' + original.toFixed(2);
+  document.getElementById('ps-monthly').textContent = '$' + monthly.toFixed(2);
+  document.getElementById('ps-months').textContent = months + '개월';
+  document.getElementById('ps-subtotal').textContent = '$' + subtotal.toFixed(2);
+  document.getElementById('ps-saved').textContent = '-$' + saved.toFixed(2);
+  document.getElementById('ps-tax').textContent = '$' + tax.toFixed(2);
+  document.getElementById('ps-total').textContent = '$' + total.toFixed(2) + ' CAD';
+  document.getElementById('ps-per-month').textContent = '$' + (total/months).toFixed(2) + '/월';
+
+  // 절약 금액이 의미있을 때만 하이라이트
+  if (saved > 0) {
+    document.getElementById('ps-save-row').style.display = 'flex';
+    var saveEl = document.getElementById('ps-save-highlight');
+    saveEl.style.display = 'block';
+    saveEl.innerHTML = '💰 정가 대비 <strong style="font-size:16px;">$' + saved.toFixed(2) + '</strong> 절약!';
+  } else {
+    document.getElementById('ps-save-row').style.display = 'none';
+    document.getElementById('ps-save-highlight').style.display = 'none';
+  }
+
+  // 12개월 배너 하이라이트
+  var bannerHl = document.getElementById('ps-banner-highlight');
+  bannerHl.style.display = (months === 12 && (plan === 'Standard' || plan === 'Premium')) ? 'block' : 'none';
+
+  // hidden 필드 설정 (서버로 전송)
+  document.getElementById('hidden-original').value = original.toFixed(2);
+  document.getElementById('hidden-monthly').value = monthly.toFixed(2);
+  document.getElementById('hidden-subtotal').value = subtotal.toFixed(2);
+  document.getElementById('hidden-saved').value = saved.toFixed(2);
+  document.getElementById('hidden-tax').value = tax.toFixed(2);
+  document.getElementById('hidden-total').value = total.toFixed(2);
+  document.getElementById('hidden-promo').value = isPromoActive() ? '런칭특가(40%)' : '상시할인(25%)';
+
+  summary.style.display = 'block';
+}
+
+// 페이지 로드 시 실행
+updateCountdown();
+setInterval(updateCountdown, 60000); // 1분마다 갱신
+
+// ==========================================================================
 // 폼 제출 피드백
+// ==========================================================================
 var formJustSubmitted = false;
 
 document.getElementById('okc_hidden').addEventListener('load', function() {
   iframeLoaded();
 });
 
-document.getElementById('ad-form').addEventListener('submit', function() {
+document.getElementById('ad-form').addEventListener('submit', function(e) {
+  var plan = document.getElementById('plan').value;
+  if (plan && plan !== 'Free') {
+    var months = document.getElementById('contract_months').value;
+    if (!months) {
+      e.preventDefault();
+      var msg = document.getElementById('form-msg');
+      msg.textContent = '⚠️ 계약 기간을 선택해 주세요.';
+      msg.className = 'error'; msg.style.display = 'block';
+      msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+  }
   formJustSubmitted = true;
   var btn = document.getElementById('submit-btn');
   btn.textContent = '제출 중...';
@@ -748,13 +1063,18 @@ function iframeLoaded() {
   btn.textContent = '광고 신청서 제출하기 →';
   btn.disabled = false;
   document.getElementById('ad-form').reset();
+  document.getElementById('price-summary').style.display = 'none';
+  document.getElementById('contract-group').style.display = 'none';
   msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 function selectPlan(plan) {
   setTimeout(function() {
     var sel = document.getElementById('plan');
-    if (sel) sel.value = plan;
+    if (sel) {
+      sel.value = plan;
+      updatePlanUI();
+    }
     var applyEl = document.getElementById('apply');
     if (applyEl) applyEl.scrollIntoView({ behavior: 'smooth' });
   }, 100);
