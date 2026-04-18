@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
+<!-- saved from url=(0049)file:///C:/Users/chkim/Downloads/directory_3.html -->
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>한인 업체 찾기 — Ontario Korean Community OKC</title>
 <meta name="description" content="온타리오 한인 업체 디렉토리. Hamilton, Burlington, Brantford, Oakville, Milton 한인 업체 목록.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="./directory_files/css2" rel="stylesheet">
 <style>
 :root{--navy:#0d1f35;--navy2:#162d4a;--blue:#1a5fa8;--blue2:#2478cc;--gold:#c8a24a;--gold2:#e6c46a;--red:#c0392b;--green:#1a7a4a;--cream:#f8f6f1;--warm:#f2efe8;--white:#ffffff;--g100:#f5f3ee;--g200:#e9e6df;--g500:#888480;--g700:#46443f;--text:#1a1815}
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
@@ -168,7 +168,7 @@ footer{background:var(--navy);padding:40px 4% 24px;border-top:1px solid rgba(255
 </head>
 <body>
 <div id="okc-nav"></div>
-<script src="nav.js"></script>
+<script src="file:///C:/Users/chkim/Downloads/nav.js"></script>
 
 
 
@@ -180,7 +180,7 @@ footer{background:var(--navy);padding:40px 4% 24px;border-top:1px solid rgba(255
     <h1>가까운 <span>한인 업체</span>를<br>한눈에 찾으세요</h1>
     <p class="hero-desc">Hamilton · Burlington · Brantford · Oakville · Milton · Niagara Region — 믿을 수 있는 한인 업체를 지역과 업종별로 쉽게 찾을 수 있어요.</p>
     <div class="hero-stats">
-      <div class="hstat"><div class="hstat-n" id="total-count">0<small>개</small></div><div class="hstat-l">등록 업체</div></div>
+      <div class="hstat"><div class="hstat-n" id="total-count">6</div><div class="hstat-l">등록 업체</div></div>
       <div class="hstat"><div class="hstat-n">6<small>개</small></div><div class="hstat-l">커버 지역</div></div>
       <div class="hstat"><div class="hstat-n">8<small>개</small></div><div class="hstat-l">업종 카테고리</div></div>
     </div>
@@ -195,7 +195,7 @@ footer{background:var(--navy);padding:40px 4% 24px;border-top:1px solid rgba(255
     <div class="sheet-info" id="sheetInfo">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
         <strong>⚙️ 구글 시트 연동 설정</strong>
-        <button onclick="document.getElementById('sheetInfo').style.display='none'" style="background:none;border:none;cursor:pointer;font-size:18px;color:var(--g500)">✕</button>
+        <button onclick="document.getElementById(&#39;sheetInfo&#39;).style.display=&#39;none&#39;" style="background:none;border:none;cursor:pointer;font-size:18px;color:var(--g500)">✕</button>
       </div>
       구글 시트가 연동되어 있어요. 시트 데이터를 수정하면 페이지 새로고침 시 자동 반영돼요.<br><br>
       <strong>시트 컬럼 순서:</strong><br>
@@ -208,27 +208,25 @@ footer{background:var(--navy);padding:40px 4% 24px;border-top:1px solid rgba(255
     <div class="search-bar">
       <input class="search-input" id="searchInput" placeholder="업체명, 업종, 지역으로 검색..." oninput="filterCards()">
       <button class="search-btn" onclick="filterCards()">검색</button>
-      <button onclick="document.getElementById('sheetInfo').style.display=document.getElementById('sheetInfo').style.display==='block'?'none':'block'" style="background:var(--g100);border:1.5px solid var(--g200);border-radius:10px;padding:0 14px;cursor:pointer;font-size:18px;flex-shrink:0" title="구글 시트 연동 설정">⚙️</button>
+      <button onclick="document.getElementById(&#39;sheetInfo&#39;).style.display=document.getElementById(&#39;sheetInfo&#39;).style.display===&#39;block&#39;?&#39;none&#39;:&#39;block&#39;" style="background:var(--g100);border:1.5px solid var(--g200);border-radius:10px;padding:0 14px;cursor:pointer;font-size:18px;flex-shrink:0" title="구글 시트 연동 설정">⚙️</button>
     </div>
-    <div class="filter-row" id="catFilters">
-      <button class="filter-btn active" onclick="setFilter('all',this)">전체</button>
-    </div>
+    <div class="filter-row" id="catFilters"><button class="filter-btn active" onclick="setFilter(&#39;all&#39;,this)">전체</button><button class="filter-btn" onclick="setFilter(&#39;미용·뷰티&#39;,this)">미용·뷰티</button><button class="filter-btn" onclick="setFilter(&#39;음식점·마트&#39;,this)">음식점·마트</button><button class="filter-btn" onclick="setFilter(&#39;교육·과외&#39;,this)">교육·과외</button><button class="filter-btn" onclick="setFilter(&#39;부동산&#39;,this)">부동산</button><button class="filter-btn" onclick="setFilter(&#39;기타&#39;,this)">기타</button><button class="filter-btn" onclick="setFilter(&#39;의료·치과&#39;,this)">의료·치과</button></div>
     <div style="margin-top:10px">
       <div class="filter-row">
-        <button class="filter-btn active" onclick="setRegion('all',this)" id="reg-all">전체 지역</button>
-        <button class="filter-btn" onclick="setRegion('Hamilton',this)">Hamilton</button>
-        <button class="filter-btn" onclick="setRegion('Burlington',this)">Burlington</button>
-        <button class="filter-btn" onclick="setRegion('Brantford',this)">Brantford</button>
-        <button class="filter-btn" onclick="setRegion('Oakville',this)">Oakville</button>
-        <button class="filter-btn" onclick="setRegion('Milton',this)">Milton</button>
-        <button class="filter-btn" onclick="setRegion('Niagara Region',this)">Niagara Region</button>
+        <button class="filter-btn active" onclick="setRegion(&#39;all&#39;,this)" id="reg-all">전체 지역</button>
+        <button class="filter-btn" onclick="setRegion(&#39;Hamilton&#39;,this)">Hamilton</button>
+        <button class="filter-btn" onclick="setRegion(&#39;Burlington&#39;,this)">Burlington</button>
+        <button class="filter-btn" onclick="setRegion(&#39;Brantford&#39;,this)">Brantford</button>
+        <button class="filter-btn" onclick="setRegion(&#39;Oakville&#39;,this)">Oakville</button>
+        <button class="filter-btn" onclick="setRegion(&#39;Milton&#39;,this)">Milton</button>
+        <button class="filter-btn" onclick="setRegion(&#39;Niagara Region&#39;,this)">Niagara Region</button>
       </div>
     </div>
     <div class="reg-bar">
       <p>실제 거주하는 지역 주민에게 <strong>장기 노출</strong>로 비즈니스에 날개를 달아보세요</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <a href="ads.html" class="reg-link" style="background:var(--navy);color:var(--white)">광고 플랜 보기</a>
-        <a href="ads.html#apply" class="reg-link">업체 등록 신청 →</a>
+        <a href="file:///C:/Users/chkim/Downloads/ads.html" class="reg-link" style="background:var(--navy);color:var(--white)">광고 플랜 보기</a>
+        <a href="file:///C:/Users/chkim/Downloads/ads.html#apply" class="reg-link">업체 등록 신청 →</a>
       </div>
     </div>
   </div>
@@ -238,14 +236,9 @@ footer{background:var(--navy);padding:40px 4% 24px;border-top:1px solid rgba(255
 <section class="dir-sec">
   <div class="dir-in">
     <div class="dir-header">
-      <div class="dir-count" id="dirCount">업체 불러오는 중...</div>
+      <div class="dir-count" id="dirCount">6개 업체</div>
     </div>
-    <div id="dirGrid">
-      <div class="loading">
-        <div class="loading-spinner"></div>
-        <p>업체 정보를 불러오는 중이에요...</p>
-      </div>
-    </div>
+    <div id="dirGrid"><div class="plan-section"><div class="plan-section-title"><h3>⭐ Premium</h3><span class="cnt">(1개)</span></div><div class="grid-premium"><div class="bcard is-premium"><span class="plan-badge badge-premium">PREMIUM</span><div class="bcard-body"><div style="font-size:36px;line-height:1;margin-bottom:10px">🏋</div><div class="bcard-cat">미용·뷰티</div><div class="bcard-name">해피 네일 스파</div><div class="bcard-region">📍 Hamilton</div><div class="bcard-desc">OPI 정품 사용, 한국어 가능, 예약 우선</div><div class="bcard-footer"><a class="bcard-tel" href="tel:905-111-2222">📞 905-111-2222</a><a class="bcard-kakao" href="https://open.kakao.com/o/gEBvaZ7b" target="_blank">💬 카카오</a></div></div></div></div></div><div class="plan-section"><div class="plan-section-title"><h3>🌟 Standard</h3><span class="cnt">(2개)</span></div><div class="grid-standard"><div class="bcard is-standard"><span class="plan-badge badge-standard">STANDARD</span><div class="bcard-body"><div style="font-size:22px;line-height:1;margin-bottom:6px;opacity:0.75">🥈</div><div class="bcard-cat">음식점·마트</div><div class="bcard-name">김밥나라 Hamilton</div><div class="bcard-region">📍 Hamilton</div><div class="bcard-desc">정통 한식, 김밥·비빔밥·된장찌개 전문</div><div class="bcard-footer"><a class="bcard-tel" href="tel:905-333-4444">📞 905-333-4444</a></div></div></div><div class="bcard is-standard"><span class="plan-badge badge-standard">STANDARD</span><div class="bcard-body"><div style="font-size:22px;line-height:1;margin-bottom:6px;opacity:0.75">🥈</div><div class="bcard-cat">교육·과외</div><div class="bcard-name">OO 수학·영어 학원</div><div class="bcard-region">📍 Oakville</div><div class="bcard-desc">초등~고등 전문, 한국인 선생님, 소그룹 수업</div><div class="bcard-footer"><a class="bcard-tel" href="tel:905-555-6666">📞 905-555-6666</a></div></div></div></div></div><div class="plan-section"><div class="plan-section-title"><h3>Basic</h3><span class="cnt">(2개)</span></div><div class="grid-basic"><div class="bcard is-basic"><span class="plan-badge badge-basic">BASIC</span><div class="bcard-body"><div class="bcard-cat">부동산</div><div class="bcard-name">한인 부동산 그룹</div><div class="bcard-region">📍 Burlington</div><div class="bcard-footer"><a class="bcard-tel" href="tel:905-777-8888">📞 905-777-8888</a></div></div></div><div class="bcard is-basic"><span class="plan-badge badge-basic">BASIC</span><div class="bcard-body"><div class="bcard-cat">의료·치과</div><div class="bcard-name">건강 한의원</div><div class="bcard-region">📍 Milton</div><div class="bcard-footer"><a class="bcard-tel" href="tel:905-999-0000">📞 905-999-0000</a></div></div></div></div></div><div class="plan-section"><div class="plan-section-title"><h3>일반 등록</h3><span class="cnt">(1개)</span></div><div class="dir-free-list"><div class="bcard-free"><div class="bcard-free-cat">기타</div><div class="bcard-free-name">김씨 세탁소</div><div class="bcard-free-right"><span class="bcard-free-region">📍 Brantford</span></div></div></div></div></div>
   </div>
 </section>
 
@@ -255,8 +248,8 @@ footer{background:var(--navy);padding:40px 4% 24px;border-top:1px solid rgba(255
     <h2>내 업체를 등록하세요</h2>
     <p>무료로 시작해서 더 많은 노출이 필요할 때 업그레이드하세요.</p>
     <div class="reg-btns">
-      <a href="ads.html" class="btn-gold">광고 플랜 보기</a>
-      <a href="ads.html#apply" class="btn-ghost">무료 등록 신청</a>
+      <a href="file:///C:/Users/chkim/Downloads/ads.html" class="btn-gold">광고 플랜 보기</a>
+      <a href="file:///C:/Users/chkim/Downloads/ads.html#apply" class="btn-ghost">무료 등록 신청</a>
     </div>
   </div>
 </section>
@@ -596,8 +589,8 @@ function parseCSV(csv) {
 }
 
 function loadFromSheet() {
-  // ★ 광고신청 시트 CSV URL (업체등록폼 > 광고신청 탭, gid=1063174262)
-  var SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQO1rWbm6-_8oriirW5p_kluDJbF8oQ0VAr0GXXblaEnSnF30wipZwoTiPWd2TBwhZTBPKwv4t9IvWq/pub?gid=1063174262&single=true&output=csv';
+  // ★ 광고신청 시트 CSV URL (업체등록폼 > 광고신청 탭, gid=2136175069)
+  var SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQO1rWbm6-_8oriirW5p_kluDJbF8oQ0VAr0GXXblaEnSnF30wipZwoTiPWd2TBwhZTBPKwv4t9IvWq/pub?gid=2136175069&single=true&output=csv';
   document.getElementById('dirGrid').innerHTML = '<div class="loading"><div class="loading-spinner"></div><p>시트 데이터 불러오는 중...</p></div>';
   fetch(SHEET_URL)
     .then(function(r){ return r.text(); })
@@ -628,7 +621,104 @@ function init() {
 init();
 </script>
 
-<div id="okc-footer"></div>
-<script src="footer.js"></script>
-</body>
-</html>
+<div id="okc-footer">
+<style>
+/* TRUST BANNER (Footer 상단) */
+.okc-trust{background:linear-gradient(135deg,#0d1f35 0%,#162d4a 100%);padding:32px 4%;border-bottom:1px solid rgba(200,162,74,0.18)}
+.okc-trust-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center}
+.okc-trust-main{display:flex;flex-direction:column;gap:10px}
+.okc-trust-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(200,162,74,0.12);border:1px solid rgba(200,162,74,0.3);color:#e6c46a;font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 11px;border-radius:20px;align-self:flex-start;font-family:'Noto Sans KR',sans-serif}
+.okc-trust-title{color:#fff;font-size:19px;font-weight:800;line-height:1.4;font-family:'Noto Sans KR',sans-serif}
+.okc-trust-title em{color:#e6c46a;font-style:normal;font-weight:900}
+.okc-trust-meta{display:flex;flex-wrap:wrap;gap:6px 18px;color:rgba(255,255,255,0.62);font-size:12.5px;font-family:'Noto Sans KR',sans-serif;margin-top:4px}
+.okc-trust-meta span{display:inline-flex;align-items:center;gap:5px}
+.okc-trust-meta strong{color:#fff;font-weight:700}
+.okc-activity{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px}
+.okc-activity-label{color:#c8a24a;font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;font-family:'Noto Sans KR',sans-serif;display:flex;align-items:center;gap:6px}
+.okc-activity-label::before{content:'';width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px rgba(74,222,128,0.6);animation:okc-pulse 2s ease-in-out infinite}
+@keyframes okc-pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+.okc-activity-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.okc-activity-item{text-align:center}
+.okc-activity-num{color:#fff;font-size:18px;font-weight:800;line-height:1;font-family:'Noto Sans KR',sans-serif}
+.okc-activity-lbl{color:rgba(255,255,255,0.45);font-size:10.5px;margin-top:4px;font-family:'Noto Sans KR',sans-serif}
+@media(max-width:780px){.okc-trust-inner{grid-template-columns:1fr;gap:20px}}
+
+.okc-footer{background:#0d1f35;padding:48px 4% 28px}
+.okc-fg{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:44px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.okc-fb h3{color:#fff;font-size:17px;font-weight:900;margin-bottom:2px;font-family:'Noto Sans KR',sans-serif}
+.okc-fb h3 em{color:#c8a24a;font-style:normal}
+.okc-fb .fe{color:#c8a24a;font-size:11px;letter-spacing:1px;margin-bottom:3px;font-family:'Noto Sans KR',sans-serif}
+.okc-fb .fu{color:rgba(255,255,255,0.28);font-size:11px;margin-bottom:12px;font-family:'Noto Sans KR',sans-serif}
+.okc-fb p{color:rgba(255,255,255,0.42);font-size:12.5px;line-height:1.85;font-family:'Noto Sans KR',sans-serif}
+.okc-fc h4{color:#fff;font-size:13px;font-weight:700;margin-bottom:14px;font-family:'Noto Sans KR',sans-serif}
+.okc-fc a{display:block;color:rgba(255,255,255,0.42);font-size:12.5px;text-decoration:none;margin-bottom:8px;transition:color .2s;font-family:'Noto Sans KR',sans-serif;cursor:pointer}
+.okc-fc a:hover{color:#e6c46a}
+.okc-fbot{max-width:1100px;margin:20px auto 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.okc-fbot p{color:rgba(255,255,255,0.25);font-size:11.5px;font-family:'Noto Sans KR',sans-serif}
+@media(max-width:880px){.okc-fg{grid-template-columns:1fr 1fr}}
+@media(max-width:580px){.okc-fg{grid-template-columns:1fr}}
+</style>
+
+<!-- TRUST BANNER -->
+<section class="okc-trust">
+  <div class="okc-trust-inner">
+    <div class="okc-trust-main">
+      <span class="okc-trust-badge">Ontario Korean Community</span>
+      <div class="okc-trust-title">온타리오 최대 한인 커뮤니티 네트워크<br>KakaoTalk 회원 <em>900+</em> · 2020년부터 운영</div>
+      <div class="okc-trust-meta">
+        <span>📍 <strong>Hamilton · Burlington · Oakville · Brantford · Niagara</strong></span>
+      </div>
+    </div>
+    <div class="okc-activity">
+      <div class="okc-activity-label">이번 주 커뮤니티 활동</div>
+      <div class="okc-activity-grid">
+        <div class="okc-activity-item">
+          <div class="okc-activity-num" id="okc-stat-signup">-</div>
+          <div class="okc-activity-lbl">신규 가입</div>
+        </div>
+        <div class="okc-activity-item">
+          <div class="okc-activity-num" id="okc-stat-posts">-</div>
+          <div class="okc-activity-lbl">게시글</div>
+        </div>
+        <div class="okc-activity-item">
+          <div class="okc-activity-num" id="okc-stat-views">-</div>
+          <div class="okc-activity-lbl">광고 노출</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="okc-footer">
+  <div class="okc-fg">
+    <div class="okc-fb">
+      <h3>OKC <em>온타리오 한인 커뮤니티</em></h3>
+      <div class="fe">Ontario Korean Community</div>
+      <div class="fu">ontariokc.com</div>
+      <p>Hamilton · Burlington · Brantford<br>Oakville · Milton<br>나이아가라 지역 (2026년 5월 확장 예정)</p>
+    </div>
+    <div class="okc-fc">
+      <h4>서비스</h4>
+      <a href="file:///C:/Users/chkim/Downloads/directory.html">한인 업체 찾기</a>
+      <a href="file:///C:/Users/chkim/Downloads/jobs.html">도움 주고받기</a>
+      <a href="file:///C:/Users/chkim/Downloads/ads.html">광고 상품 안내</a>
+      <a href="file:///C:/Users/chkim/Downloads/index.html#newsletter">뉴스레터</a>
+      <a href="https://cafe.naver.com/canadalove" target="_blank">네이버 카페</a>
+      <a href="https://thechmarket.com/" target="_blank">더채움마켓</a>
+    </div>
+    <div class="okc-fc">
+      <h4>문의</h4>
+      <a href="https://open.kakao.com/o/sahniO1e" target="_blank">카카오톡 문의</a>
+      <a id="okc-email-link">이메일 문의</a>
+      <a href="file:///C:/Users/chkim/Downloads/ads.html#apply">광고 신청</a>
+      <a href="file:///C:/Users/chkim/Downloads/index.html#kakao">오픈톡방 참여</a>
+    </div>
+  </div>
+  <div class="okc-fbot">
+    <p>2026 Ontario Korean Community · OKC · ontariokc.com</p>
+  </div>
+</footer></div>
+<script src="./directory_files/footer.js"></script>
+
+
+</body></html>
