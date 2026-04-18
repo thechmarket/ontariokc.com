@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0049)file:///C:/Users/chkim/Downloads/directory_3.html -->
+<!-- saved from url=(0049)file:///C:/Users/chkim/Downloads/directory_4.html -->
 <html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -589,23 +589,29 @@ function parseCSV(csv) {
 }
 
 function loadFromSheet() {
-  // ★ 광고신청 시트 CSV URL (업체등록폼 > 광고신청 탭, gid=2136175069)
-  var SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQO1rWbm6-_8oriirW5p_kluDJbF8oQ0VAr0GXXblaEnSnF30wipZwoTiPWd2TBwhZTBPKwv4t9IvWq/pub?gid=2136175069&single=true&output=csv';
-  document.getElementById('dirGrid').innerHTML = '<div class="loading"><div class="loading-spinner"></div><p>시트 데이터 불러오는 중...</p></div>';
-  fetch(SHEET_URL)
-    .then(function(r){ return r.text(); })
-    .then(function(csv){
-      var parsed = parseCSV(csv);
-      if (parsed.length > 0) {
-        allData = parsed;
+  // ★ Apps Script 웹앱 URL (광고 신청 처리 + 디렉토리 조회 공용)
+  // 시트 원본은 비공개 유지. Apps Script가 필터링된 공개 데이터만 JSON으로 반환.
+  var API_URL = 'https://script.google.com/macros/s/AKfycbxS07YDGD4RZ1TFK-9FI6yAmo7wf_Mn5n9_y00mGDdSWBlcHIQWRl0GkaJTla2iwfev/exec?action=list';
+
+  document.getElementById('dirGrid').innerHTML = '<div class="loading"><div class="loading-spinner"></div><p>업체 정보 불러오는 중...</p></div>';
+
+  // 캐시 우회용 타임스탬프 추가 (실시간 반영 보장)
+  fetch(API_URL + '&_t=' + Date.now())
+    .then(function(r){ return r.json(); })
+    .then(function(res){
+      if (res && res.ok && Array.isArray(res.data)) {
+        // Apps Script에서 이미 L=Y 필터링 + 만료일 체크 + 민감정보 제외 완료
+        allData = res.data.filter(function(b){ return b.name; });
         filterCards();
-        document.getElementById('total-count').textContent = allData.length;
+        var countEl = document.getElementById('total-count');
+        if (countEl) countEl.textContent = allData.length;
       } else {
+        console.log('Apps Script 응답 오류:', res);
         filterCards();
       }
     })
-    .catch(function(){
-      console.log('시트 로드 실패, 샘플 데이터 사용');
+    .catch(function(err){
+      console.log('데이터 로드 실패, 샘플 데이터 사용:', err);
       filterCards();
     });
 }
