@@ -567,11 +567,13 @@ function parseCSV(csv) {
 
     var contractPlan = get(cols, ['계약플랜', 'F']);
     var startDate    = get(cols, ['등록일', 'G']);
-    var months       = parseInt(get(cols, ['계약기간(월)', 'H'])) || 0;
+    var months       = parseInt(get(cols, ['계약기간(월)', '계약기간월', 'H'])) || 0;
     var expireRaw    = get(cols, ['만료일', 'I']);
     var effectivePlan = get(cols, ['실제노출플랜', 'J']) || contractPlan || 'Free';
     var kakao        = get(cols, ['카카오링크', 'K']);
     var display      = get(cols, ['노출여부', 'L']) || 'Y';
+    var address      = get(cols, ['매장주소', 'S']);
+    var mapUrl       = get(cols, ['구글지도URL', 'T']);
     var expireDate   = parseExpireDate(expireRaw, startDate, months);
 
     return {
@@ -586,15 +588,16 @@ function parseCSV(csv) {
       expireDate:   expireDate,
       plan:         effectivePlan,
       kakao:        kakao,
+      address:      address,
+      mapUrl:       mapUrl,
       display:      display
     };
   }).filter(function(b){ return b.display === 'Y' && b.name; });
 }
 
 function loadFromSheet() {
-  // ★ 광고신청 시트의 CSV URL로 교체해 주세요
-  // (파일 → 공유 → 웹에 게시 → 광고신청 시트 선택 → CSV → 게시 → URL 복사)
-  var SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQO1rWbm6-_8oriirW5p_kluDJbF8oQ0VAr0GXXblaEnSnF30wipZwoTiPWd2TBwhZTBPKwv4t9IvWq/pub?gid=1723577959&single=true&output=csv';
+  // ★ 광고신청 시트 CSV URL (업체등록폼 > 광고신청 탭, gid=1063174262)
+  var SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQO1rWbm6-_8oriirW5p_kluDJbF8oQ0VAr0GXXblaEnSnF30wipZwoTiPWd2TBwhZTBPKwv4t9IvWq/pub?gid=1063174262&single=true&output=csv';
   document.getElementById('dirGrid').innerHTML = '<div class="loading"><div class="loading-spinner"></div><p>시트 데이터 불러오는 중...</p></div>';
   fetch(SHEET_URL)
     .then(function(r){ return r.text(); })
